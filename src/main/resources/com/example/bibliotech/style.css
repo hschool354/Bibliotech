@@ -1,0 +1,235 @@
+.aide_ankerpane {
+    -fx-background-color: #ffffff; /* Màu nền */
+    -fx-border-color: #ffffff; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 20px; /* Bo góc đường viền */
+    -fx-background-radius: 20px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.aide_ankerpane_1 {
+    -fx-background-color: #ffffff80; /* Màu nền trắng với độ trong suốt */
+    -fx-border-color: #ffffff80; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 20px; /* Bo góc đường viền */
+    -fx-background-radius: 20px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.aide_ankerpane_1:hover {
+    -fx-background-color: #ffffff; /* Màu trắng với độ trong suốt khoảng 20% */
+    -fx-border-color: #ffffffcc; /* Màu đường viền trắng với độ trong suốt khoảng 20% */
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+
+.aide_ankerpane_2 {
+    -fx-background-color: #ffffff; /* Màu nền */
+    -fx-border-color: #ffffff; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 10px; /* Bo góc đường viền */
+    -fx-background-radius: 15px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+
+.text-field-login {
+    -fx-background-color: white; /* Màu nền của TextField */
+    -fx-border-color: #cccccc; /* Màu viền */
+    -fx-border-width: 1; /* Độ dày của viền */
+    -fx-border-radius: 20; /* Bo tròn góc */
+    -fx-background-radius: 20; /* Bo tròn nền */
+    -fx-padding: 10; /* Khoảng cách giữa viền và nội dung */
+}
+
+.button-login {
+    -fx-background-color: #4682B4; /* Màu nền của nút */
+    -fx-text-fill: black; /* Màu chữ */
+    -fx-border-radius: 20; /* Bo tròn góc cho nút */
+    -fx-background-radius: 20; /* Bo tròn nền của nút */
+    -fx-padding: 10 20; /* Khoảng cách giữa chữ và viền của nút */
+    -fx-font-size: 13; /* Kích thước chữ */
+    -fx-font-weight: bold;
+}
+
+.button-login:hover {
+    -fx-background-color: #4285F4;
+    -fx-text-fill: black;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+}
+
+.button-login_Google {
+    -fx-background-color: #4285F4;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+}
+
+.button-login_Facebook {
+    -fx-background-color: #1877F2;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+}
+
+.text-field-user-with-icon {
+    -fx-background-image: url("/icons/icons_user.png"); /* Đường dẫn đến ảnh */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center; /* Icon nằm bên trái */
+    -fx-background-size: 20px 20px; /* Kích thước của icon */
+    -fx-padding: 5 5 5 30; /* Đệm để đẩy chữ sang phải */
+}
+
+.button-forgotPw{
+
+}
+
+.button-forgotPw:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.button-forgotPw:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+/* Nút mặc định */
+.button_home {
+    -fx-alignment: CENTER_LEFT;
+    -fx-graphic-text-gap: 10px;
+    -fx-background-color: #4682B4;
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
+.button_more {
+    -fx-alignment: CENTER_LEFT;
+    -fx-graphic-text-gap: 10px;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-text-fill: black;
+    -fx-padding: 10px;
+}
+
+/* Nút được chọn/di chuột qua */
+.button_more:hover, .button_more:selected {
+    -fx-background-color: #5B9BD5; /* Màu nền xanh */
+    -fx-text-fill: #FFFFFF; /* Màu chữ trắng */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0); /* Hiệu ứng bóng */
+}
+
+/* Nút đang nhấn */
+.button_more:pressed {
+    -fx-background-color: #34608b; /* Màu nền xanh đậm hơn khi nhấn */
+}
+
+@keyframes shine {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.premium-button {
+    -fx-alignment: CENTER_LEFT;
+    -fx-graphic-text-gap: 10px;
+    -fx-background-color: #FF5733;
+    -fx-text-fill: black;
+    -fx-padding: 10px ;
+    -fx-background-radius: 10px;
+    -fx-transition: all 0.3s ease;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%) no-repeat;
+    background-size: 200% 200%;
+    animation: shine 2s ease infinite;
+}
+
+.premium-button:hover {
+    -fx-background-color: #FF8C8C;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.premium-button:pressed {
+    -fx-background-color: #E55454;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.text-field-search {
+    -fx-background-color: #F2F2F2; /* Màu nền của TextField */
+    -fx-border-color: #A9A9A9; /* Màu viền */
+    -fx-border-width: 1; /* Độ dày của viền */
+    -fx-border-radius: 10; /* Bo tròn góc */
+    -fx-background-radius: 15; /* Bo tròn nền */
+    -fx-padding: 10; /* Khoảng cách giữa viền và nội dung */
+}
+
+.button_search {
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #4682B4;
+    -fx-background-radius: 10px;
+}
+
+.aide_balpane {
+    -fx-background-color: #ffffff; /* Màu nền */
+    -fx-border-color: #ffffff; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 5px; /* Bo góc đường viền */
+    -fx-background-radius: 10px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+.text-field-profile_SignUp {
+    -fx-background-color: #FFFFFF; /* Màu nền của TextField */
+    -fx-border-color: #000000; /* Màu viền */
+    -fx-border-width: 1; /* Độ dày của viền */
+    -fx-border-radius: 10; /* Bo tròn góc */
+    -fx-background-radius: 15; /* Bo tròn nền */
+    -fx-padding: 10; /* Khoảng cách giữa viền và nội dung */
+}
+
+.check-box .box {
+    -fx-background-color: white; /* Nền trắng cho ô vuông */
+    -fx-border-color: black; /* Viền đen */
+    -fx-border-width: 1px; /* Độ dày viền */
+    -fx-padding: 3px; /* Khoảng cách giữa viền và dấu tích */
+    -fx-border-radius: 5; /* Bo tròn góc */
+    -fx-background-radius: 10; /* Bo tròn nền */
+
+}
+
+/* Dấu tích mặc định sẽ không hiển thị */
+.check-box .box .mark {
+    -fx-background-color: transparent; /* Không hiển thị dấu tích mặc định */
+}
+
+/* Khi hover vào checkbox, hiển thị dấu tích màu xám */
+.check-box:hover .box .mark {
+    -fx-background-color: gray; /* Màu xám cho dấu tích khi hover */
+}
+
+/* Khi checkbox được chọn, dấu tích sẽ có màu đen */
+.check-box:selected .box .mark {
+    -fx-background-color: black; /* Màu đen cho dấu tích khi chọn */
+}
+
+.button-sendIns {
+    -fx-background-color: #4682B4; /* Màu nền của nút */
+    -fx-text-fill: white; /* Màu chữ */
+    -fx-border-radius: 10; /* Bo tròn góc cho nút */
+    -fx-background-radius: 15; /* Bo tròn nền của nút */
+    -fx-padding: 10 20; /* Khoảng cách giữa chữ và viền của nút */
+    -fx-font-size: 13; /* Kích thước chữ */
+    -fx-font-weight: bold;
+}
