@@ -194,7 +194,16 @@
             </children>
         </Pane>
         <Pane layoutX="237.0" layoutY="109.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css" />
-        <Pane layoutX="897.0" layoutY="109.0" prefHeight="690.0" prefWidth="430.0" styleClass="aide_ankerpane" stylesheets="@style.css" />
+        <Pane layoutX="897.0" layoutY="109.0" prefHeight="690.0" prefWidth="430.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+         <children>
+            <Label fx:id="sloganLabel" layoutX="201.0" layoutY="74.0" text="Label">
+               <font>
+                  <Font name="SansSerif Bold" size="14.0" />
+               </font>
+            </Label>
+             <ImageView fx:id="gifImageView" fitHeight="426.0" fitWidth="430.0" layoutY="132.0" />
+             <Button fx:id="btn_readNow" layoutX="135.0" layoutY="625.0" mnemonicParsing="false" onAction="#handleReadNowButton" prefHeight="38.0" prefWidth="160.0" styleClass="button-readNow" stylesheets="@style.css" text="READ NOW" />
+         </children></Pane>
       <Pane layoutX="237.0" layoutY="458.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css" />
     </children>
 </AnchorPane>

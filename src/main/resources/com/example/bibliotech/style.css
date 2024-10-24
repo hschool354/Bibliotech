@@ -56,7 +56,7 @@
 
 .button-login:hover {
     -fx-background-color: #4285F4;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
     -fx-padding: 10;
@@ -156,6 +156,7 @@
 
 .premium-button:hover {
     -fx-background-color: #FF8C8C;
+    -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
@@ -232,4 +233,58 @@
     -fx-padding: 10 20; /* Khoảng cách giữa chữ và viền của nút */
     -fx-font-size: 13; /* Kích thước chữ */
     -fx-font-weight: bold;
+}
+
+.button-readNow {
+    -fx-background-color: #4682B4;
+    -fx-text-fill: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+
+}
+
+.button-readNow:hover {
+    -fx-background-color: #5B9BD5;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-radius: 10;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+}
+
+.button-readForFree {
+    -fx-background-color: #81C784;
+    -fx-text-fill: #333333;
+    -fx-border-radius: 15;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-font-size: 13;
+}
+
+.button-readForFree:hover {
+    -fx-background-color: #66b38f;
+    -fx-text-fill: white;
+    -fx-border-radius: 10;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+}
+
+.button-buyBook{
+    -fx-background-color: #FF9800;
+    -fx-text-fill: #333333;
+    -fx-border-radius: 15;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-font-size: 13;
+}
+
+.button-buyBook:hover {
+    -fx-background-color: #e68a00;
+    -fx-text-fill: white;
+    -fx-border-radius: 10;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+
 }

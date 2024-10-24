@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.InformationBookController">
+    <children>
+        <Pane layoutX="14.0" layoutY="9.0" prefHeight="780.0" prefWidth="97.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+            <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-51.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../backgrounds/background_logo1.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="10.0" layoutY="96.0" text="Shelfie">
+                    <font>
+                        <Font name="SansSerif Bold" size="24.0" />
+                    </font>
+                </Label>
+                <VBox layoutX="24.0" layoutY="136.0" prefHeight="348.0" prefWidth="46.0" spacing="12.0">
+                    <children>
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="166.0" styleClass="button_home" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_home.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_category.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_book1.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_history.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_favorite.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_wallet.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+                <VBox layoutX="24.0" layoutY="510.0" prefHeight="168.0" prefWidth="36.0" spacing="12.0">
+                    <children>
+                        <Button fx:id="btn_Premium" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="premium-button" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_crown.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_setting.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_chat.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+                <Line endX="-28.399993896484375" layoutX="104.0" layoutY="491.0" startX="-84.39999389648438" startY="-3.0517578125E-5" stroke="#cdc9c9" />
+            </children>
+        </Pane>
+        <Pane layoutX="128.0" layoutY="8.0" prefHeight="780.0" prefWidth="1200.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="420.0" fitWidth="368.0" layoutX="64.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../backgrounds/To_Kill_a_Mockingbird.jpg" />
+               </image>
+            </ImageView>
+            <VBox layoutX="406.0" layoutY="67.0" prefHeight="590.0" prefWidth="731.0" spacing="10.0">
+               <children>
+                  <Label alignment="TOP_LEFT" prefHeight="93.0" prefWidth="731.0" text="To Kill a Mockingbird (Harperperennial Modern Classics)" wrapText="true">
+                     <font>
+                        <Font name="SansSerif Bold" size="32.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="30.0" prefWidth="732.0" spacing="200.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="147.0" text="by Harper Lee (Author) ">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="21.0" prefWidth="175.0">
+                           <children>
+                              <Button layoutX="-3.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="46.0" style="-fx-background-color: FFFFFF;" />
+                              <ImageView disable="true" fitHeight="27.0" fitWidth="27.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/icons_favorite.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="43.0" layoutY="6.0" prefHeight="17.0" prefWidth="98.0" text="Add to favorites" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <Line endX="630.4928588867188" startX="-100.0" />
+                  <TextArea prefHeight="167.0" prefWidth="732.0" text="Harper Lee's Pulitzer Prize-winning masterwork of honor and injustice in the deep South—and the heroism of one man in the face of blind and violent hatred.&#10;One of the most cherished stories of all time, To Kill a Mockingbird has been translated into more than forty languages, sold more than forty million copies worldwide, served as the basis for an enormously popular motion picture, and was voted one of the best novels of the twentieth century by librarians across the country. A gripping, heart-wrenching, and wholly remarkable tale of coming-of-age in a South poisoned by virulent prejudice, it views a world of great beauty and savage inequities through the eyes of a young girl, as her father—a crusading local lawyer—risks everything to defend a black man unjustly accused of a terrible crime." wrapText="true">
+                     <font>
+                        <Font name="SansSerif Regular" size="14.0" />
+                     </font>
+                  </TextArea>
+                  <Line endX="630.4928588867188" startX="-100.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reading age" textAlignment="CENTER" wrappingWidth="99.7366943359375">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Pane prefHeight="33.0" prefWidth="100.0">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="35.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../icons/icons_human.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="13">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Language" textAlignment="CENTER" wrappingWidth="99.7366943359375">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Pane prefHeight="33.0" prefWidth="100.0">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="35.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../icons/icons_earth.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="English">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pages" textAlignment="CENTER" wrappingWidth="99.7366943359375">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Pane prefHeight="33.0" prefWidth="100.0">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="35.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../icons/icons_page.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="331">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Publication date" textAlignment="CENTER" wrappingWidth="99.7366943359375">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Pane prefHeight="33.0" prefWidth="100.0">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="35.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../icons/icons_date.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="July 8, 2014">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Line endX="630.4928588867188" startX="-100.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genres">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutX="64.0" layoutY="506.0" prefHeight="34.0" prefWidth="279.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rate this book" textAlignment="CENTER" wrappingWidth="278.53668212890625">
+                     <font>
+                        <Font name="SansSerif Regular" size="14.0" />
+                     </font>
+                  </Text>
+                   <HBox fx:id="starsContainer" alignment="CENTER" prefHeight="20.0" prefWidth="279.0" spacing="5" />
+               </children>
+            </VBox>
+            <Button layoutX="64.0" layoutY="591.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="279.0" styleClass="button-readForFree" stylesheets="@style.css" text="Read for Free" />
+            <Button layoutX="64.0" layoutY="657.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="279.0" styleClass="button-buyBook" stylesheets="@style.css" text="Buy $ 4.99" />
+
+             <Button fx:id="btn_Back" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF;" styleClass="button-forgotPw" stylesheets="@style.css">
+               <graphic>
+                   <ImageView disable="true" fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../../../icons/icons_back.png" />
+                       </image>
+                   </ImageView>
+               </graphic></Button>
+         </children></Pane>
+    </children>
+</AnchorPane>
