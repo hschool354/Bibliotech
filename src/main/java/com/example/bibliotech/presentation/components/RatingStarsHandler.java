@@ -1,4 +1,4 @@
-package com.example.bibliotech.presentation.control;
+package com.example.bibliotech.presentation.components;
 
 
 import javafx.scene.layout.HBox;

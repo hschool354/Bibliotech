@@ -1,6 +1,6 @@
 package com.example.bibliotech.presentation;
 
-import com.example.bibliotech.dao.DatabaseConnection;
+import com.example.bibliotech.config.DatabaseConfig;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -11,7 +11,7 @@ public class MainController {
 
     @FXML
     protected void onHelloButtonClick() {
-        DatabaseConnection connectionNow = new DatabaseConnection();
+        DatabaseConfig connectionNow = new DatabaseConfig();
         connectionNow.getConnection();
 
         welcomeText.setText("Welcome to JavaFX Application!");

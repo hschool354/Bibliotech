@@ -12,33 +12,32 @@ import java.util.Objects;
 
 public class VerifyYourEmailController {
     @FXML
-    private Button btn_Verify,btn_Back;
+    private Button btn_Verify, btn_Back;
 
     @FXML
-    public void handleVerifyButton() throws IOException {
-        Stage stage = (Stage) btn_Verify.getScene().getWindow();
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/createpassword.fxml")));
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-
-        //SceneTransitionEffect.applyTransitionEffect((Pane) root);
-
-        stage.show();
+    public void handleVerifyButton() {
+        changeScene("/com/example/bibliotech/createpassword.fxml");
     }
 
     @FXML
-    public void handleBackButton() throws IOException {
-        Stage stage = (Stage) btn_Back.getScene().getWindow();
+    public void handleBackButton() {
+        changeScene("/com/example/bibliotech/forgotPassword.fxml");
+    }
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/forgotPassword.fxml")));
+    private void changeScene(String fxmlPath) {
+        try {
+            Stage stage = (Stage) btn_Verify.getScene().getWindow();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
 
-        //SceneTransitionEffect.applyTransitionEffect((Pane) root);
+            //SceneTransitionEffect.applyTransitionEffect((Pane) root); // Uncomment if you want to use transition effects
 
-        stage.show();
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading scene: " + fxmlPath);
+            e.printStackTrace(); // In ra lỗi để tiện theo dõi
+        }
     }
 }

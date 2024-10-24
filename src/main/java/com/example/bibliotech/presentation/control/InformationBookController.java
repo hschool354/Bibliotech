@@ -1,6 +1,6 @@
 package com.example.bibliotech.presentation.control;
 
-
+import com.example.bibliotech.presentation.components.RatingStarsHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,20 +10,20 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class InformationBookController implements Initializable  {
+public class InformationBookController implements Initializable {
 
     @FXML
     private HBox starsContainer;
-    private RatingStarsHandler ratingHandler;
 
     @FXML
     private Button btn_Back;
+
+    private RatingStarsHandler ratingHandler;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,16 +36,22 @@ public class InformationBookController implements Initializable  {
     }
 
     @FXML
-    public void handleBackButton() throws IOException {
-        Stage stage = (Stage) btn_Back.getScene().getWindow();
+    public void handleBackButton() {
+        changeScene("/com/example/bibliotech/home_1.fxml");
+    }
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/home_1.fxml")));
+    private void changeScene(String fxmlPath) {
+        try {
+            Stage stage = (Stage) btn_Back.getScene().getWindow();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-
-        //SceneTransitionEffect.applyTransitionEffect((Pane) root);
-
-        stage.show();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            //SceneTransitionEffect.applyTransitionEffect((Pane) root);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading scene: " + fxmlPath);
+            e.printStackTrace(); // In ra lỗi để tiện theo dõi
+        }
     }
 }

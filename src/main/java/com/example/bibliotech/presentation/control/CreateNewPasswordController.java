@@ -12,33 +12,36 @@ import java.util.Objects;
 
 public class CreateNewPasswordController {
     @FXML
-    private Button btn_Save,btn_Back;
+    private Button btn_Save, btn_Back;
 
     @FXML
-    public void handleSaveButton() throws IOException {
-        Stage stage = (Stage) btn_Save.getScene().getWindow();
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/login.fxml")));
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-
-        //SceneTransitionEffect.applyTransitionEffect((Pane) root);
-
-        stage.show();
+    public void handleSaveButton() {
+        changeScene("/com/example/bibliotech/login.fxml");
     }
 
     @FXML
-    public void handleBackButton() throws IOException {
-        Stage stage = (Stage) btn_Back.getScene().getWindow();
+    public void handleBackButton() {
+        changeScene("/com/example/bibliotech/verifyEmail.fxml");
+    }
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/verifyEmail.fxml")));
+    private void changeScene(String fxmlPath) {
+        try {
+            // Lấy stage hiện tại
+            Stage stage = (Stage) btn_Save.getScene().getWindow(); // Hoặc btn_Back, tùy thuộc vào nút nào được nhấn
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+            // Tải layout mới từ FXML
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
 
-        //SceneTransitionEffect.applyTransitionEffect((Pane) root);
+            // Tạo và thiết lập Scene mới
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
 
-        stage.show();
+            // Có thể áp dụng hiệu ứng chuyển cảnh nếu cần
+            // SceneTransitionEffect.applyTransitionEffect((Pane) root);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // In ra lỗi để tiện theo dõi
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.bibliotech.presentation;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +14,13 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class MainApplication extends Application {
+    private static final String LOGIN_FXML = "/com/example/bibliotech/login.fxml";
+    private static final String HELLO_VIEW_FXML = "/com/example/bibliotech/hello-view.fxml";
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Tải FXML cho giao diện đầu tiên
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bibliotech/hello-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(HELLO_VIEW_FXML));
         Parent root = loader.load();
 
         // Đặt Scene cho Stage với background trong suốt
@@ -27,14 +31,7 @@ public class MainApplication extends Application {
         primaryStage.initStyle(StageStyle.TRANSPARENT);
 
         // Bo tròn góc và thêm background
-        root.setStyle(
-                "-fx-background-color: white;" +
-                        "-fx-background-radius: 20;" +
-                        "-fx-border-radius: 20;" +
-                        "-fx-border-color: #cccccc;" +
-                        "-fx-border-width: 1;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);"
-        );
+        setupWindowStyle(root);
 
         // Lấy ImageView từ root bằng cách sử dụng lookup
         ImageView imageView = (ImageView) root.lookup("#img_Logo1");
@@ -47,10 +44,22 @@ public class MainApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // Sử dụng PauseTransition để chờ 5 giây rồi chuyển sang giao diện thứ 2
+        // Sử dụng PauseTransition để chờ 1 giây rồi chuyển sang giao diện thứ 2
         PauseTransition pause = new PauseTransition(Duration.seconds(1));
-        pause.setOnFinished(event -> loadLoginScreen(primaryStage)); // Sau 5 giây, tải giao diện login
+        pause.setOnFinished(event -> fadeToLoginScreen(primaryStage));
         pause.play();
+    }
+
+    // Thiết lập kiểu cho cửa sổ
+    private void setupWindowStyle(Parent root) {
+        root.setStyle(
+                "-fx-background-color: white;" +
+                        "-fx-background-radius: 20;" +
+                        "-fx-border-radius: 20;" +
+                        "-fx-border-color: #cccccc;" +
+                        "-fx-border-width: 1;" +
+                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);"
+        );
     }
 
     // Hàm bo góc cho hình ảnh
@@ -62,20 +71,26 @@ public class MainApplication extends Application {
         imageView.setClip(clip);
     }
 
-    private void loadLoginScreen(Stage oldStage) {
+    private void fadeToLoginScreen(Stage oldStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bibliotech/login.fxml"));
+            // Tải giao diện đăng nhập
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(LOGIN_FXML));
             Parent loginRoot = loader.load();
 
-            Stage newStage = new Stage();
             Scene loginScene = new Scene(loginRoot, 900, 700);
-
+            Stage newStage = new Stage();
             newStage.setScene(loginScene);
-
             newStage.initStyle(StageStyle.DECORATED);
 
-            newStage.show();
-            oldStage.close();
+            // Thêm hiệu ứng chuyển tiếp
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), oldStage.getScene().getRoot());
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.setOnFinished(event -> {
+                oldStage.close(); // Đóng cửa sổ cũ sau khi hiệu ứng hoàn tất
+                newStage.show();  // Hiển thị cửa sổ mới
+            });
+            fadeOut.play();
 
         } catch (Exception e) {
             e.printStackTrace();

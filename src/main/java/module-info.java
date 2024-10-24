@@ -16,9 +16,11 @@ module com.example.bibliotech {
     opens com.example.bibliotech to javafx.fxml;
     exports com.example.bibliotech.presentation;
     opens com.example.bibliotech.presentation to javafx.fxml;
-    exports com.example.bibliotech.dao;
-    opens com.example.bibliotech.dao to javafx.fxml;
+    exports com.example.bibliotech.config;
     exports com.example.bibliotech.presentation.control to javafx.fxml;
     opens com.example.bibliotech.presentation.control  to javafx.fxml;
+    opens com.example.bibliotech.config to javafx.fxml;
+    exports com.example.bibliotech.presentation.components to javafx.fxml;
+    opens com.example.bibliotech.presentation.components to javafx.fxml;
 
 }

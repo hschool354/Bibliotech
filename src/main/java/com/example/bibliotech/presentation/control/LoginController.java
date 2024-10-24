@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
-    private Button btn_SignIn,btn_Login,btn_forgotPassword;
+    private Button btn_SignIn, btn_Login, btn_forgotPassword;
 
     @FXML
     private Label sloganLabel;
@@ -32,74 +32,50 @@ public class LoginController implements Initializable {
     private TextField txt_Username;
 
     @FXML
-    public void handleSignInButton() throws IOException {
-        System.out.println("Sign In button clicked!");
-        // Lấy Stage hiện tại của form Login
-        Stage stage = (Stage) btn_SignIn.getScene().getWindow();
-
-        // Load FXML của form SignIn
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/sign_up.fxml")));
-
-        // Tạo Scene mới cho SignIn
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-
-        SceneTransitionEffect.applyTransitionEffect((Pane) root);
-
-        // Hiển thị form SignIn
-        stage.show();
+    public void handleSignInButton() {
+        changeScene("/com/example/bibliotech/sign_up.fxml");
     }
 
     @FXML
-    public void handleLoginButton() throws IOException {
-
-        System.out.println("Login button clicked!");
-
+    public void handleLoginButton() {
         String username = txt_Username.getText();
+        String fxmlPath = username.isEmpty()
+                ? "/com/example/bibliotech/home_1.fxml"
+                : "/com/example/bibliotech/profile_signUp.fxml";
 
-        Stage stage = (Stage) btn_Login.getScene().getWindow();
-        Parent root;
-
-        if(!username.isEmpty()){
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/profile_signUp.fxml")));
-        }else {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/home_1.fxml")));
-        }
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-
-        stage.setResizable(false);
-
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2 + screenBounds.getMinX());
-        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2 + screenBounds.getMinY());
-
-        stage.show();
+        changeScene(fxmlPath);
     }
 
     @FXML
-    public void handleForgotButton() throws IOException {
-        System.out.println("Forgot Password button clicked!");
+    public void handleForgotButton() {
+        changeScene("/com/example/bibliotech/forgotPassword.fxml");
+    }
 
-        Stage stage = (Stage) btn_forgotPassword.getScene().getWindow();
+    private void changeScene(String fxmlPath) {
+        try {
+            Stage stage = (Stage) btn_SignIn.getScene().getWindow();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/forgotPassword.fxml")));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+            // Center the stage
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2 + screenBounds.getMinX());
+            stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2 + screenBounds.getMinY());
 
-        //SceneTransitionEffect.applyTransitionEffect((Pane) root);
-
-        stage.show();
+            SceneTransitionEffect.applyTransitionEffect((Pane) root);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading scene: " + fxmlPath);
+            e.printStackTrace(); // In ra lỗi để tiện theo dõi
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TypewriterEffect effect = new TypewriterEffect("READ A BOOK, LIVE A\n THOUSAND LIVES",sloganLabel, 120,true);
+        TypewriterEffect effect = new TypewriterEffect("READ A BOOK, LIVE A\nTHOUSAND LIVES", sloganLabel, 120, true);
         effect.play();
-
     }
-
 }
-

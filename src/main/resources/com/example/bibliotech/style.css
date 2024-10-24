@@ -191,6 +191,7 @@
     -fx-background-radius: 10px; /* Bo góc nền */
     -fx-border-style: solid; /* Kiểu đường viền */
 }
+
 .text-field-profile_SignUp {
     -fx-background-color: #FFFFFF; /* Màu nền của TextField */
     -fx-border-color: #000000; /* Màu viền */
@@ -286,5 +287,33 @@
     -fx-border-radius: 10;
     -fx-background-radius: 15;
     -fx-padding: 10;
+}
 
+.button-container {
+    -fx-background-color: #f0f0f0;
+}
+
+.nav-button {
+    -fx-min-width: 100px;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
+
+.nav-button:hover {
+    -fx-background-color: #f8f8f8;
+}
+
+.nav-button.active-button {
+    -fx-background-color: #2196F3; /* Material Blue */
+    -fx-text-fill: white;
+    -fx-border-color: #1976D2; /* Darker Blue */
+}
+
+.nav-button.active-button:hover {
+    -fx-background-color: #1976D2; /* Darker Blue on hover */
 }

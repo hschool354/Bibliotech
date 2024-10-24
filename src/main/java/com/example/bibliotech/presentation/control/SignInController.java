@@ -24,25 +24,31 @@ public class SignInController implements Initializable {
     private Label sloganLabel;
 
     @FXML
-    public void handleLoginButton() throws IOException {
-        System.out.println("Login In button clicked!");
+    public void handleLoginButton() {
+        changeScene("/com/example/bibliotech/login.fxml");
+    }
 
-        Stage stage = (Stage) btn_Login.getScene().getWindow();
+    private void changeScene(String fxmlPath) {
+        try {
+            System.out.println("Login button clicked!");
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/bibliotech/login.fxml")));
+            Stage stage = (Stage) btn_Login.getScene().getWindow();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
 
-        Scene scene = new Scene(root);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
 
-        stage.setScene(scene);
-
-        SceneTransitionEffect.applyTransitionEffect((Pane) root);
-
-        stage.show();
+            SceneTransitionEffect.applyTransitionEffect((Pane) root);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading scene: " + fxmlPath);
+            e.printStackTrace(); // In ra lỗi để tiện theo dõi
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TypewriterEffect effect = new TypewriterEffect("READ A BOOK, LIVE A\n THOUSAND LIVES",sloganLabel, 120,true);
+        TypewriterEffect effect = new TypewriterEffect("READ A BOOK, LIVE A\nTHOUSAND LIVES", sloganLabel, 120, true);
         effect.play();
     }
 }
