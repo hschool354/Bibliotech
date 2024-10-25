@@ -191,6 +191,15 @@
                         </Label>
                     </children>
                 </HBox>
+            <Button layoutX="840.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" stylesheets="@style.css">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../icons/icons_bell.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </Pane>
         <Pane layoutX="237.0" layoutY="109.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css" />

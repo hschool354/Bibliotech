@@ -2,6 +2,7 @@ package com.example.bibliotech.presentation.control;
 
 import com.example.bibliotech.presentation.Animation.SceneTransitionEffect;
 import com.example.bibliotech.presentation.Animation.TypewriterEffect;
+import com.example.bibliotech.utils.SceneCache;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,19 +54,24 @@ public class LoginController implements Initializable {
 
     private void changeScene(String fxmlPath) {
         try {
+            // Lấy stage hiện tại
             Stage stage = (Stage) btn_SignIn.getScene().getWindow();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
 
-            Scene scene = new Scene(root);
+            // Lấy Scene từ SceneCache
+            Scene scene = SceneCache.getScene(fxmlPath);
+
+            // Thiết lập Scene mới
             stage.setScene(scene);
             stage.setResizable(false);
 
-            // Center the stage
+            // Căn giữa stage
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2 + screenBounds.getMinX());
             stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2 + screenBounds.getMinY());
 
-            SceneTransitionEffect.applyTransitionEffect((Pane) root);
+            // Áp dụng hiệu ứng chuyển cảnh
+            SceneTransitionEffect.applyTransitionEffect((Pane) scene.getRoot());
+
             stage.show();
         } catch (IOException e) {
             System.err.println("Error loading scene: " + fxmlPath);

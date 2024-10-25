@@ -1,5 +1,6 @@
 package com.example.bibliotech.presentation.control;
 
+import com.example.bibliotech.utils.SceneCache;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,10 +31,9 @@ public class CreateNewPasswordController {
             Stage stage = (Stage) btn_Save.getScene().getWindow(); // Hoặc btn_Back, tùy thuộc vào nút nào được nhấn
 
             // Tải layout mới từ FXML
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+            Scene scene = SceneCache.getScene(fxmlPath);
 
             // Tạo và thiết lập Scene mới
-            Scene scene = new Scene(root);
             stage.setScene(scene);
 
             // Có thể áp dụng hiệu ứng chuyển cảnh nếu cần

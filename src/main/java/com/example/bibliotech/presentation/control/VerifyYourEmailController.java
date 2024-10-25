@@ -1,5 +1,6 @@
 package com.example.bibliotech.presentation.control;
 
+import com.example.bibliotech.utils.SceneCache;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,9 +28,9 @@ public class VerifyYourEmailController {
     private void changeScene(String fxmlPath) {
         try {
             Stage stage = (Stage) btn_Verify.getScene().getWindow();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
 
-            Scene scene = new Scene(root);
+            Scene scene = SceneCache.getScene(fxmlPath);
+
             stage.setScene(scene);
 
             //SceneTransitionEffect.applyTransitionEffect((Pane) root); // Uncomment if you want to use transition effects

@@ -40,7 +40,6 @@ public class TypewriterEffect {
     private void resetAnimation() {
         index = 0;
         label.setText("");
-        // Adjust the delay here to 2 seconds before restarting the animation
         Timeline pauseTimeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {}));
         pauseTimeline.setOnFinished(e -> timeline.play());
         pauseTimeline.play();

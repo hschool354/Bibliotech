@@ -1,10 +1,13 @@
 package com.example.bibliotech.presentation.control;
 
+import com.example.bibliotech.utils.SceneCache;
+import com.example.bibliotech.utils.SceneTransitionEffect;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
@@ -25,18 +28,14 @@ public class ForgotPasswordController {
 
     private void changeScene(String fxmlPath) {
         try {
-            // Lấy stage hiện tại
             Stage stage = (Stage) btn_Send.getScene().getWindow(); // Hoặc btn_Back tùy thuộc vào nút nào được nhấn
-
-            // Tải layout mới từ FXML
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
-
-            // Tạo và thiết lập Scene mới
-            Scene scene = new Scene(root);
+            Scene scene = SceneCache.getScene(fxmlPath); // Lấy Scene từ cache
             stage.setScene(scene);
 
             // Có thể áp dụng hiệu ứng chuyển cảnh nếu cần
             // SceneTransitionEffect.applyTransitionEffect((Pane) root);
+
+            //SceneTransitionEffect.applyFadeTransition((Pane) root);
 
             stage.show();
         } catch (IOException e) {

@@ -86,7 +86,6 @@ public class AccountSetting {
         }
     }
 
-    // Enum để quản lý tên view
     public enum ViewName {
         PROFILE("accountSettingProfile"),
         SECURITY("accountSettingSecurity"),

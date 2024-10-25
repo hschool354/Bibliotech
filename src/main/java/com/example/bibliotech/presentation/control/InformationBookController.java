@@ -1,6 +1,7 @@
 package com.example.bibliotech.presentation.control;
 
 import com.example.bibliotech.presentation.components.RatingStarsHandler;
+import com.example.bibliotech.utils.SceneCache;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,12 +43,12 @@ public class InformationBookController implements Initializable {
 
     private void changeScene(String fxmlPath) {
         try {
-            Stage stage = (Stage) btn_Back.getScene().getWindow();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
-
-            Scene scene = new Scene(root);
+            Stage stage = (Stage) btn_Back.getScene().getWindow(); // Lấy stage hiện tại
+            Scene scene = SceneCache.getScene(fxmlPath); // Lấy Scene từ cache
             stage.setScene(scene);
+
             //SceneTransitionEffect.applyTransitionEffect((Pane) root);
+
             stage.show();
         } catch (IOException e) {
             System.err.println("Error loading scene: " + fxmlPath);

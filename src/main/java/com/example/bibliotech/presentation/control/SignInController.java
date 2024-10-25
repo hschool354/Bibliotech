@@ -2,6 +2,7 @@ package com.example.bibliotech.presentation.control;
 
 import com.example.bibliotech.presentation.Animation.SceneTransitionEffect;
 import com.example.bibliotech.presentation.Animation.TypewriterEffect;
+import com.example.bibliotech.utils.SceneCache;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,19 +33,25 @@ public class SignInController implements Initializable {
         try {
             System.out.println("Login button clicked!");
 
+            // Lấy stage hiện tại
             Stage stage = (Stage) btn_Login.getScene().getWindow();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
 
-            Scene scene = new Scene(root);
+            // Sử dụng SceneCache để lấy scene
+            Scene scene = SceneCache.getScene(fxmlPath);
+
+            // Thiết lập Scene mới
             stage.setScene(scene);
 
-            SceneTransitionEffect.applyTransitionEffect((Pane) root);
+            // Áp dụng hiệu ứng chuyển cảnh
+            SceneTransitionEffect.applyTransitionEffect((Pane) scene.getRoot());
+
             stage.show();
         } catch (IOException e) {
             System.err.println("Error loading scene: " + fxmlPath);
             e.printStackTrace(); // In ra lỗi để tiện theo dõi
         }
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
