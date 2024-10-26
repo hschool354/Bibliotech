@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
     public void handleLoginButton() {
         String username = txt_Username.getText();
         String fxmlPath = username.isEmpty()
-                ? "/com/example/bibliotech/home_1.fxml"
+                ? "/com/example/bibliotech/AdminDashboard.fxml"
                 : "/com/example/bibliotech/profile_signUp.fxml";
 
         changeScene(fxmlPath);

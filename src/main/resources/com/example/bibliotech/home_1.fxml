@@ -154,7 +154,7 @@
                         <Font name="Segoe UI" size="12.0" />
                     </font>
                 </TextField>
-                <Button layoutX="309.0" layoutY="20.0" mnemonicParsing="false" styleClass="button_search" stylesheets="@style.css">
+                <Button fx:id="btn_Search" layoutX="309.0" layoutY="20.0" mnemonicParsing="false" styleClass="button_search" stylesheets="@style.css">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
                             <image>

@@ -20,13 +20,14 @@ import java.util.ResourceBundle;
 
 public class Home_1_Controller implements Initializable {
     @FXML
-    private Button btn_readNow;
+    private Button btn_readNow,btn_Search;
 
     @FXML
     private ImageView gifImageView;
 
     @FXML
     private Label sloganLabel;
+
 
     @FXML
     public void handleReadNowButton() {

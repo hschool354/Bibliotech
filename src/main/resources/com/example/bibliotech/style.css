@@ -317,3 +317,40 @@
 .nav-button.active-button:hover {
     -fx-background-color: #1976D2; /* Darker Blue on hover */
 }
+
+.button_add {
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #28A745;
+    -fx-background-radius: 10px;
+}
+
+.button_add:hover {
+    -fx-background-color: #28A745;
+    -fx-text-fill: white;
+    -fx-border-color: #28A745;
+}
+
+.button_delete {
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #E74C3C;
+    -fx-background-radius: 10px;
+}
+
+.button_delete:hover {
+    -fx-background-color: #E74C3C;
+    -fx-text-fill: white;
+    -fx-border-color: #E74C3C;
+}
+
+.button_refresh {
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #3498DB;
+    -fx-background-radius: 10px;
+}
+
+.button_refresh:hover {
+    -fx-background-color: #3498DB;
+    -fx-text-fill: white;
+    -fx-border-color: #E74C3C;
+
+}
