@@ -354,3 +354,33 @@
     -fx-border-color: #E74C3C;
 
 }
+
+/* style.css */
+.table-view {
+    -fx-background-color: #f9f9f9; /* Màu nền cho TableView */
+    -fx-border-color: #ddd; /* Đường viền cho TableView */
+}
+
+.table-column {
+    -fx-font-size: 14px; /* Kích thước chữ cho tiêu đề cột */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #e0f7fa; /* Màu nền khi hover vào hàng */
+}
+
+.detail-button {
+    -fx-background-color: #4a90e2; /* Màu nền cho nút Detail */
+    -fx-text-fill: white; /* Màu chữ */
+    -fx-font-weight: bold; /* Chữ đậm */
+}
+
+.detail-button:hover {
+    -fx-background-color: #357ab7; /* Màu nền khi hover vào nút */
+}
+
+.label {
+    -fx-font-size: 12px; /* Kích thước chữ cho Label */
+    -fx-text-fill: #333; /* Màu chữ cho Label */
+}
+

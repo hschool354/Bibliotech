@@ -62,7 +62,7 @@
                                 <String fx:value="text-field-login" />
                             </styleClass>
                         </TextField>
-                        <TextField prefHeight="39.0" prefWidth="289.0" promptText="Password">
+                        <TextField fx:id="txt_Password" prefHeight="39.0" prefWidth="289.0" promptText="Password">
                             <font>
                                 <Font name="SansSerif Regular" size="13.0" />
                             </font>

@@ -5,42 +5,33 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConfig {
-    private Connection databaseLink;
+    private static final String URL = "jdbc:mysql://localhost:3306/ThuVien";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "030504";
 
-    public Connection getConnection() {
-        String databaseName = "Test";
-        String databaseUser = "root";
-        String databasePassword = "030504";
-        String url = "jdbc:mysql://localhost:3306/" + databaseName + "?useSSL=false&serverTimezone=UTC";
 
+    public static Connection getConnection() throws SQLException {
         try {
-            // Tải driver MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
-            databaseLink = DriverManager.getConnection(url, databaseUser, databasePassword);
-            System.out.println("Connected to database");
+            System.out.println("Attempting to connect to database...");
+            Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            System.out.println("Connection successful!");
+            return conn;
         } catch (ClassNotFoundException e) {
-            System.err.println("MySQL Driver not found.");
-            e.printStackTrace();
+            System.err.println("Database Driver not found.");
+            throw new SQLException("Database Driver not found", e);
         } catch (SQLException e) {
-            System.err.println("Connection failed! Check output console.");
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred.");
-            e.printStackTrace();
+            System.err.println("SQL Exception: " + e.getMessage());
+            throw new SQLException("Error connecting to database", e);
         }
-
-        return databaseLink;
     }
 
-    // Phương thức để đóng kết nối
-    public void closeConnection() {
-        if (databaseLink != null) {
+    public static void closeConnection(Connection conn) {
+        if (conn != null) {
             try {
-                databaseLink.close();
-                System.out.println("Database connection closed.");
+                conn.close();
             } catch (SQLException e) {
-                System.err.println("Failed to close the database connection.");
-                e.printStackTrace();
+                System.err.println("Error closing connection: " + e.getMessage());
             }
         }
     }

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -108,10 +114,73 @@
                 </VBox>
             </children>
         </Pane>
-        <Pane layoutX="155.0" layoutY="-1.0" prefHeight="800.0" prefWidth="1174.0" styleClass="aide_ankerpane" stylesheets="@style.css">
-         <children>
-            <Text layoutX="41.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Management" />
-            <Text layoutX="53.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Book" />
-         </children></Pane>
+        <Pane layoutX="157.0" layoutY="-1.0" prefHeight="800.0" prefWidth="1172.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+            <children>
+                <Text layoutX="37.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Management">
+                    <font>
+                        <Font name="SansSerif Bold" size="18.0" />
+                    </font>
+                </Text>
+                <Text layoutX="70.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Book">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Text>
+                <TextField layoutX="197.0" layoutY="57.0" prefHeight="39.0" prefWidth="235.0" styleClass="text-field-search" stylesheets="@style.css" />
+                <Button fx:id="btn_Search" layoutX="386.0" layoutY="58.0" mnemonicParsing="false" styleClass="button_search" stylesheets="@style.css">
+                    <graphic>
+                        <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../../../icons/icons_search.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btn_addBook" layoutX="459.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleAddBookButton" styleClass="button_add" stylesheets="@style.css">
+                    <graphic>
+                        <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../../../icons/icons_plus.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btn_delete" layoutX="527.0" layoutY="58.0" mnemonicParsing="false" styleClass="button_delete" stylesheets="@style.css">
+                    <graphic>
+                        <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../../../icons/icons_delete.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btn_Refresh" layoutX="601.0" layoutY="58.0" mnemonicParsing="false" styleClass="button_refresh" stylesheets="@style.css">
+                    <graphic>
+                        <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../../../icons/icons_refresh.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <VBox layoutX="37.0" layoutY="121.0" prefHeight="672.0" prefWidth="1104.0" stylesheets="@style.css">
+                    <TableView fx:id="tableView" prefHeight="670.0" prefWidth="1104.0" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="idColumn" text="Id" />
+                            <TableColumn fx:id="imageColumn" text="Image" />
+                            <TableColumn fx:id="titleColumn" text="Title" />
+                            <TableColumn fx:id="infoColumn" text="Price" />
+                            <TableColumn fx:id="actionColumn" text="Quantity" />
+                        </columns>
+                    </TableView>
+
+                    <HBox fx:id="loadingBox" alignment="CENTER" spacing="10" visible="false">
+                        <ProgressIndicator fx:id="loadingIndicator" />
+                        <Label text="Loading more books..." />
+                    </HBox>
+                </VBox>
+            </children></Pane>
     </children>
 </AnchorPane>

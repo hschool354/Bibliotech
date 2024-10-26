@@ -3,34 +3,38 @@ package com.example.bibliotech.presentation.control;
 import com.example.bibliotech.presentation.Animation.SceneTransitionEffect;
 import com.example.bibliotech.presentation.Animation.TypewriterEffect;
 import com.example.bibliotech.utils.SceneCache;
+import com.example.bibliotech.service.UserService;
+import com.example.bibliotech.model.Users;
+import com.example.bibliotech.exception.LoginException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+    @FXML private Button btn_SignIn, btn_Login, btn_forgotPassword;
+    @FXML private Label sloganLabel;
+    @FXML private TextField txt_Username;
+    @FXML private TextField txt_Password;
 
-    @FXML
-    private Button btn_SignIn, btn_Login, btn_forgotPassword;
+    private final UserService userService;
 
-    @FXML
-    private Label sloganLabel;
-
-    @FXML
-    private TextField txt_Username;
+    public LoginController() {
+        this.userService = new UserService();
+    }
 
     @FXML
     public void handleSignInButton() {
@@ -40,11 +44,36 @@ public class LoginController implements Initializable {
     @FXML
     public void handleLoginButton() {
         String username = txt_Username.getText();
-        String fxmlPath = username.isEmpty()
-                ? "/com/example/bibliotech/AdminDashboard.fxml"
-                : "/com/example/bibliotech/profile_signUp.fxml";
+        String password = txt_Password.getText();
 
-        changeScene(fxmlPath);
+        if (username.isEmpty() || password.isEmpty()) {
+            showAlert("Error", "Please enter both username and password.");
+            return;
+        }
+
+        try {
+            Users user = userService.login(username, password);
+            if (user != null) {
+                String nextScene;
+
+                // Route users based on their admin status
+                if (user.isAdmin()) {
+                    nextScene = "/com/example/bibliotech/AdminDashboard.fxml";
+                    System.out.println("Routing to Admin Dashboard");
+                } else {
+                    nextScene = "/com/example/bibliotech/home_1.fxml";
+                    System.out.println("Routing to User Home");
+                }
+
+                // Log the routing decision
+                System.out.println("User is admin: " + user.isAdmin());
+                System.out.println("Next scene: " + nextScene);
+
+                changeScene(nextScene);
+            }
+        } catch (LoginException e) {
+            showAlert("Login Failed", e.getMessage());
+        }
     }
 
     @FXML
@@ -52,36 +81,45 @@ public class LoginController implements Initializable {
         changeScene("/com/example/bibliotech/forgotPassword.fxml");
     }
 
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
     private void changeScene(String fxmlPath) {
         try {
-            // Lấy stage hiện tại
             Stage stage = (Stage) btn_SignIn.getScene().getWindow();
-
-            // Lấy Scene từ SceneCache
             Scene scene = SceneCache.getScene(fxmlPath);
 
-            // Thiết lập Scene mới
             stage.setScene(scene);
             stage.setResizable(false);
 
-            // Căn giữa stage
+            // Center the stage
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2 + screenBounds.getMinX());
             stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2 + screenBounds.getMinY());
 
-            // Áp dụng hiệu ứng chuyển cảnh
+            // Apply transition effect
             SceneTransitionEffect.applyTransitionEffect((Pane) scene.getRoot());
 
             stage.show();
         } catch (IOException e) {
             System.err.println("Error loading scene: " + fxmlPath);
-            e.printStackTrace(); // In ra lỗi để tiện theo dõi
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the next screen. Please try again.");
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TypewriterEffect effect = new TypewriterEffect("READ A BOOK, LIVE A\nTHOUSAND LIVES", sloganLabel, 120, true);
+        TypewriterEffect effect = new TypewriterEffect(
+                "READ A BOOK, LIVE A\nTHOUSAND LIVES",
+                sloganLabel,
+                120,
+                true
+        );
         effect.play();
     }
 }

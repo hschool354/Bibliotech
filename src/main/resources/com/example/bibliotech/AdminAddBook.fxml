@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.AdminAddBookController">
+    <children>
+        <Pane prefHeight="800.0" prefWidth="144.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+            <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-28.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../backgrounds/background_logo1.png" />
+                    </image>
+                </ImageView>
+                <VBox layoutY="136.0" prefHeight="408.0" prefWidth="143.0" spacing="12.0">
+                    <children>
+                        <Button fx:id="btn_Home" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Home" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_home.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btn_Book" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_home" stylesheets="@style.css" text="Book" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_book1.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btn_User" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="User" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_user.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Transition" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_transition.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Premium" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_crown.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Review" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_review.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Security" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_security_configuration.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <Pane layoutX="157.0" layoutY="-1.0" prefHeight="800.0" prefWidth="1172.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+         <children>
+            <Text layoutX="95.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Management">
+               <font>
+                  <Font name="SansSerif Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="544.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Book">
+               <font>
+                  <Font name="SansSerif Bold" size="18.0" />
+               </font>
+            </Text>
+            <VBox layoutX="29.0" layoutY="116.0" prefHeight="649.0" prefWidth="568.0" spacing="20.0">
+               <children>
+                  <HBox prefHeight="64.0" prefWidth="568.0" spacing="60.0">
+                     <children>
+                        <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBSN" wrappingWidth="41.423828125">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBSN" wrappingWidth="41.423828125">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <DatePicker />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="55.0" prefWidth="568.0" spacing="7.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="41.423828125">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField styleClass="text-field-search" stylesheets="@style.css">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="55.0" prefWidth="568.0" spacing="7.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author" wrappingWidth="51.8238525390625">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField styleClass="text-field-search" stylesheets="@style.css">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="115.0" prefWidth="568.0" spacing="7.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author" wrappingWidth="51.8238525390625">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextArea prefHeight="81.0" prefWidth="568.0" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="64.0" prefWidth="568.0" spacing="60.0">
+                     <children>
+                        <VBox prefHeight="64.0" prefWidth="163.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="language" wrappingWidth="150.2238311767578">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ComboBox prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="64.0" prefWidth="148.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reading Difficulty" wrappingWidth="143.82385635375977">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ComboBox prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="64.0" prefWidth="148.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Content Rating" wrappingWidth="147.02379989624023">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ComboBox prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                   <VBox prefHeight="64.0" prefWidth="163.0" spacing="7.0">
+                       <children>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Categories" wrappingWidth="150.2238311767578">
+                               <font>
+                                   <Font name="SansSerif Regular" size="14.0" />
+                               </font>
+                           </Text>
+                           <ComboBox fx:id="categoryComboBox" prefWidth="150.0" />
+                           <FlowPane fx:id="selectedCategoriesPane" hgap="5" prefWidth="150.0" vgap="5">
+                               <!-- Selected categories will appear here as labels -->
+                           </FlowPane>
+                       </children>
+                   </VBox>
+                  <HBox prefHeight="64.0" prefWidth="568.0" spacing="60.0">
+                     <children>
+                        <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page Cout" wrappingWidth="110.22383117675781">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Reading Time" wrappingWidth="190.22383880615234">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutX="629.0" layoutY="116.0" prefHeight="247.0" prefWidth="528.0" spacing="20.0">
+               <children>
+                  <VBox prefHeight="55.0" prefWidth="568.0" spacing="7.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cover Image URL" wrappingWidth="211.8238525390625">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField styleClass="text-field-search" stylesheets="@style.css">
+                           <font>
+                              <Font name="SansSerif Regular" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="64.0" prefWidth="528.0" spacing="50.0">
+                     <children>
+                        <VBox prefHeight="100.0" prefWidth="123.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Original Price" wrappingWidth="211.8238525390625">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="123.0" spacing="7.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Discounted Price" wrappingWidth="211.8238525390625">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="66.0" prefWidth="528.0">
+                     <children>
+                        <HBox prefHeight="62.0" prefWidth="528.0">
+                           <children>
+                              <VBox prefHeight="100.0" prefWidth="123.0" spacing="7.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stock Quantity" wrappingWidth="211.8238525390625">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField styleClass="text-field-search" stylesheets="@style.css">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <HBox layoutX="629.0" layoutY="391.0" prefHeight="100.0" prefWidth="528.0" spacing="50.0">
+               <children>
+                  <Button fx:id="btn_Save" mnemonicParsing="false" prefHeight="40.0" prefWidth="116.0" styleClass="button-sendIns" stylesheets="@style.css" text="Save" />
+                  <Button fx:id="btn_Clear" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" styleClass="button-sendIns" stylesheets="@style.css" text="Clear Form" />
+                  <Button fx:id="btn_Cancel" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" styleClass="button-sendIns" stylesheets="@style.css" text="Cancel" />
+               </children>
+            </HBox>
+         </children></Pane>
+    </children>
+</AnchorPane>
