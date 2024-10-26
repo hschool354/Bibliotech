@@ -3,7 +3,7 @@ package com.example.bibliotech.constants;
 public class DatabaseConstants {
     // SQL Queries
     public static final String LOGIN_QUERY =
-            "SELECT * FROM Users WHERE username = ? AND password = ?";
+            "SELECT * FROM Users WHERE username = ?";
     public static final String GET_USER_BY_USERNAME =
             "SELECT * FROM Users WHERE username = ?";
 

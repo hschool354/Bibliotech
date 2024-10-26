@@ -12,6 +12,7 @@ module com.example.bibliotech {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires java.desktop;
+    requires jbcrypt;
 
     opens com.example.bibliotech to javafx.fxml;
     exports com.example.bibliotech.presentation;

@@ -3,7 +3,9 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.SignInController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.SignUpController">
     <children>
         <Pane layoutX="31.0" layoutY="31.0" prefHeight="636.0" prefWidth="412.0" styleClass="aide_ankerpane" stylesheets="@style.css">
             <children>
@@ -22,7 +24,7 @@
                         <Font name="SansSerif Bold" size="24.0" />
                     </font>
                 </Text>
-                <Button id="btn_Login" layoutX="141.0" layoutY="399.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="123.0" styleClass="button-login" stylesheets="@style.css" text="SIGN IN" textAlignment="CENTER">
+                <Button fx:id="btn_Register" layoutX="141.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleRegisterButton" prefHeight="20.0" prefWidth="123.0" styleClass="button-login" stylesheets="@style.css" text="SIGN UP" textAlignment="CENTER">
                     <font>
                         <Font name="Segoe UI Bold Italic" size="14.0" />
                     </font>
@@ -51,7 +53,7 @@
                     <children>
                         <VBox prefHeight="25.0" prefWidth="328.0">
                             <children>
-                                <TextField prefHeight="37.0" prefWidth="289.0" promptText="Email" stylesheets="@style.css">
+                                <TextField fx:id="txt_Email" prefHeight="37.0" prefWidth="289.0" promptText="Email" stylesheets="@style.css">
                                     <font>
                                         <Font name="SansSerif Regular" size="13.0" />
                                     </font>
@@ -60,16 +62,19 @@
                                         <String fx:value="text-field-login" />
                                     </styleClass>
                                 </TextField>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0">
+                                <Text fx:id="text_ErrorEmail" strokeType="OUTSIDE" strokeWidth="0.0">
                                     <VBox.margin>
                                         <Insets />
                                     </VBox.margin>
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
                                 </Text>
                             </children>
                         </VBox>
                         <VBox prefHeight="29.0" prefWidth="328.0">
                             <children>
-                                <TextField prefHeight="37.0" prefWidth="289.0" promptText="Username" stylesheets="@style.css">
+                                <TextField fx:id="txt_UserName" prefHeight="37.0" prefWidth="289.0" promptText="Username" stylesheets="@style.css">
                                     <font>
                                         <Font name="SansSerif Regular" size="13.0" />
                                     </font>
@@ -78,37 +83,47 @@
                                         <String fx:value="text-field-login" />
                                     </styleClass>
                                 </TextField>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                                <Text fx:id="text_ErrorUserName" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font></Text>
                             </children>
                         </VBox>
                         <VBox prefHeight="36.0" prefWidth="328.0">
                             <children>
-                                <TextField prefHeight="39.0" prefWidth="289.0" promptText="Password">
-                                    <font>
-                                        <Font name="SansSerif Regular" size="13.0" />
-                                    </font>
-                                    <styleClass>
-                                        <String fx:value="aide_ankerpane" />
-                                        <String fx:value="text-field-login" />
-                                    </styleClass>
-                                </TextField>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <PasswordField fx:id="txt_password" promptText="Password" stylesheets="@style.css">
+                           <styleClass>
+                              <String fx:value="aide_ankerpane" />
+                              <String fx:value="text-field-login" />
+                           </styleClass>
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </PasswordField>
+                                <Text fx:id="text_ErrorPassword" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font></Text>
                             </children>
                         </VBox>
                         <VBox prefHeight="42.0" prefWidth="328.0">
                             <children>
-                                <TextField prefHeight="39.0" prefWidth="328.0" promptText="Confirm Password">
-                                    <font>
-                                        <Font name="SansSerif Regular" size="13.0" />
-                                    </font>
-                                    <styleClass>
-                                        <String fx:value="aide_ankerpane" />
-                                        <String fx:value="text-field-login" />
-                                    </styleClass>
-                                </TextField>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <PasswordField fx:id="txt_ComfirmPassword" promptText="Confirm Password" stylesheets="@style.css">
+                           <styleClass>
+                              <String fx:value="aide_ankerpane" />
+                              <String fx:value="text-field-login" />
+                           </styleClass>
+                           <font>
+                              <Font name="SansSerif Regular" size="13.0" />
+                           </font>
+                        </PasswordField>
+                                <Text fx:id="text_ErrorConfirmPassword" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Text>
                             </children>
                         </VBox>
+                        <CheckBox fx:id="chk_ShowPassword" layoutX="42.0" layoutY="240.0" onAction="#handleShowPassword" text="Hiển thị mật khẩu" />
                     </children>
                 </VBox>
             </children>

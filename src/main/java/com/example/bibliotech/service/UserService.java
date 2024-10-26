@@ -33,4 +33,33 @@ public class UserService {
         }
     }
 
+    public boolean isEmailExists(String email) throws DatabaseException {
+        return userDAO.checkEmailExists(email);
+    }
+
+    public boolean isUsernameExists(String username) throws DatabaseException {
+        return userDAO.checkUsernameExists(username);
+    }
+
+    public void createUser(Users user) throws DatabaseException {
+        if (user == null) {
+            throw new DatabaseException("User cannot be null");
+        }
+
+        // Validate user data
+        if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {
+            throw new DatabaseException("Username cannot be empty");
+        }
+        if (user.getEmail() == null || user.getEmail().trim().isEmpty()) {
+            throw new DatabaseException("Email cannot be empty");
+        }
+        if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
+            throw new DatabaseException("Password cannot be empty");
+        }
+
+        user.setRegistrationStatus("PENDING");
+        userDAO.createUser(user);
+    }
+
 }
+
