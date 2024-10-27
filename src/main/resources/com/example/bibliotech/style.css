@@ -201,7 +201,7 @@
     -fx-padding: 10; /* Khoảng cách giữa viền và nội dung */
 }
 
-.check-box .box {
+.check-box-1 .box {
     -fx-background-color: white; /* Nền trắng cho ô vuông */
     -fx-border-color: black; /* Viền đen */
     -fx-border-width: 1px; /* Độ dày viền */
@@ -212,17 +212,17 @@
 }
 
 /* Dấu tích mặc định sẽ không hiển thị */
-.check-box .box .mark {
+.check-box-1 .box .mark {
     -fx-background-color: transparent; /* Không hiển thị dấu tích mặc định */
 }
 
 /* Khi hover vào checkbox, hiển thị dấu tích màu xám */
-.check-box:hover .box .mark {
+.check-box-1:hover .box .mark {
     -fx-background-color: gray; /* Màu xám cho dấu tích khi hover */
 }
 
 /* Khi checkbox được chọn, dấu tích sẽ có màu đen */
-.check-box:selected .box .mark {
+.check-box-1:selected .box .mark {
     -fx-background-color: black; /* Màu đen cho dấu tích khi chọn */
 }
 
@@ -382,5 +382,63 @@
 .label {
     -fx-font-size: 12px; /* Kích thước chữ cho Label */
     -fx-text-fill: #333; /* Màu chữ cho Label */
+}
+
+/* Css Date Time Picker */
+/* Kiểu dáng cho DatePicker */
+.date-picker {
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #76c7a4;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.date-picker:hover {
+    -fx-border-color: #66b38f;
+}
+
+.date-picker:focused {
+    -fx-border-color: #4CAF50;
+}
+
+/* Kiểu dáng cho phần nút hiển thị ngày chọn */
+.date-picker .arrow {
+    -fx-background-color: transparent;
+    -fx-border-color: #76c7a4;
+    -fx-border-radius: 3px;
+}
+
+.date-picker .arrow:hover {
+    -fx-background-color: #76c7a4;
+    -fx-border-color: #66b38f;
+}
+
+/* Kiểu dáng cho lịch khi mở DatePicker */
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #76c7a4;
+    -fx-text-fill: #ffffff;
+}
+
+.date-picker-popup .calendar-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #76c7a4;
+    -fx-border-radius: 5px;
+}
+
+.date-picker-popup .day-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-font-size: 12px;
+}
+
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: #e6f7f1; /* Màu nhạt khi hover */
+}
+
+.date-picker-popup .day-cell:selected {
+    -fx-background-color: #76c7a4;
+    -fx-text-fill: #ffffff;
 }
 

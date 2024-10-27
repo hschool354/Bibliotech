@@ -56,8 +56,13 @@ public class LoginController implements Initializable {
             if (user != null) {
                 String nextScene;
 
-                // Route users based on their admin status
-                if (user.isAdmin()) {
+                // Check registration status first
+                if ("PENDING".equals(user.getRegistrationStatus())) {
+                    nextScene = "/com/example/bibliotech/profile_signUp.fxml";
+                    System.out.println("Routing to Profile Setup - First Time Login");
+                }
+                // If registration is completed, route based on admin status
+                else if (user.isAdmin()) {
                     nextScene = "/com/example/bibliotech/AdminDashboard.fxml";
                     System.out.println("Routing to Admin Dashboard");
                 } else {
@@ -66,6 +71,7 @@ public class LoginController implements Initializable {
                 }
 
                 // Log the routing decision
+                System.out.println("User registration status: " + user.getRegistrationStatus());
                 System.out.println("User is admin: " + user.isAdmin());
                 System.out.println("Next scene: " + nextScene);
 
