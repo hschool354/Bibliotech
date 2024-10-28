@@ -11,15 +11,33 @@ import java.util.Objects;
 
 public class SceneCache {
     private static final Map<String, Scene> sceneCache = new HashMap<>();
+    private static final Map<String, FXMLLoader> loaderCache = new HashMap<>();
 
     public static Scene getScene(String fxmlPath) throws IOException {
-        // Kiểm tra xem Scene đã được cache hay chưa
+        // Check if Scene exists in cache
         if (!sceneCache.containsKey(fxmlPath)) {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(SceneCache.class.getResource(fxmlPath)));
+            // Create new FXMLLoader
+            FXMLLoader loader = new FXMLLoader(SceneCache.class.getResource(fxmlPath));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
-            sceneCache.put(fxmlPath, scene); // Lưu Scene vào cache
+
+            // Store both the Scene and the loader
+            sceneCache.put(fxmlPath, scene);
+            loaderCache.put(fxmlPath, loader);
         }
-        return sceneCache.get(fxmlPath); // Trả về Scene từ cache
+        return sceneCache.get(fxmlPath);
+    }
+
+    public static <T> T getController(String fxmlPath) {
+        FXMLLoader loader = loaderCache.get(fxmlPath);
+        if (loader != null) {
+            return loader.getController();
+        }
+        return null;
+    }
+
+    public static void clearCache() {
+        sceneCache.clear();
+        loaderCache.clear();
     }
 }
-

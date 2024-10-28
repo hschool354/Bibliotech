@@ -81,8 +81,6 @@ public class ProfileSignUpController implements Initializable {
         lbl_nationality_error.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
     }
 
-
-
     private void loadCountries() {
         List<String> countries = Arrays.asList(
                 "Vietnam", "United States", "United Kingdom", "Japan", "China",

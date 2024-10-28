@@ -137,7 +137,7 @@
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                              <TextField fx:id="txt_IBSN" styleClass="text-field-search" stylesheets="@style.css">
                                  <font>
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
@@ -146,12 +146,12 @@
                         </VBox>
                         <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBSN" wrappingWidth="41.423828125">
+                              <Text fx:id="txt_publication_year" strokeType="OUTSIDE" strokeWidth="0.0" text="Publication Year" wrappingWidth="174.2238540649414">
                                  <font>
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <DatePicker />
+                              <DatePicker fx:id="datePicker_PublicationYear" />
                            </children>
                         </VBox>
                      </children>
@@ -163,7 +163,7 @@
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
                         </Text>
-                        <TextField styleClass="text-field-search" stylesheets="@style.css">
+                        <TextField fx:id="txt_title" styleClass="text-field-search" stylesheets="@style.css">
                            <font>
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
@@ -177,7 +177,7 @@
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
                         </Text>
-                        <TextField styleClass="text-field-search" stylesheets="@style.css">
+                        <TextField fx:id="txt_author" styleClass="text-field-search" stylesheets="@style.css">
                            <font>
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
@@ -186,12 +186,12 @@
                   </VBox>
                   <VBox prefHeight="115.0" prefWidth="568.0" spacing="7.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author" wrappingWidth="51.8238525390625">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="97.42384338378906">
                            <font>
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
                         </Text>
-                        <TextArea prefHeight="81.0" prefWidth="568.0" />
+                        <TextArea fx:id="textArena_description" prefHeight="81.0" prefWidth="568.0" />
                      </children>
                   </VBox>
                   <HBox prefHeight="64.0" prefWidth="568.0" spacing="60.0">
@@ -203,7 +203,7 @@
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="comboBox_language" prefWidth="150.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="64.0" prefWidth="148.0" spacing="7.0">
@@ -213,7 +213,7 @@
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="comboBox_Reading_Difficylty" prefWidth="150.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="64.0" prefWidth="148.0" spacing="7.0">
@@ -223,7 +223,7 @@
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="comboBox_Content_Rating" prefWidth="150.0" />
                            </children>
                         </VBox>
                      </children>
@@ -250,7 +250,7 @@
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                              <TextField fx:id="txt_page_Count" styleClass="text-field-search" stylesheets="@style.css">
                                  <font>
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
@@ -264,7 +264,7 @@
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                              <TextField fx:id="txt_Estimated_Reading_Time" styleClass="text-field-search" stylesheets="@style.css">
                                  <font>
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
@@ -284,13 +284,14 @@
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
                         </Text>
-                        <TextField styleClass="text-field-search" stylesheets="@style.css">
+                        <TextField fx:id="txt_Cover_Image_URL" styleClass="text-field-search" stylesheets="@style.css">
                            <font>
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
                         </TextField>
                      </children>
                   </VBox>
+                  <Button fx:id="btn_ChooseImage" mnemonicParsing="false" text="Button" />
                   <HBox prefHeight="64.0" prefWidth="528.0" spacing="50.0">
                      <children>
                         <VBox prefHeight="100.0" prefWidth="123.0" spacing="7.0">
@@ -300,7 +301,7 @@
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                              <TextField fx:id="txt_Original_Price" styleClass="text-field-search" stylesheets="@style.css">
                                  <font>
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
@@ -314,7 +315,7 @@
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Text>
-                              <TextField styleClass="text-field-search" stylesheets="@style.css">
+                              <TextField fx:id="txt_Discounted_Price" styleClass="text-field-search" stylesheets="@style.css">
                                  <font>
                                     <Font name="SansSerif Regular" size="14.0" />
                                  </font>
@@ -334,7 +335,7 @@
                                           <Font name="SansSerif Regular" size="14.0" />
                                        </font>
                                     </Text>
-                                    <TextField styleClass="text-field-search" stylesheets="@style.css">
+                                    <TextField fx:id="txt_Stock_Quantity" styleClass="text-field-search" stylesheets="@style.css">
                                        <font>
                                           <Font name="SansSerif Regular" size="14.0" />
                                        </font>
