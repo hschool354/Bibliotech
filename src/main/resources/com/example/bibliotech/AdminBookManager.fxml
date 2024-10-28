@@ -26,7 +26,7 @@
                 </ImageView>
                 <VBox layoutY="136.0" prefHeight="408.0" prefWidth="143.0" spacing="12.0">
                     <children>
-                        <Button fx:id="btn_Home" mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Home" textAlignment="CENTER">
+                        <Button fx:id="btn_Home" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="48.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Home" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -50,7 +50,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btn_User" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="User" textAlignment="CENTER">
+                        <Button fx:id="btn_User" mnemonicParsing="false" onAction="#handlAccountManagerButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="User" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>

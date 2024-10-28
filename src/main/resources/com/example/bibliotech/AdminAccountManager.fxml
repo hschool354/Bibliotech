@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.ToggleButton?>
 <AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.AdminAccountManagerController">
     <children>
         <Pane prefHeight="800.0" prefWidth="144.0" styleClass="aide_ankerpane" stylesheets="@style.css">
@@ -24,7 +24,7 @@
                 </ImageView>
                 <VBox layoutY="136.0" prefHeight="408.0" prefWidth="143.0" spacing="12.0">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Home" textAlignment="CENTER">
+                        <Button fx:id="btn_Home" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="48.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Home" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -36,7 +36,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btn_Book" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Book" textAlignment="CENTER">
+                        <Button fx:id="btn_Book" mnemonicParsing="false" onAction="#handleBookManagerButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Book" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -120,12 +120,12 @@
                      <font>
                         <Font name="SansSerif Bold" size="14.0" />
                      </font>
-                  </ToggleButton >
-                  <ToggleButton  fx:id="btn_Admin" layoutX="134.0" layoutY="7.0" mnemonicParsing="false" styleClass="nav-button" stylesheets="@style.css" text="Admin">
+                  </ToggleButton>
+                  <ToggleButton fx:id="btn_Admin" layoutX="134.0" layoutY="7.0" mnemonicParsing="false" styleClass="nav-button" stylesheets="@style.css" text="Admin">
                      <font>
                         <Font name="SansSerif Bold" size="14.0" />
                      </font>
-                  </ToggleButton >
+                  </ToggleButton>
                </children>
             </Pane>
             <Label layoutX="99.0" layoutY="88.0" text="Label">
@@ -148,7 +148,7 @@
                      </ImageView>
                  </graphic>
              </Button>
-             <Button fx:id="btn_addAccount" layoutX="196.0" layoutY="77.0" mnemonicParsing="false" styleClass="button_add" stylesheets="@style.css">
+             <Button fx:id="btn_addAccount" layoutX="196.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleAddAccountButton" styleClass="button_add" stylesheets="@style.css">
                  <graphic>
                      <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
                          <image>

@@ -26,7 +26,7 @@ public class AdminAccountManagerController implements Initializable {
     private ToggleButton btn_Member, btn_Admin;
 
     @FXML
-    private Button btn_addAccount, btn_Refresh;
+    private Button btn_addAccount, btn_Refresh,btn_Home,btn_Book;
 
     @FXML
     private TableView<Users> tableView;
@@ -81,6 +81,35 @@ public class AdminAccountManagerController implements Initializable {
     public void handleRefreshButton() {
         loadUsers();
     }
+
+    @FXML
+    public void handleHomeButton() {
+        try {
+            Stage stage = (Stage) btn_Home.getScene().getWindow();
+            Scene scene = SceneCache.getScene("/com/example/bibliotech/AdminDashboard.fxml");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading add account scene");
+            e.printStackTrace();
+            showErrorAlert("Error", "Could not load add account screen");
+        }
+    }
+
+    @FXML
+    public void handleBookManagerButton() {
+        try {
+            Stage stage = (Stage) btn_Book.getScene().getWindow();
+            Scene scene = SceneCache.getScene("/com/example/bibliotech/AdminBookManager.fxml");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading add account scene");
+            e.printStackTrace();
+            showErrorAlert("Error", "Could not load add account screen");
+        }
+    }
+
 
     @FXML
     public void handleAddAccountButton() {

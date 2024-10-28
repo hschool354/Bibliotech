@@ -226,5 +226,29 @@ public class UserDao {
         }
     }
 
+    public void addAdmin(Users admin) throws DatabaseException {
+        String sql = "INSERT INTO Users (username, email, password, full_name, phone, dob, gender, address, nationality, bio, is_admin, registration_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, admin.getUsername());
+            stmt.setString(2, admin.getEmail());
+            stmt.setString(3, PasswordUtil.hashPassword(admin.getPassword()));
+            stmt.setString(4, admin.getFullName()); // Chắc chắn rằng full_name được thiết lập
+            stmt.setString(5, admin.getPhone()); // Chắc chắn rằng phone được thiết lập
+            stmt.setDate(6, admin.getDob() != null ? new java.sql.Date(admin.getDob().getTime()) : null); // Chắc chắn rằng dob được thiết lập
+            stmt.setString(7, admin.getGender());
+            stmt.setString(8, admin.getAddress());
+            stmt.setString(9, admin.getNationality());
+            stmt.setString(10, admin.getBio());
+            stmt.setBoolean(11, true); // Đặt is_admin là true
+            stmt.setString(12, UserConstants.REGISTRATION_STATUS_COMPLETED); // Trạng thái đăng ký là hoàn thành
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Error adding admin: " + e.getMessage(), e);
+        }
+    }
 
 }

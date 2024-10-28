@@ -6,9 +6,12 @@ import com.example.bibliotech.exception.DatabaseException;
 import com.example.bibliotech.exception.LoginException;
 import com.example.bibliotech.model.Users;
 import com.example.bibliotech.constants.DatabaseConstants;
+import com.example.bibliotech.utils.PasswordUtil;
 import com.example.bibliotech.utils.SessionManager;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class UserService {
@@ -120,8 +123,31 @@ public class UserService {
         }
     }
 
+    private void validateUser(Users user) throws DatabaseException {
+        if (user == null) {
+            throw new DatabaseException("User cannot be null");
+        }
+
+        if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {
+            throw new DatabaseException("Username cannot be empty");
+        }
+        if (user.getEmail() == null || user.getEmail().trim().isEmpty()) {
+            throw new DatabaseException("Email cannot be empty");
+        }
+        if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
+            throw new DatabaseException("Password cannot be empty");
+        }
+    }
+
     public List<Users> getAllUsers() throws DatabaseException {
         return userDAO.getAllUsers();
+    }
+
+    public void addAdmin(Users admin) throws DatabaseException {
+        validateUser(admin);
+        admin.setAdmin(true);
+        admin.setRegistrationStatus("COMPLETED");
+        userDAO.addAdmin(admin);
     }
 
 }

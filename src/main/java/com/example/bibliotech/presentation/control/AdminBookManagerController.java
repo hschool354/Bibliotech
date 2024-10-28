@@ -57,6 +57,11 @@ public class AdminBookManagerController implements Initializable {
     }
 
     @FXML
+    public void handleHomeButton() {
+        changeScene("/com/example/bibliotech/AdminDashboard.fxml");
+    }
+
+    @FXML
     public void handleRefreshButton() {
         try {
             // Đợi 500ms để đảm bảo file đã được copy xong
