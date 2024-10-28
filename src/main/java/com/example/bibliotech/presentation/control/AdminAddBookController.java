@@ -1,14 +1,22 @@
 package com.example.bibliotech.presentation.control;
 
 import com.example.bibliotech.model.Books;
+import com.example.bibliotech.presentation.Animation.SceneTransitionEffect;
 import com.example.bibliotech.service.BookService;
 import com.example.bibliotech.exception.BookServiceException;
+import com.example.bibliotech.utils.SceneCache;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class AdminAddBookController {
@@ -220,16 +228,7 @@ public class AdminAddBookController {
     }
 
     private void handleCancel() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm Cancel");
-        alert.setHeaderText("Are you sure you want to cancel?");
-        alert.setContentText("All unsaved changes will be lost.");
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                btn_Cancel.getScene().getWindow().hide();
-            }
-        });
+        changeScene("/com/example/bibliotech/AdminBookManager.fxml");
     }
 
     private void showAlert(Alert.AlertType type, String title, String content) {
@@ -255,5 +254,17 @@ public class AdminAddBookController {
         comboBox_Reading_Difficylty.setValue(null);
         comboBox_Content_Rating.setValue(null);
         selectedImageFile = null;
+    }
+
+    private void changeScene(String fxmlPath) {
+        try {
+            Stage stage = (Stage) btn_Cancel.getScene().getWindow();
+            Scene scene = SceneCache.getScene(fxmlPath);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading scene: " + fxmlPath);
+            e.printStackTrace();
+        }
     }
 }

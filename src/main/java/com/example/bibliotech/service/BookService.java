@@ -144,4 +144,52 @@ public class BookService {
         int lastDotIndex = fileName.lastIndexOf(".");
         return lastDotIndex > 0 ? fileName.substring(lastDotIndex) : "";
     }
+
+    public void updateBook(Books book, File newCoverImage) throws BookServiceException {
+        Connection conn = null;
+        try {
+            conn = DatabaseConfig.getConnection();
+            conn.setAutoCommit(false);
+
+            // Handle new cover image if provided
+            if (newCoverImage != null) {
+                validateImageFile(newCoverImage);
+                createBookCoversDirectoryIfNotExists();
+
+                // Generate filename
+                String cleanFileName = newCoverImage.getName().replaceAll("\\s+", "_");
+                saveBookCover(newCoverImage, cleanFileName);
+                book.setCoverImageUrl(cleanFileName);
+            }
+
+            // Update book in database
+            bookDAO.updateBook(book);
+
+            conn.commit();
+        } catch (SQLException | IOException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            throw new BookServiceException("Error updating book: " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
+
+    public Books getBookById(int bookId) throws BookServiceException {
+        try {
+            Books book = bookDAO.getBookById(bookId);
+            if (book == null) {
+                throw new BookServiceException("Book not found with ID: " + bookId);
+            }
+            return book;
+        } catch (Exception e) {
+            throw new BookServiceException("Error fetching book details: " + e.getMessage(), e);
+        }
+    }
+
 }

@@ -155,7 +155,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="btn_Refresh" layoutX="601.0" layoutY="58.0" mnemonicParsing="false" styleClass="button_refresh" stylesheets="@style.css">
+                <Button fx:id="btn_Refresh" layoutX="601.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleRefreshButton" styleClass="button_refresh" stylesheets="@style.css">
                     <graphic>
                         <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
                             <image>

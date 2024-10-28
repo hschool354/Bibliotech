@@ -2,6 +2,7 @@ package com.example.bibliotech.presentation.control;
 
 import com.example.bibliotech.dao.BooksDao;
 import com.example.bibliotech.model.Books;
+import com.example.bibliotech.utils.DataManager;
 import com.example.bibliotech.utils.SceneCache;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.io.IOException;
@@ -22,7 +24,7 @@ import java.io.IOException;
 public class AdminBookManagerController implements Initializable {
 
     @FXML
-    private Button btn_addBook;
+    private Button btn_addBook,btn_Refresh;
 
     @FXML
     private TableView<Books> tableView;
@@ -49,10 +51,23 @@ public class AdminBookManagerController implements Initializable {
         changeScene("/com/example/bibliotech/AdminAddBook.fxml");
     }
 
+    @FXML
+    public void handleRefreshButton() {
+        try {
+            // Đợi 500ms để đảm bảo file đã được copy xong
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        loadBooks();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setupColumns();
         loadBooks();
+
+
     }
 
     private void setupColumns() {
@@ -171,18 +186,42 @@ public class AdminBookManagerController implements Initializable {
     }
 
     private Image loadImage(String imagePath) {
+        if (imagePath == null || imagePath.isEmpty()) {
+            return getPlaceholderImage();
+        }
+
         try {
             String resourcePath = "/book-covers/" + imagePath;
             URL imageUrl = getClass().getResource(resourcePath);
+
             if (imageUrl != null) {
-                return new Image(imageUrl.toExternalForm());
+                return new Image(imageUrl.toExternalForm(), true); // true enables background loading
             } else {
-                System.err.println("Không tìm thấy ảnh: " + imagePath);
-                return new Image(getClass().getResource("/book-covers/placeholder.png").toExternalForm());
+                System.err.println("Image not found: " + imagePath);
+                return getPlaceholderImage();
             }
         } catch (Exception e) {
-            System.err.println("Lỗi khi tải ảnh: " + imagePath);
-            return new Image(getClass().getResource("/book-covers/placeholder.png").toExternalForm());
+            System.err.println("Error loading image: " + imagePath);
+            e.printStackTrace();
+            return getPlaceholderImage();
+        }
+    }
+
+    private Image getPlaceholderImage() {
+        try {
+            URL placeholderUrl = getClass().getResource("/book-covers/placeholder.png");
+            if (placeholderUrl != null) {
+                return new Image(placeholderUrl.toExternalForm());
+            } else {
+                System.err.println("Placeholder image not found!");
+                // Return a 1x1 transparent image as last resort
+                return new Image(new ByteArrayInputStream(new byte[0]));
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading placeholder image");
+            e.printStackTrace();
+            // Return a 1x1 transparent image as last resort
+            return new Image(new ByteArrayInputStream(new byte[0]));
         }
     }
 
@@ -192,7 +231,19 @@ public class AdminBookManagerController implements Initializable {
     }
 
     private void handleDetailClick(Books book) {
-        System.out.println("Detail clicked for book: " + book.getTitle());
+        try {
+            // Store the selected book in DataManager
+            DataManager.getInstance().setSelectedBook(book);
+
+            // Navigate to detail screen
+            Stage stage = (Stage) tableView.getScene().getWindow();
+            Scene scene = SceneCache.getScene("/com/example/bibliotech/AdminDetailBook.fxml");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading detail scene");
+            e.printStackTrace();
+        }
     }
 
     private void changeScene(String fxmlPath) {

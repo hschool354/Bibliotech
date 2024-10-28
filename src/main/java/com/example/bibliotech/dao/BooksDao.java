@@ -50,78 +50,90 @@
             return books;
         }
 
+        public int getMaxBookId() throws SQLException {
+            String query = "SELECT MAX(book_id) FROM Books";
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(query);
+                 ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return 0; // Trả về 0 nếu bảng trống
+            }
+        }
+
         public int insertBook(Books book) throws SQLException {
-            String insertBookSQL = "INSERT INTO Books (title, author, isbn, original_price, " +
+            int newId = getMaxBookId() + 1;
+
+            String insertBookSQL = "INSERT INTO Books (book_id, title, author, isbn, original_price, " +
                     "discounted_price, publication_year, language, page_count, " +
                     "average_rating, rating_count, description, cover_image_url, " +
                     "stock_quantity, deal_id, reading_difficulty, estimated_reading_time, " +
-                    "content_rating) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "content_rating, created_at, updated_at) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             try (Connection conn = DatabaseConfig.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement(insertBookSQL, Statement.RETURN_GENERATED_KEYS)) {
+                 PreparedStatement stmt = conn.prepareStatement(insertBookSQL)) {
 
-                // Basic validations based on the new schema constraints
-                if (book.getOriginalPrice() < 0) {
-                    throw new SQLException("Original price cannot be negative");
-                }
-                if (book.getDiscountedPrice() != null && book.getDiscountedPrice() < 0) {
-                    throw new SQLException("Discounted price cannot be negative");
-                }
-                if (book.getPublicationYear() < 1600) {
-                    throw new SQLException("Publication year must be 1600 or later");
-                }
-                if (book.getPageCount() <= 0) {
-                    throw new SQLException("Page count must be greater than 0");
-                }
-                if (book.getRatingCount() < 0) {
-                    throw new SQLException("Rating count cannot be negative");
-                }
+                validateBookData(book);
 
-                stmt.setString(1, book.getTitle());
-                stmt.setString(2, book.getAuthor());
-                stmt.setString(3, book.getIsbn());
-                stmt.setDouble(4, book.getOriginalPrice());
-                stmt.setObject(5, book.getDiscountedPrice());
-                stmt.setInt(6, book.getPublicationYear());
-                // Validate language enum
-                String language = book.getLanguage();
-                if (!isValidLanguage(language)) {
-                    throw new SQLException("Invalid language value");
-                }
-                stmt.setString(7, language);
-                stmt.setInt(8, book.getPageCount());
-                stmt.setDouble(9, book.getAverageRating());
-                stmt.setInt(10, book.getRatingCount());
-                stmt.setString(11, book.getDescription());
-                stmt.setString(12, book.getCoverImageUrl());
-                stmt.setInt(13, book.getStockQuantity());
-                stmt.setObject(14, book.getDealId());
-                // Validate reading difficulty enum
-                String readingDifficulty = book.getReadingDifficulty();
-                if (readingDifficulty != null && !isValidReadingDifficulty(readingDifficulty)) {
-                    throw new SQLException("Invalid reading difficulty value");
-                }
-                stmt.setString(15, readingDifficulty);
-                stmt.setInt(16, book.getEstimatedReadingTime());
-                // Validate content rating enum
-                String contentRating = book.getContentRating();
-                if (contentRating != null && !isValidContentRating(contentRating)) {
-                    throw new SQLException("Invalid content rating value");
-                }
-                stmt.setString(17, contentRating);
+                Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+
+                stmt.setInt(1, newId);
+                stmt.setString(2, book.getTitle());
+                stmt.setString(3, book.getAuthor());
+                stmt.setString(4, book.getIsbn());
+                stmt.setDouble(5, book.getOriginalPrice());
+                stmt.setObject(6, book.getDiscountedPrice());
+                stmt.setInt(7, book.getPublicationYear());
+                stmt.setString(8, book.getLanguage());
+                stmt.setInt(9, book.getPageCount());
+                stmt.setDouble(10, book.getAverageRating());
+                stmt.setInt(11, book.getRatingCount());
+                stmt.setString(12, book.getDescription());
+                stmt.setString(13, book.getCoverImageUrl());
+                stmt.setInt(14, book.getStockQuantity());
+                stmt.setObject(15, book.getDealId());
+                stmt.setString(16, book.getReadingDifficulty());
+                stmt.setInt(17, book.getEstimatedReadingTime());
+                stmt.setString(18, book.getContentRating());
+                // Set current timestamp for both created_at and updated_at
+                stmt.setTimestamp(19, currentTime);
+                stmt.setTimestamp(20, currentTime);
 
                 int affectedRows = stmt.executeUpdate();
                 if (affectedRows == 0) {
                     throw new SQLException("Creating book failed, no rows affected.");
                 }
 
-                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        return generatedKeys.getInt(1);
-                    } else {
-                        throw new SQLException("Creating book failed, no ID obtained.");
-                    }
-                }
+                return newId;
+            }
+        }
+
+        private void validateBookData(Books book) throws SQLException {
+            if (book.getOriginalPrice() < 0) {
+                throw new SQLException("Original price cannot be negative");
+            }
+            if (book.getDiscountedPrice() != null && book.getDiscountedPrice() < 0) {
+                throw new SQLException("Discounted price cannot be negative");
+            }
+            if (book.getPublicationYear() < 1600) {
+                throw new SQLException("Publication year must be 1600 or later");
+            }
+            if (book.getPageCount() <= 0) {
+                throw new SQLException("Page count must be greater than 0");
+            }
+            if (book.getRatingCount() < 0) {
+                throw new SQLException("Rating count cannot be negative");
+            }
+            if (!isValidLanguage(book.getLanguage())) {
+                throw new SQLException("Invalid language value");
+            }
+            if (book.getReadingDifficulty() != null && !isValidReadingDifficulty(book.getReadingDifficulty())) {
+                throw new SQLException("Invalid reading difficulty value");
+            }
+            if (book.getContentRating() != null && !isValidContentRating(book.getContentRating())) {
+                throw new SQLException("Invalid content rating value");
             }
         }
 
@@ -168,4 +180,98 @@
                 }
             }
         }
+
+        public void updateBook(Books book) throws SQLException {
+            String updateSQL = "UPDATE Books SET title = ?, author = ?, isbn = ?, " +
+                    "original_price = ?, discounted_price = ?, publication_year = ?, " +
+                    "language = ?, page_count = ?, average_rating = ?, rating_count = ?, " +
+                    "description = ?, cover_image_url = ?, stock_quantity = ?, " +
+                    "deal_id = ?, reading_difficulty = ?, estimated_reading_time = ?, " +
+                    "content_rating = ?, updated_at = ? WHERE book_id = ?";
+
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(updateSQL)) {
+
+                // Validate dữ liệu trước khi update
+                validateBookData(book);
+
+                // Set các giá trị cho PreparedStatement
+                stmt.setString(1, book.getTitle());
+                stmt.setString(2, book.getAuthor());
+                stmt.setString(3, book.getIsbn());
+                stmt.setDouble(4, book.getOriginalPrice());
+                stmt.setObject(5, book.getDiscountedPrice());
+                stmt.setInt(6, book.getPublicationYear());
+                stmt.setString(7, book.getLanguage());
+                stmt.setInt(8, book.getPageCount());
+                stmt.setDouble(9, book.getAverageRating());
+                stmt.setInt(10, book.getRatingCount());
+                stmt.setString(11, book.getDescription());
+                stmt.setString(12, book.getCoverImageUrl());
+                stmt.setInt(13, book.getStockQuantity());
+                stmt.setObject(14, book.getDealId());
+                stmt.setString(15, book.getReadingDifficulty());
+                stmt.setInt(16, book.getEstimatedReadingTime());
+                stmt.setString(17, book.getContentRating());
+                // Set current timestamp for updated_at
+                stmt.setTimestamp(18, new Timestamp(System.currentTimeMillis()));
+                stmt.setInt(19, book.getBookId());
+
+                int affectedRows = stmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new SQLException("Updating book failed, no rows affected.");
+                }
+            }
+        }
+
+        public Books getBookById(int bookId) {
+            String query = "SELECT book_id, title, author, isbn, original_price, " +
+                    "discounted_price, publication_year, language, page_count, " +
+                    "average_rating, rating_count, description, cover_image_url, " +
+                    "stock_quantity, deal_id, reading_difficulty, estimated_reading_time, " +
+                    "content_rating, created_at, updated_at " +
+                    "FROM Books WHERE book_id = ?";
+
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(query)) {
+
+                stmt.setInt(1, bookId);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        Books book = new Books(
+                                rs.getInt("book_id"),
+                                rs.getString("title"),
+                                rs.getString("author"),
+                                rs.getString("isbn"),
+                                rs.getDouble("original_price"),
+                                rs.getObject("discounted_price") != null ? rs.getDouble("discounted_price") : null,
+                                rs.getInt("publication_year"),
+                                rs.getString("language"),
+                                rs.getInt("page_count"),
+                                rs.getDouble("average_rating"),
+                                rs.getInt("rating_count"),
+                                rs.getString("description"),
+                                rs.getString("cover_image_url"),
+                                rs.getInt("stock_quantity"),
+                                rs.getObject("deal_id") != null ? rs.getInt("deal_id") : null,
+                                rs.getString("reading_difficulty"),
+                                rs.getInt("estimated_reading_time"),
+                                rs.getString("content_rating")
+                        );
+                        // Set timestamps
+                        book.setCreatedAt(rs.getTimestamp("created_at"));
+                        book.setUpdatedAt(rs.getTimestamp("updated_at"));
+                        return book;
+                    }
+                }
+            } catch (SQLException e) {
+                System.err.println("Error fetching book details: " + e.getMessage());
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
+
     }
