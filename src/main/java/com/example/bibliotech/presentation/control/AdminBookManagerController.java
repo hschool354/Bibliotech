@@ -24,7 +24,7 @@ import java.io.IOException;
 public class AdminBookManagerController implements Initializable {
 
     @FXML
-    private Button btn_addBook,btn_Refresh;
+    private Button btn_addBook,btn_Refresh,btn_User;
 
     @FXML
     private TableView<Books> tableView;
@@ -52,6 +52,11 @@ public class AdminBookManagerController implements Initializable {
     }
 
     @FXML
+    public void handlAccountManagerButton() {
+        changeScene("/com/example/bibliotech/AdminAccountManager.fxml");
+    }
+
+    @FXML
     public void handleRefreshButton() {
         try {
             // Đợi 500ms để đảm bảo file đã được copy xong
@@ -66,8 +71,6 @@ public class AdminBookManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setupColumns();
         loadBooks();
-
-
     }
 
     private void setupColumns() {

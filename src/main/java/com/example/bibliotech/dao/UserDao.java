@@ -201,5 +201,30 @@ public class UserDao {
             throw new DatabaseException("Error updating registration status: " + e.getMessage(), e);
         }
     }
+    public List<Users> getAllUsers() throws DatabaseException {
+        String sql = "SELECT user_id, username, email, is_admin, registration_status FROM Users";
+        List<Users> users = new ArrayList<>();
+
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Users user = new Users();
+                user.setUserId(rs.getInt("user_id"));
+                user.setUsername(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
+                // Sửa lại cách set giá trị isAdmin
+                user.setAdmin(rs.getBoolean("is_admin")); // Hoặc
+                // user.setAdmin("1".equals(rs.getString("is_admin")) || "true".equalsIgnoreCase(rs.getString("is_admin")));
+                user.setRegistrationStatus(rs.getString("registration_status"));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            throw new DatabaseException("Error getting all users: " + e.getMessage(), e);
+        }
+    }
+
 
 }

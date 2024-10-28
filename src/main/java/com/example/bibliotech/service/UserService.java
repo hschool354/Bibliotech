@@ -9,6 +9,7 @@ import com.example.bibliotech.constants.DatabaseConstants;
 import com.example.bibliotech.utils.SessionManager;
 
 import java.sql.Date;
+import java.util.List;
 
 public class UserService {
     private final UserDao userDAO;
@@ -118,5 +119,10 @@ public class UserService {
             throw new DatabaseException("Date of birth cannot be in the future");
         }
     }
+
+    public List<Users> getAllUsers() throws DatabaseException {
+        return userDAO.getAllUsers();
+    }
+
 }
 

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,7 +12,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.AdminDashboardController">
+<?import javafx.scene.control.ToggleButton?>
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.AdminAccountManagerController">
     <children>
         <Pane prefHeight="800.0" prefWidth="144.0" styleClass="aide_ankerpane" stylesheets="@style.css">
             <children>
@@ -19,7 +24,7 @@
                 </ImageView>
                 <VBox layoutY="136.0" prefHeight="408.0" prefWidth="143.0" spacing="12.0">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" styleClass="button_home" stylesheets="@style.css" text="Home" textAlignment="CENTER">
+                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Home" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -31,7 +36,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btn_Book" mnemonicParsing="false" onAction="#handleBookManagerButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Book" textAlignment="CENTER">
+                        <Button fx:id="btn_Book" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Book" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -43,7 +48,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btn_User" mnemonicParsing="false" onAction="#handlAccountManagerButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="User" textAlignment="CENTER">
+                        <Button fx:id="btn_User" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_home" stylesheets="@style.css" text="User" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -107,6 +112,85 @@
                 </VBox>
             </children>
         </Pane>
-        <Pane layoutX="157.0" layoutY="-1.0" prefHeight="800.0" prefWidth="1172.0" styleClass="aide_ankerpane" stylesheets="@style.css" />
+        <Pane layoutX="157.0" layoutY="-1.0" prefHeight="800.0" prefWidth="1172.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+         <children>
+            <Pane layoutX="62.0" layoutY="14.0" prefHeight="48.0" prefWidth="250.0" styleClass="aide_ankerpane_3" stylesheets="@style.css">
+               <children>
+                  <ToggleButton fx:id="btn_Member" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" styleClass="nav-button" stylesheets="@style.css" text="Member">
+                     <font>
+                        <Font name="SansSerif Bold" size="14.0" />
+                     </font>
+                  </ToggleButton >
+                  <ToggleButton  fx:id="btn_Admin" layoutX="134.0" layoutY="7.0" mnemonicParsing="false" styleClass="nav-button" stylesheets="@style.css" text="Admin">
+                     <font>
+                        <Font name="SansSerif Bold" size="14.0" />
+                     </font>
+                  </ToggleButton >
+               </children>
+            </Pane>
+            <Label layoutX="99.0" layoutY="88.0" text="Label">
+               <font>
+                  <Font name="SansSerif Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField layoutX="357.0" layoutY="21.0" prefHeight="34.0" prefWidth="238.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </TextField>
+
+                   <Button fx:id="btn_Search" layoutX="549.0" layoutY="21.0" mnemonicParsing="false" styleClass="button_search" stylesheets="@style.css">
+                 <graphic>
+                     <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                         <image>
+                             <Image url="@../../../icons/icons_search.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="btn_addAccount" layoutX="196.0" layoutY="77.0" mnemonicParsing="false" styleClass="button_add" stylesheets="@style.css">
+                 <graphic>
+                     <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                         <image>
+                             <Image url="@../../../icons/icons_plus.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+
+             <Button fx:id="btn_delete" layoutX="276.0" layoutY="77.0" mnemonicParsing="false" styleClass="button_delete" stylesheets="@style.css">
+                 <graphic>
+                     <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                         <image>
+                             <Image url="@../../../icons/icons_delete.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="btn_Refresh" layoutX="350.0" layoutY="77.0" mnemonicParsing="false" styleClass="button_refresh" stylesheets="@style.css">
+                 <graphic>
+                     <ImageView disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                         <image>
+                             <Image url="@../../../icons/icons_refresh.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="990.0" layoutY="77.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" styleClass="button-login_Google" stylesheets="@style.css" text="Filter">
+               <font>
+                  <Font name="SansSerif Bold" size="13.0" />
+               </font>
+            </Button>
+             <TableView fx:id="tableView" layoutX="24.0" layoutY="130.0" prefHeight="646.0" prefWidth="1120.0" styleClass="table-view">
+                 <columns>
+                     <TableColumn fx:id="idColumn" prefWidth="100.0" text="ID" />
+                     <TableColumn fx:id="usernameColumn" prefWidth="150.0" text="Username" />
+                     <TableColumn fx:id="emailColumn" prefWidth="300.0" text="Email" />
+                     <TableColumn fx:id="statusColumn" prefWidth="150.0" text="Status" />
+                     <TableColumn fx:id="accountTypeColumn" prefWidth="150.0" text="Account Type" />
+                     <TableColumn fx:id="actionColumn" prefWidth="150.0" text="Action" />
+                 </columns>
+             </TableView>
+         </children></Pane>
     </children>
 </AnchorPane>

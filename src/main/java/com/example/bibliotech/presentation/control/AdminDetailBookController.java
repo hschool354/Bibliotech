@@ -36,7 +36,7 @@ public class AdminDetailBookController implements Initializable {
 
     private File selectedImageFile;
     private Books currentBook;
-    private Books originalBook; // For reset functionality
+    private Books originalBook;
     private BookService bookService;
 
     private static final String[] LANGUAGES = {
@@ -59,22 +59,21 @@ public class AdminDetailBookController implements Initializable {
         Books selectedBook = DataManager.getInstance().getSelectedBook();
         if (selectedBook != null) {
             try {
-                // Lấy thông tin chi tiết của sách từ database
                 Books detailedBook = bookService.getBookById(selectedBook.getBookId());
                 loadBook(detailedBook);
             } catch (BookServiceException e) {
                 showAlert(Alert.AlertType.ERROR, "Error", "Failed to load book details: " + e.getMessage());
-                handleCancel(); // Return to book manager
+                handleCancel();
             }
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "No book selected");
-            handleCancel(); // Return to book manager
+            handleCancel();
         }
     }
 
     public void loadBook(Books book) {
         this.currentBook = book;
-        this.originalBook = copyBook(book); // Create a copy for reset functionality
+        this.originalBook = copyBook(book);
         populateFields();
         loadBookCover();
     }
@@ -184,7 +183,6 @@ public class AdminDetailBookController implements Initializable {
             bookService.updateBook(currentBook, selectedImageFile);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Book updated successfully!");
 
-            // Clear the selected book before navigating back
             DataManager.getInstance().clearSelectedBook();
             navigateToBookManager();
         } catch (BookServiceException e) {
@@ -234,7 +232,6 @@ public class AdminDetailBookController implements Initializable {
     }
 
     private Books copyBook(Books book) {
-        // Create a deep copy of the book
         Books copy = new Books(
                 book.getBookId(),
                 book.getTitle(),

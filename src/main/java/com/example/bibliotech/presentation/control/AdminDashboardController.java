@@ -9,12 +9,18 @@ import java.io.IOException;
 
 public class AdminDashboardController {
     @FXML
-    private Button btn_Book;
+    private Button btn_Book,btn_User;
 
     @FXML
     public void handleBookManagerButton() {
         changeScene("/com/example/bibliotech/AdminBookManager.fxml");
     }
+
+    @FXML
+    public void handlAccountManagerButton() {
+        changeScene("/com/example/bibliotech/AdminAccountManager.fxml");
+    }
+
 
     private void changeScene(String fxmlPath) {
         try {
