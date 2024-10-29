@@ -75,7 +75,7 @@ public class AdminAddAccountController {
         if (validateInputs()) {
             try {
                 Users admin = createAdminUser();
-                userService.addAdmin(admin); // Use addAdmin method here
+                userService.addAdmin(admin);
                 showSuccessMessage("Admin user created successfully!");
                 clearFields();
             } catch (DatabaseException e) {
@@ -141,7 +141,7 @@ public class AdminAddAccountController {
     }
 
     private void loadCountries() {
-        List<String> countries = Arrays.asList("Country1", "Country2", "Country3"); // Replace with actual country list
+        List<String> countries = Arrays.asList("Country1", "Country2", "Country3");
         comboBox_Nationality.setItems(FXCollections.observableArrayList(countries));
     }
 

@@ -45,7 +45,7 @@ public class AccountSetting {
     }
 
     private void loadView(ViewName viewName) {
-        try {
+        /*try {
             System.out.println("Loading view: " + viewName);
 
             // Sử dụng ViewLoader để tải view
@@ -55,7 +55,7 @@ public class AccountSetting {
         } catch (IOException e) {
             System.err.println("Error loading view: " + viewName);
             e.printStackTrace();
-        }
+        }*/
     }
 
     private Button getButtonByView(ViewName viewName) {

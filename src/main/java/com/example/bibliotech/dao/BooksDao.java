@@ -1,12 +1,15 @@
     package com.example.bibliotech.dao;
     
+    import com.example.bibliotech.DTO.BriefBookDTO;
+    import com.example.bibliotech.DTO.TopBookDTO;
     import com.example.bibliotech.config.DatabaseConfig;
     import com.example.bibliotech.model.Books;
     
     import java.sql.*;
     import java.util.ArrayList;
     import java.util.List;
-    
+    import java.util.Optional;
+
     public class BooksDao {
     
         public List<Books> getAllBooksForDisplay() {
@@ -272,6 +275,117 @@
             return null;
         }
 
+        public List<TopBookDTO> getTopRatedBooks(int limit) throws SQLException {
+            List<TopBookDTO> popularBooks = new ArrayList<>();
+            String query = """
+                SELECT 
+                    book_id,
+                    title,
+                    cover_image_url,
+                    COALESCE(discounted_price, original_price) as display_price
+                FROM Books 
+                WHERE stock_quantity > 0
+                ORDER BY average_rating DESC, rating_count DESC
+                LIMIT ?
+                """;
 
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
 
+                pstmt.setInt(1, limit);
+
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        TopBookDTO book = new TopBookDTO(
+                                rs.getInt("book_id"),
+                                rs.getString("title"),
+                                rs.getString("cover_image_url"),
+                                rs.getDouble("display_price")
+                        );
+                        popularBooks.add(book);
+                    }
+                }
+            }
+            return popularBooks;
+        }
+
+        public List<BriefBookDTO> getBriefBooks(int limit) throws SQLException {
+            List<BriefBookDTO> briefBooks = new ArrayList<>();
+            String query = """
+            SELECT 
+                book_id,
+                cover_image_url,
+                title,
+                author,
+                page_count,
+                average_rating,
+                rating_count,
+                description
+            FROM Books 
+            WHERE stock_quantity > 0
+            ORDER BY average_rating DESC, rating_count DESC
+            LIMIT ?
+            """;
+
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+                pstmt.setInt(1, limit);
+
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        BriefBookDTO book = new BriefBookDTO(
+                                rs.getInt("book_id"),
+                                rs.getString("cover_image_url"),
+                                rs.getString("title"),
+                                rs.getString("author"),
+                                rs.getInt("page_count"),
+                                rs.getDouble("average_rating"),
+                                rs.getInt("rating_count"),
+                                rs.getString("description")
+                        );
+                        briefBooks.add(book);
+                    }
+                }
+            }
+            return briefBooks;
+        }
+
+        public Optional<BriefBookDTO> findBriefBookById(int bookId) throws SQLException {
+            String query = """
+            SELECT 
+                book_id,
+                cover_image_url,
+                title,
+                author,
+                page_count,
+                average_rating,
+                rating_count,
+                description
+            FROM Books 
+            WHERE book_id = ?
+            """;
+
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+                pstmt.setInt(1, bookId);
+
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        return Optional.of(new BriefBookDTO(
+                                rs.getInt("book_id"),
+                                rs.getString("cover_image_url"),
+                                rs.getString("title"),
+                                rs.getString("author"),
+                                rs.getInt("page_count"),
+                                rs.getDouble("average_rating"),
+                                rs.getInt("rating_count"),
+                                rs.getString("description")
+                        ));
+                    }
+                }
+            }
+            return Optional.empty();
+        }
     }

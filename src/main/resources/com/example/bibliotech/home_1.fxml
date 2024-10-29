@@ -202,16 +202,133 @@
             </Button>
             </children>
         </Pane>
-        <Pane layoutX="237.0" layoutY="109.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css" />
+        <Pane fx:id="pane1" layoutX="237.0" layoutY="109.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+         <children>
+            <HBox fx:id="containerPopular" layoutX="20.0" layoutY="40.0" prefHeight="276.0" prefWidth="606.0" spacing="22.0">
+               <children>
+                  <Button fx:id="btn_PopularBook1" mnemonicParsing="false" prefHeight="276.0" prefWidth="132.0" style="-fx-background-color: FFFF;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="124.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="image_1" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_Tittle1" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_Price1" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_PopularBook2" mnemonicParsing="false" prefHeight="276.0" prefWidth="132.0" style="-fx-background-color: FFFFFF;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="124.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="image_2" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_Tittle2" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_Price2" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_PopularBook3" mnemonicParsing="false" prefHeight="276.0" prefWidth="132.0" style="-fx-background-color: FFFFFF;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="124.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="image_3" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_Tittle3" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_Price3" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_PopularBook4" mnemonicParsing="false" prefHeight="276.0" prefWidth="132.0" style="-fx-background-color: ffffff;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="124.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="image_4" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_Tittle4" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_Price4" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Text layoutX="32.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Popular">
+               <font>
+                  <Font name="SansSerif Bold" size="14.0" />
+               </font>
+            </Text>
+         </children></Pane>
         <Pane layoutX="897.0" layoutY="109.0" prefHeight="690.0" prefWidth="430.0" styleClass="aide_ankerpane" stylesheets="@style.css">
          <children>
-            <Label fx:id="sloganLabel" layoutX="79.0" layoutY="76.0" text="1" textAlignment="CENTER">
-               <font>
-                  <Font name="SansSerif Bold" size="24.0" />
-               </font>
-            </Label>
-             <ImageView fx:id="gifImageView" fitHeight="426.0" fitWidth="430.0" layoutY="132.0" />
-             <Button fx:id="btn_readNow" layoutX="135.0" layoutY="625.0" mnemonicParsing="false" onAction="#handleReadNowButton" prefHeight="38.0" prefWidth="160.0" styleClass="button-readNow" stylesheets="@style.css" text="READ NOW" />
+            <AnchorPane fx:id="contentArea" layoutX="9.0" layoutY="13.0">
+               <children>
+                  <Pane fx:id="Contenr" prefHeight="664.0" prefWidth="412.0" />
+               </children>
+            </AnchorPane>
          </children></Pane>
       <Pane layoutX="237.0" layoutY="458.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css" />
     </children>

@@ -5,6 +5,7 @@ import com.example.bibliotech.model.Users;
 public class SessionManager {
     private static volatile SessionManager instance;
     private Users currentUser;
+    private Integer selectedBookId;
 
     private SessionManager() {
         // Private constructor để đảm bảo Singleton
@@ -33,9 +34,6 @@ public class SessionManager {
         return currentUser != null;
     }
 
-    public void clearSession() {
-        currentUser = null;
-    }
 
     // Các phương thức tiện ích
     public int getCurrentUserId() {
@@ -49,4 +47,22 @@ public class SessionManager {
     public boolean isAdmin() {
         return currentUser != null && currentUser.isAdmin();
     }
+
+    public void setSelectedBookId(Integer bookId) {
+        this.selectedBookId = bookId;
+    }
+
+    public Integer getSelectedBookId() {
+        return selectedBookId;
+    }
+
+    public void clearSelectedBookId() {
+        this.selectedBookId = null;
+    }
+
+    public void clearSession() {
+        currentUser = null;
+        selectedBookId = null;
+    }
+
 }

@@ -561,3 +561,71 @@
     -fx-background-color: #76c7a4;
     -fx-text-fill: #ffffff;
 }
+
+/* styles/book_display.css */
+.book-card {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.book-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 15, 0, 0, 8);
+    -fx-translate-y: -2;
+}
+
+.book-title {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.book-author {
+    -fx-font-size: 14;
+    -fx-text-fill: #666;
+}
+
+.book-price {
+    -fx-font-size: 14;
+    -fx-text-fill: #2196F3;
+    -fx-font-weight: bold;
+}
+
+.book-details-pane {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, -5, 0);
+}
+
+.detail-title {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+}
+
+.detail-author {
+    -fx-font-size: 18;
+    -fx-text-fill: #666;
+}
+
+.read-now-button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+}
+
+.read-now-button:hover {
+    -fx-background-color: #1976D2;
+}
+
+.text-area_BriefBoook {
+    -fx-background-color: transparent; /* Làm khung chìm */
+    -fx-background-insets: 0; /* Loại bỏ đệm nền */
+    -fx-padding: 10; /* Tạo khoảng cách giữa nội dung và khung */
+}
+
+.text-area_BriefBoook .content {
+    -fx-alignment: center; /* Căn giữa chữ trong TextArea */
+}
+
