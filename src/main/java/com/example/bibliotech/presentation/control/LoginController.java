@@ -87,6 +87,7 @@ public class LoginController implements Initializable {
         changeScene("/com/example/bibliotech/forgotPassword.fxml");
     }
 
+
     private void showAlert(String title, String content) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(title);

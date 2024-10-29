@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CustomMenuItem?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -181,25 +182,46 @@
                         </HBox>
                     </children>
                 </Pane>
-                <HBox alignment="CENTER_LEFT" layoutX="896.0" layoutY="15.0" prefHeight="48.0" prefWidth="149.0" spacing="10.0">
+                <HBox alignment="CENTER_LEFT" layoutX="817.0" layoutY="15.0" prefHeight="48.0" prefWidth="223.0" spacing="10.0">
                     <children>
-                        <Circle fill="#f8f9fa" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Label text="User name">
-                            <font>
-                                <Font name="SansSerif Regular" size="14.0" />
-                            </font>
+                  <Pane prefHeight="50.0" prefWidth="50.0" styleClass="circle-pane" stylesheets="@style.css">
+                     <children>
+                        <ImageView fx:id="image_ProfilePicture" fitHeight="50.0" fitWidth="50.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" styleClass="rounded-image">
+                        </ImageView>
+                     </children>
+                  </Pane>
+                      <MenuButton fx:id="menuBtn_UserAccnout" mnemonicParsing="false" prefHeight="46.0" prefWidth="136.0" styleClass="fancy-menu-button" stylesheets="@style.css">
+                          <items>
+                              <CustomMenuItem fx:id="customMenuItem_AccnoutSetting" onAction="#handleAccountSettingButton">
+                                  <content>
+                                      <Label styleClass="custom-menu-item-label" text="Setting" />
+                                  </content>
+                              </CustomMenuItem>
+                              <CustomMenuItem fx:id="customMenuItem_Logout">
+                                  <content>
+                                      <Label styleClass="custom-menu-item-label" text="LogOut" />
+                                  </content>
+                              </CustomMenuItem>
+                          </items>
+                     <graphic>
+                        <Label fx:id="lbl_UserName" prefHeight="17.0" prefWidth="93.0" text="Label">
+                           <font>
+                              <Font name="SansSerif Bold" size="13.0" />
+                           </font>
                         </Label>
+                     </graphic>
+                      </MenuButton>
                     </children>
                 </HBox>
-            <Button layoutX="840.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" stylesheets="@style.css">
+            <Button layoutX="771.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" stylesheets="@style.css">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../../icons/icons_bell.png" />
                      </image>
                   </ImageView>
-               </graphic>
-            </Button>
+               </graphic></Button>
+
             </children>
         </Pane>
         <Pane fx:id="pane1" layoutX="237.0" layoutY="109.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css">
@@ -330,6 +352,156 @@
                </children>
             </AnchorPane>
          </children></Pane>
-      <Pane layoutX="237.0" layoutY="458.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css" />
+      <Pane layoutX="237.0" layoutY="458.0" prefHeight="330.0" prefWidth="646.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+         <children>
+            <HBox fx:id="containerPopular1" layoutX="20.0" layoutY="40.0" prefHeight="276.0" prefWidth="606.0" spacing="22.0">
+               <children>
+                  <Button fx:id="btn_SaleBook1" mnemonicParsing="false" prefHeight="276.0" prefWidth="132.0" style="-fx-background-color: FFFF;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="124.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="image_saleBook1" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_TittleSaleBook1" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_PriceSaleBook1" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_DiscountPrice1" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_SaleBook2" mnemonicParsing="false" prefHeight="276.0" prefWidth="132.0" style="-fx-background-color: FFFFFF;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="124.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="image_saleBook2" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_TittleSaleBook2" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_PriceSaleBook2" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_DiscountPrice2" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_SaleBook3" mnemonicParsing="false" prefHeight="276.0" prefWidth="132.0" style="-fx-background-color: FFFFFF;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="124.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="image_saleBook3" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_TittleSaleBook3" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_PriceSaleBook3" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_DiscountPrice3" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_SaleBook4" mnemonicParsing="false" prefHeight="276.0" prefWidth="132.0" style="-fx-background-color: ffffff;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="268.0" prefWidth="124.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="image_saleBook4" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_TittleSaleBook4" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_PriceSaleBook4" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
+                                 <children>
+                                    <Label fx:id="lbl_DiscountPrice4" layoutX="42.0" layoutY="6.0" text="Label">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children></Pane>
     </children>
 </AnchorPane>

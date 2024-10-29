@@ -1,3 +1,4 @@
+//AccountSetting
 package com.example.bibliotech.presentation.control;
 
 import com.example.bibliotech.utils.ViewLoader;
@@ -5,19 +6,24 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AccountSetting {
+    private static final Logger logger = Logger.getLogger(AccountSetting.class.getName());
+
     @FXML
     private AnchorPane contentArea;
 
     @FXML
     private Button btn_profile, btn_security, btn_notifications, btn_brandedContent;
 
+    private ViewName currentView;
+
     @FXML
     public void initialize() {
-        // Kiểm tra null cho tất cả các nút
         if (btn_profile == null || btn_security == null || btn_notifications == null || btn_brandedContent == null) {
-            System.err.println("One or more buttons are null");
+            logger.severe("One or more buttons are null");
         } else {
             loadView(ViewName.PROFILE);
             setActiveButton(btn_profile);
@@ -35,27 +41,41 @@ public class AccountSetting {
     }
 
     @FXML
-    private void handleNotificationsButton() {
+    public void handleNotificationsButton() {
         loadView(ViewName.NOTIFICATIONS);
     }
 
     @FXML
-    private void handleBrandedContentButton() {
+    public void handleBrandedContentButton() {
         loadView(ViewName.BRANDED_CONTENT);
     }
 
     private void loadView(ViewName viewName) {
-        /*try {
-            System.out.println("Loading view: " + viewName);
+        try {
+            logger.info("Loading view: " + viewName);
+            currentView = viewName;
+            contentArea.getChildren().clear();
 
-            // Sử dụng ViewLoader để tải view
-            AnchorPane view = ViewLoader.loadView(viewName.getViewName());
+            ViewLoader.ViewLoadResult loadResult = ViewLoader.loadView(viewName.getViewName(), true);
+
+            AnchorPane view = loadResult.getView();
+            AnchorPane.setTopAnchor(view, 0.0);
+            AnchorPane.setBottomAnchor(view, 0.0);
+            AnchorPane.setLeftAnchor(view, 0.0);
+            AnchorPane.setRightAnchor(view, 0.0);
+
             contentArea.getChildren().setAll(view);
+
             setActiveButton(getButtonByView(viewName));
         } catch (IOException e) {
-            System.err.println("Error loading view: " + viewName);
-            e.printStackTrace();
-        }*/
+            logger.log(Level.SEVERE, "Error loading view: " + viewName, e);
+            showErrorView();
+        }
+    }
+
+    private void showErrorView() {
+        logger.severe("Error loading content. Please try again.");
+        contentArea.getChildren().clear();
     }
 
     private Button getButtonByView(ViewName viewName) {
@@ -74,13 +94,11 @@ public class AccountSetting {
     }
 
     private void setActiveButton(Button activeButton) {
-        // Reset tất cả các nút về kiểu mặc định
         btn_profile.getStyleClass().remove("active-button");
         btn_security.getStyleClass().remove("active-button");
         btn_notifications.getStyleClass().remove("active-button");
         btn_brandedContent.getStyleClass().remove("active-button");
 
-        // Đặt kiểu hoạt động cho nút đã nhấn
         if (activeButton != null) {
             activeButton.getStyleClass().add("active-button");
         }

@@ -1,18 +1,26 @@
     package com.example.bibliotech.dao;
     
     import com.example.bibliotech.DTO.BriefBookDTO;
+    import com.example.bibliotech.DTO.SaleBookDTO;
     import com.example.bibliotech.DTO.TopBookDTO;
     import com.example.bibliotech.config.DatabaseConfig;
     import com.example.bibliotech.model.Books;
-    
+    import javafx.scene.image.Image;
+    import javafx.scene.image.ImageView;
+    import javafx.scene.shape.Circle;
+
+    import java.net.URL;
     import java.sql.*;
     import java.util.ArrayList;
     import java.util.List;
     import java.util.Optional;
+    import java.util.logging.Level;
+    import java.util.logging.Logger;
+
 
     public class BooksDao {
-    
         public List<Books> getAllBooksForDisplay() {
+
             List<Books> books = new ArrayList<>();
             // Điều chỉnh query theo đúng tên cột trong database
             String query = "SELECT book_id, cover_image_url, title, author, language, " +
@@ -388,4 +396,43 @@
             }
             return Optional.empty();
         }
+
+        public List<SaleBookDTO> getRandomSaleBooks(int limit) throws SQLException {
+            List<SaleBookDTO> saleBooks = new ArrayList<>();
+            String query = """
+        SELECT 
+            book_id,
+            cover_image_url,
+            title,
+            original_price,
+            discounted_price
+        FROM Books 
+        WHERE discounted_price IS NOT NULL 
+        AND discounted_price < original_price 
+        AND stock_quantity > 0
+        ORDER BY RAND()
+        LIMIT ?
+        """;
+
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+                pstmt.setInt(1, limit);
+
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    while (rs.next()) {
+                        SaleBookDTO book = new SaleBookDTO(
+                                rs.getInt("book_id"),
+                                rs.getString("cover_image_url"),
+                                rs.getString("title"),
+                                rs.getDouble("original_price"),
+                                rs.getDouble("discounted_price")
+                        );
+                        saleBooks.add(book);
+                    }
+                }
+            }
+            return saleBooks;
+        }
+
     }

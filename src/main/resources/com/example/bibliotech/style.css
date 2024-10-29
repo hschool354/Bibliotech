@@ -620,12 +620,51 @@
 }
 
 .text-area_BriefBoook {
-    -fx-background-color: transparent; /* Làm khung chìm */
-    -fx-background-insets: 0; /* Loại bỏ đệm nền */
-    -fx-padding: 10; /* Tạo khoảng cách giữa nội dung và khung */
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 10;
 }
 
 .text-area_BriefBoook .content {
-    -fx-alignment: center; /* Căn giữa chữ trong TextArea */
+    -fx-alignment: center;
+}
+
+.circle-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 50%;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-border-radius: 50%;
+}
+
+.fancy-menu-button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+}
+
+/* Đặt kiểu cho CustomMenuItem */
+.custom-menu-item-label {
+    -fx-background-color: #ffffff; /* Nền trắng */
+    -fx-text-fill: black; /* Màu chữ đen */
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px; /* Padding để phù hợp với MenuButton */
+    -fx-alignment: center; /* Căn giữa văn bản */
+    -fx-pref-width: 146px; /* Chiều rộng bằng với MenuButton */
+}
+
+/* Hiệu ứng hover cho các mục trong Menu */
+.custom-menu-item-label:hover {
+    -fx-background-color: #f0f0f0; /* Màu nền khi rê chuột */
+}
+
+.rounded-image {
+    -fx-background-radius: 50%; /* Để bo tròn hình ảnh */
+    -fx-clip: shape; /* Cắt hình ảnh theo hình tròn */
+    -fx-background-color: transparent; /* Nền trong suốt nếu cần */
 }
 

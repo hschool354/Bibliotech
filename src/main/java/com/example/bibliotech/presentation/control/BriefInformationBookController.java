@@ -27,7 +27,7 @@ public class BriefInformationBookController implements Initializable {
     @FXML private ImageView image;
     @FXML private Label lbl_Tittle, lbl_Author, lbl_Pages, lbl_Average, lbl_Rating;
     @FXML private Button btn_ReadNow;
-    @FXML private TextArea txtArena_description; // Thay đổi kiểu dữ liệu
+    @FXML private TextArea txtArena_description;
 
     private BriefBookDTO currentBook;
     private final BooksDao booksDao;

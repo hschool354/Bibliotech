@@ -5,11 +5,19 @@ import com.example.bibliotech.constants.DatabaseConstants;
 import com.example.bibliotech.constants.UserConstants;
 import com.example.bibliotech.exception.DatabaseException;
 import com.example.bibliotech.model.Users;
+
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.bibliotech.utils.PasswordUtil;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
+
+import static com.example.bibliotech.config.DatabaseConfig.closeConnection;
 
 public class UserDao {
     public Users checkLogin(String username, String password) throws DatabaseException {
@@ -248,6 +256,77 @@ public class UserDao {
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new DatabaseException("Error adding admin: " + e.getMessage(), e);
+        }
+    }
+
+    public void loadProfilePicture(ImageView imageView, String profilePictureUrl) {
+        try {
+            if (profilePictureUrl != null && !profilePictureUrl.trim().isEmpty()) {
+                // Xử lý URL tùy theo nguồn ảnh
+                if (profilePictureUrl.startsWith("http")) {
+                    // Load từ URL internet
+                    Image image = new Image(profilePictureUrl,
+                            true); // true để load bất đồng bộ
+                    image.errorProperty().addListener((observable, oldValue, newValue) -> {
+                        if (newValue) {
+                            loadDefaultProfileImage(imageView);
+                        }
+                    });
+                    imageView.setImage(image);
+                } else {
+                    // Load từ resources local
+                    String resourcePath = "/Profile_Picture/" + profilePictureUrl;
+                    URL imageUrl = getClass().getResource(resourcePath);
+
+                    if (imageUrl != null) {
+                        Image image = new Image(imageUrl.toExternalForm());
+                        imageView.setImage(image);
+                    } else {
+                        loadDefaultProfileImage(imageView);
+                    }
+                }
+            } else {
+                loadDefaultProfileImage(imageView);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error loading profile picture: "+ e.getMessage());
+            loadDefaultProfileImage(imageView);
+        }
+    }
+
+    private void loadDefaultProfileImage(ImageView imageView) {
+        try {
+            URL defaultImageUrl = getClass().getResource("/Profile_Picture/icons_customer.png");
+            if (defaultImageUrl != null) {
+                Image defaultImage = new Image(defaultImageUrl.toExternalForm());
+                imageView.setImage(defaultImage);
+            } else {
+                System.out.println("Default profile image not found in resources");
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading default profile image"+ e.getMessage());
+        }
+    }
+
+    public void loadUserName(Label label, int userId) throws DatabaseException {
+        String sql = "SELECT username FROM Users WHERE user_id = ?";
+
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String username = rs.getString("username");
+                    label.setText(username);
+                } else {
+                    label.setText("User not found"); // Nếu không tìm thấy user
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error loading username: " + e.getMessage(), e);
         }
     }
 

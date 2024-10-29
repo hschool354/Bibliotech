@@ -34,7 +34,6 @@ public class SessionManager {
         return currentUser != null;
     }
 
-
     // Các phương thức tiện ích
     public int getCurrentUserId() {
         return currentUser != null ? currentUser.getUserId() : -1;
@@ -65,4 +64,7 @@ public class SessionManager {
         selectedBookId = null;
     }
 
+    public String getProfilePictureUrl() {
+        return currentUser != null ? currentUser.getProfilePictureUrl() : null;
+    }
 }

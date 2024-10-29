@@ -2,11 +2,7 @@ package com.example.bibliotech.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.Node;
-import javafx.fxml.Initializable;
 import java.io.IOException;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.Optional;
 import java.util.WeakHashMap;
 import java.util.logging.Logger;
 import java.util.logging.Level;

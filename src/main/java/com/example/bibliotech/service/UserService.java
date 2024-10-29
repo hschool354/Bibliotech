@@ -15,6 +15,10 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class UserService {
+    private static final String USER_AVATARS_DIR = "src/main/resources/Profile_Picture/";
+    private static final long MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
+    private static final String[] ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png"};
+
     private final UserDao userDAO;
 
     public UserService() {
@@ -143,12 +147,6 @@ public class UserService {
         return userDAO.getAllUsers();
     }
 
-    public void addAdmin(Users admin) throws DatabaseException {
-        validateUser(admin);
-        admin.setAdmin(true);
-        admin.setRegistrationStatus("COMPLETED");
-        userDAO.addAdmin(admin);
-    }
 
 }
 
