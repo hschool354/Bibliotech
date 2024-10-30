@@ -55,32 +55,32 @@
             </Label>
             <HBox layoutX="273.0" layoutY="374.0" prefHeight="48.0" prefWidth="294.0" spacing="10.0">
                <children>
-                      <TextField prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
+                      <TextField fx:id="txt_code1" prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
                           <font>
                               <Font name="SansSerif Regular" size="14.0" />
                           </font>
                       </TextField>
-                  <TextField prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
+                  <TextField fx:id="txt_code2" prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
                      <font>
                         <Font name="SansSerif Regular" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
+                  <TextField fx:id="txt_code3" prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
                      <font>
                         <Font name="SansSerif Regular" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
+                  <TextField fx:id="txt_code4" prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
                      <font>
                         <Font name="SansSerif Regular" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
+                  <TextField fx:id="txt_code5" prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
                      <font>
                         <Font name="SansSerif Regular" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
+                  <TextField fx:id="txt_code6" prefHeight="40.0" prefWidth="40.0" styleClass="text-field-profile_SignUp" stylesheets="@style.css">
                      <font>
                         <Font name="SansSerif Regular" size="14.0" />
                      </font>

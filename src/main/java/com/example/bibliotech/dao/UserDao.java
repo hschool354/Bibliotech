@@ -8,8 +8,11 @@ import com.example.bibliotech.model.Users;
 
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.example.bibliotech.utils.PasswordUtil;
 import javafx.scene.control.Label;
@@ -120,6 +123,79 @@ public class UserDao {
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error checking username existence: " + e.getMessage(), e);
+        }
+    }
+
+    public Users getUserProfileSettingByID(int user_id) throws SQLException {
+        if (user_id <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
+
+        String query = "SELECT u.*, " +
+                "COALESCE(u.full_name, '') as full_name, " +
+                "COALESCE(u.phone, '') as phone, " +
+                "COALESCE(u.address, '') as address, " +
+                "COALESCE(u.nationality, '') as nationality, " +
+                "COALESCE(u.bio, '') as bio, " +
+                "COALESCE(u.profile_picture_url, '') as profile_picture_url " +
+                "FROM Users u WHERE u.user_id = ?";
+
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, user_id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Users user = new Users();
+
+
+                    // Set all fields from ResultSet with null checks
+                    user.setUserId(rs.getInt("user_id"));
+                    user.setUsername(rs.getString("username"));
+
+                    System.out.println("Loading user data from database:");
+                    System.out.println("Full name: " + rs.getString("full_name"));
+                    System.out.println("Phone: " + rs.getString("phone"));
+                    System.out.println("DOB: " + rs.getDate("dob"));
+
+                    user.setFullName(rs.getString("full_name"));
+                    user.setPhone(rs.getString("phone"));
+
+                    // Handle date carefully
+                    java.sql.Date dobSQL = rs.getDate("dob");
+                    if (dobSQL != null) {
+                        user.setDob(new Date(dobSQL.getTime()));
+                    }
+
+                    user.setGender(rs.getString("gender"));
+                    user.setAddress(rs.getString("address"));
+                    user.setNationality(rs.getString("nationality"));
+                    user.setBio(rs.getString("bio"));
+                    user.setProfilePictureUrl(rs.getString("profile_picture_url"));
+
+                    return user;
+                } else {
+                    // No user found with given ID
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(getClass().getName()).severe(
+                    String.format("Error fetching user profile for ID %d: %s", user_id, e.getMessage())
+            );
+            throw new SQLException("Failed to fetch user profile: " + e.getMessage(), e);
+        }
+    }
+
+    // Optional: Add a method to check if user exists
+    private boolean doesUserExist(int userId, Connection conn) throws SQLException {
+        String checkQuery = "SELECT 1 FROM Users WHERE user_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(checkQuery)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
         }
     }
 
@@ -327,6 +403,80 @@ public class UserDao {
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error loading username: " + e.getMessage(), e);
+        }
+    }
+
+    public void updateProfileSetting(Users users) throws SQLException {
+        // Validate input
+        if (users == null || users.getUserId() <= 0) {
+            throw new IllegalArgumentException("Invalid user data");
+        }
+
+        validateProfileData(users);
+
+        String updateSQL = "UPDATE Users SET username = ?, full_name = ?, phone = ?, " +
+                "dob = ?, gender = ?, nationality = ?, bio = ?, " +
+                "profile_picture_url = ?, updated_at = CURRENT_TIMESTAMP " +
+                "WHERE user_id = ?";
+
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(updateSQL)) {
+
+            // Set parameters with null checks
+            stmt.setString(1, users.getUsername());
+            stmt.setString(2, users.getFullName());
+            stmt.setString(3, users.getPhone());
+
+            // Handle Date conversion safely
+            if (users.getDob() != null) {
+                stmt.setDate(4, new java.sql.Date(users.getDob().getTime()));
+            } else {
+                stmt.setNull(4, java.sql.Types.DATE);
+            }
+
+            stmt.setString(5, users.getGender());
+            stmt.setString(6, users.getNationality());
+            stmt.setString(7, users.getBio());
+            stmt.setString(8, users.getProfilePictureUrl());
+            stmt.setInt(9, users.getUserId());
+
+            // Execute update
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new SQLException("Update failed, no rows affected. User ID: " + users.getUserId());
+            }
+
+        } catch (SQLException e) {
+            throw new SQLException("Failed to update user profile: " + e.getMessage(), e);
+        }
+    }
+
+    // Helper method to validate profile data before update
+    private void validateProfileData(Users users) throws IllegalArgumentException {
+        if (users.getUsername() == null || users.getUsername().trim().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be empty");
+        }
+
+        if (users.getFullName() != null && users.getFullName().length() > 100) {
+            throw new IllegalArgumentException("Full name exceeds maximum length");
+        }
+
+        if (users.getPhone() != null) {
+            String phonePattern = "^\\+?[0-9]{10,15}$";
+            if (!users.getPhone().matches(phonePattern)) {
+                throw new IllegalArgumentException("Invalid phone number format");
+            }
+        }
+
+        if (users.getDob() != null) {
+            // Convert java.sql.Date directly to LocalDate
+            LocalDate dobLocalDate = ((java.sql.Date) users.getDob()).toLocalDate();
+
+            // Validate date is not in the future
+            if (dobLocalDate.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Date of birth cannot be in the future");
+            }
         }
     }
 

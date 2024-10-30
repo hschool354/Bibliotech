@@ -69,7 +69,7 @@
                 if (rs.next()) {
                     return rs.getInt(1);
                 }
-                return 0; // Trả về 0 nếu bảng trống
+                return 0;
             }
         }
 

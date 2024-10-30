@@ -1,16 +1,23 @@
 //AccountSetting
 package com.example.bibliotech.presentation.control;
 
+import com.example.bibliotech.utils.SceneCache;
 import com.example.bibliotech.utils.ViewLoader;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AccountSetting {
     private static final Logger logger = Logger.getLogger(AccountSetting.class.getName());
+
+    @FXML
+    private Button btn_Home;
 
     @FXML
     private AnchorPane contentArea;
@@ -118,6 +125,23 @@ public class AccountSetting {
 
         public String getViewName() {
             return viewName;
+        }
+    }
+
+    @FXML
+    public void handleHomeButton() {
+        changeScene("/com/example/bibliotech/home_1.fxml");
+    }
+
+    private void changeScene(String fxmlPath) {
+        try {
+            Stage stage = (Stage) btn_Home.getScene().getWindow();
+            Scene scene = SceneCache.getScene(fxmlPath);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading scene: " + fxmlPath);
+            e.printStackTrace();
         }
     }
 }

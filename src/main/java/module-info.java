@@ -13,6 +13,7 @@ module com.example.bibliotech {
     requires java.sql;
     requires java.desktop;
     requires jbcrypt;
+    requires java.mail;
 
     opens com.example.bibliotech to javafx.fxml;
     exports com.example.bibliotech.presentation;

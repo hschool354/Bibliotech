@@ -1,16 +1,28 @@
 package com.example.bibliotech.service;
 
+import com.example.bibliotech.config.DatabaseConfig;
 import com.example.bibliotech.constants.UserConstants;
 import com.example.bibliotech.dao.UserDao;
+import com.example.bibliotech.exception.BookServiceException;
 import com.example.bibliotech.exception.DatabaseException;
 import com.example.bibliotech.exception.LoginException;
+import com.example.bibliotech.exception.UserServiceException;
+import com.example.bibliotech.model.Books;
 import com.example.bibliotech.model.Users;
 import com.example.bibliotech.constants.DatabaseConstants;
 import com.example.bibliotech.utils.PasswordUtil;
 import com.example.bibliotech.utils.SessionManager;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -147,6 +159,110 @@ public class UserService {
         return userDAO.getAllUsers();
     }
 
+
+    public void addAdmin(Users admin) throws DatabaseException {
+        validateUser(admin);
+        admin.setAdmin(true);
+        admin.setRegistrationStatus("COMPLETED");
+        userDAO.addAdmin(admin);
+    }
+
+    public Users loadSettingProfile(int userId) throws DatabaseException {
+        try {
+            return userDAO.getUserProfileSettingByID(userId);
+        } catch (SQLException e) {
+            throw new DatabaseException("Error loading user profile: " + e.getMessage(), e);
+        }
+    }
+
+    private void validateImageFile(File file) throws UserServiceException {
+        if (file == null) {
+            throw new UserServiceException("No file provided");
+        }
+
+        // Check file size
+        if (file.length() > MAX_FILE_SIZE) {
+            throw new UserServiceException("File size exceeds maximum limit of 5MB");
+        }
+
+        // Check file extension
+        String extension = getFileExtension(file.getName()).toLowerCase();
+        boolean validExtension = false;
+        for (String allowedExt : ALLOWED_EXTENSIONS) {
+            if (allowedExt.equals(extension)) {
+                validExtension = true;
+                break;
+            }
+        }
+        if (!validExtension) {
+            throw new UserServiceException("Invalid file type. Allowed types: JPG, JPEG, PNG");
+        }
+    }
+
+    private String getFileExtension(String fileName) {
+        int lastDotIndex = fileName.lastIndexOf(".");
+        return lastDotIndex > 0 ? fileName.substring(lastDotIndex) : "";
+    }
+
+    private void createBookCoversDirectoryIfNotExists() throws UserServiceException {
+        Path directory = Paths.get(USER_AVATARS_DIR);
+        try {
+            if (!Files.exists(directory)) {
+                Files.createDirectories(directory);
+            }
+        } catch (IOException e) {
+            throw new UserServiceException("Error creating book covers directory", e);
+        }
+    }
+
+    private void saveUserPicture(File sourceFile, String targetFileName) throws IOException {
+        Path targetPath = Paths.get(USER_AVATARS_DIR, targetFileName);
+        Files.copy(sourceFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    public void updateProfileSetting(Users users , File newCoverImage) throws UserServiceException {
+        Connection conn = null;
+        try {
+            conn = DatabaseConfig.getConnection();
+            conn.setAutoCommit(false);
+
+            if (newCoverImage != null) {
+                validateImageFile(newCoverImage);
+                createBookCoversDirectoryIfNotExists();
+
+                // Generate filename
+                String cleanFileName = newCoverImage.getName().replaceAll("\\s+", "_");
+                saveUserPicture(newCoverImage, cleanFileName);
+                users.setProfilePictureUrl(cleanFileName);
+            }
+
+            userDAO.updateProfileSetting(users);
+
+            conn.commit();
+        } catch (SQLException | IOException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            throw new UserServiceException("Error updating users: " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
+
+    private void closeConnection(Connection conn) {
+        if (conn != null) {
+            try {
+                conn.setAutoCommit(true);
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
 
