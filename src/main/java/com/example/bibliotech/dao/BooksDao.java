@@ -5,17 +5,11 @@
     import com.example.bibliotech.DTO.TopBookDTO;
     import com.example.bibliotech.config.DatabaseConfig;
     import com.example.bibliotech.model.Books;
-    import javafx.scene.image.Image;
-    import javafx.scene.image.ImageView;
-    import javafx.scene.shape.Circle;
-
-    import java.net.URL;
     import java.sql.*;
     import java.util.ArrayList;
     import java.util.List;
     import java.util.Optional;
-    import java.util.logging.Level;
-    import java.util.logging.Logger;
+
 
 
     public class BooksDao {
@@ -434,5 +428,7 @@
             }
             return saleBooks;
         }
+
+
 
     }

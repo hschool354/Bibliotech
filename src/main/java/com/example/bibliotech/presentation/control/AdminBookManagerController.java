@@ -240,6 +240,8 @@ public class AdminBookManagerController implements Initializable {
 
     private void handleDetailClick(Books book) {
         try {
+            SceneCache.clearCache(); // Clear all cache
+
             // Store the selected book in DataManager
             DataManager.getInstance().setSelectedBook(book);
 

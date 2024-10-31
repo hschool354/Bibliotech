@@ -1,15 +1,20 @@
 package com.example.bibliotech.presentation.control;
 
 import com.example.bibliotech.model.Books;
+import com.example.bibliotech.model.Category;
 import com.example.bibliotech.presentation.Animation.SceneTransitionEffect;
+import com.example.bibliotech.presentation.components.TagInputField;
 import com.example.bibliotech.service.BookService;
 import com.example.bibliotech.exception.BookServiceException;
+import com.example.bibliotech.service.CategoryService;
 import com.example.bibliotech.utils.SceneCache;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
@@ -18,6 +23,8 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminAddBookController {
     @FXML private TextField txt_IBSN, txt_title, txt_author, txt_page_Count,
@@ -28,9 +35,19 @@ public class AdminAddBookController {
             comboBox_Content_Rating;
     @FXML private DatePicker datePicker_PublicationYear;
     @FXML private Button btn_Save, btn_Clear, btn_Cancel, btn_Home, btn_ChooseImage;
+    @FXML private ComboBox<String> categoryComboBox;
+
+
+    @FXML private Pane categoryContainer;
+    private TagInputField categoryTagInput;
 
     private File selectedImageFile;
     private final BookService bookService;
+    private FlowPane selectedCategoriesPane;
+
+    private List<Category> categories;
+    private List<Integer> selectedCategoryIds = new ArrayList<>();
+    private List<String> selectedCategories = new ArrayList<>();
 
     // Constants
     private static final String[] LANGUAGES = {
@@ -50,6 +67,22 @@ public class AdminAddBookController {
         initializeComboBoxes();
         setupTextFieldValidation();
         setupEventHandlers();
+        selectedCategoryIds = new ArrayList<>();
+        selectedCategories = new ArrayList<>();
+        categoryTagInput = new TagInputField();
+        categoryContainer.getChildren().add(categoryTagInput);
+
+        try {
+            CategoryService categoryService = new CategoryService();
+            categories = categoryService.getCategories();
+
+            List<String> categoryNames = categories.stream()
+                    .map(Category::getName)
+                    .toList();
+            categoryTagInput.setSuggestions(categoryNames);
+        } catch (BookServiceException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load categories: " + e.getMessage());
+        }
     }
 
     private void initializeComboBoxes() {
@@ -57,6 +90,40 @@ public class AdminAddBookController {
         comboBox_Reading_Difficylty.setItems(FXCollections.observableArrayList(READING_DIFFICULTIES));
         comboBox_Content_Rating.setItems(FXCollections.observableArrayList(CONTENT_RATINGS));
     }
+
+    @FXML
+    private void handleCategorySelection() {
+        String selectedCategoryName = categoryComboBox.getSelectionModel().getSelectedItem();
+        if (selectedCategoryName != null) {
+
+            selectedCategories.add(selectedCategoryName);
+
+            // Tìm ID của category được chọn
+            // Tìm ID của category được chọn
+            Category selectedCategory = categories.stream()
+                    .filter(c -> c.getName().equals(selectedCategoryName))
+                    .findFirst()
+                    .orElse(null);
+            if (selectedCategory != null) {
+                // Thêm ID category vào danh sách selectedCategoryIds
+                selectedCategoryIds.add(selectedCategory.getId());
+            }
+
+            // Tạo Label mới với tên category
+            Label categoryLabel = new Label(selectedCategoryName);
+            categoryLabel.getStyleClass().add("selected-category");
+            categoryLabel.setOnMouseClicked(event -> {
+                // Xóa category khỏi danh sách khi click vào Label
+                selectedCategories.remove(selectedCategoryName);
+                selectedCategoryIds.remove((Integer) selectedCategory.getId());
+                selectedCategoriesPane.getChildren().remove(categoryLabel);
+            });
+
+            // Thêm Label vào FlowPane
+            selectedCategoriesPane.getChildren().add(categoryLabel);
+        }
+    }
+
 
     private void setupTextFieldValidation() {
         // ISBN validation (13 digits)
@@ -185,7 +252,20 @@ public class AdminAddBookController {
 
         try {
             Books book = createBookFromInputs();
-            boolean success = bookService.addBook(book, null, selectedImageFile);
+
+            // Lấy danh sách category đã chọn từ TagInputField
+            List<String> selectedCategoryNames = categoryTagInput.getTags();
+            List<Integer> categoryIds = new ArrayList<>();
+
+            // Chuyển đổi tên category thành ID
+            for (String categoryName : selectedCategoryNames) {
+                categories.stream()
+                        .filter(c -> c.getName().equals(categoryName))
+                        .findFirst()
+                        .ifPresent(category -> categoryIds.add(category.getId()));
+            }
+
+            boolean success = bookService.addBook(book, categoryIds, selectedImageFile);
 
             if (success) {
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Book has been successfully added!");

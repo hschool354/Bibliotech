@@ -36,6 +36,11 @@ public class SceneCache {
         return null;
     }
 
+    public static void clearCache(String fxmlPath) {
+        sceneCache.remove(fxmlPath);
+        loaderCache.remove(fxmlPath);
+    }
+
     public static void clearCache() {
         sceneCache.clear();
         loaderCache.clear();

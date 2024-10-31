@@ -1,7 +1,12 @@
 package com.example.bibliotech.presentation.control;
 
+import com.example.bibliotech.DTO.BookCategoryDTO;
 import com.example.bibliotech.model.Books;
+import com.example.bibliotech.model.Category;
+import com.example.bibliotech.presentation.components.TagInputField;
+import com.example.bibliotech.service.BookCategoryService;
 import com.example.bibliotech.service.BookService;
+import com.example.bibliotech.service.CategoryService;
 import com.example.bibliotech.utils.DataManager;
 import com.example.bibliotech.utils.SceneCache;
 import com.example.bibliotech.exception.BookServiceException;
@@ -10,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -18,7 +24,10 @@ import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AdminDetailBookController implements Initializable {
     @FXML private TextField txt_ID, txt_IBSN, txt_Title, txt_Author, txt_PageCount, txt_EstimatedReadingTime,
@@ -39,6 +48,13 @@ public class AdminDetailBookController implements Initializable {
     private Books originalBook;
     private BookService bookService;
 
+    @FXML private Pane categoryContainer;
+    private TagInputField categoryTagInput;
+    private BookCategoryService bookCategoryService;
+    private CategoryService categoryService;
+    private List<Category> allCategories;
+    private List<String> originalCategories;
+
     private static final String[] LANGUAGES = {
             "Vietnamese", "English", "French", "German", "Spanish",
             "Chinese", "Japanese", "Korean", "Other"
@@ -47,20 +63,25 @@ public class AdminDetailBookController implements Initializable {
     private static final String[] READING_DIFFICULTIES = {"EASY", "MEDIUM", "HARD"};
     private static final String[] CONTENT_RATINGS = {"EVERYONE", "TEEN", "MATURE"};
 
-    public AdminDetailBookController() {
+    public AdminDetailBookController() throws BookServiceException {
         this.bookService = new BookService();
+        this.bookCategoryService = new BookCategoryService();
+        this.categoryService = new CategoryService();
+        this.allCategories = categoryService.getCategories();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setupCategoryInput();
         setupComboBoxes();
         setupButtons();
 
         Books selectedBook = DataManager.getInstance().getSelectedBook();
-        if (selectedBook != null) {
+        if (selectedBook != null && DataManager.getInstance().hasValidSelectedBook()) {
             try {
                 Books detailedBook = bookService.getBookById(selectedBook.getBookId());
                 loadBook(detailedBook);
+                loadBookCategories(detailedBook.getBookId());
             } catch (BookServiceException e) {
                 showAlert(Alert.AlertType.ERROR, "Error", "Failed to load book details: " + e.getMessage());
                 handleCancel();
@@ -76,6 +97,17 @@ public class AdminDetailBookController implements Initializable {
         this.originalBook = copyBook(book);
         populateFields();
         loadBookCover();
+    }
+
+    private void setupCategoryInput() {
+        categoryTagInput = new TagInputField();
+        categoryContainer.getChildren().add(categoryTagInput);
+
+        // Set up suggestions from all available categories
+        List<String> categoryNames = allCategories.stream()
+                .map(Category::getName)
+                .collect(Collectors.toList());
+        categoryTagInput.setSuggestions(categoryNames);
     }
 
     private void setupComboBoxes() {
@@ -160,6 +192,30 @@ public class AdminDetailBookController implements Initializable {
         }
     }
 
+    private void loadBookCategories(int bookId) {
+        try {
+            List<Integer> bookCategoryIds = bookCategoryService.getBookCategories(bookId)
+                    .stream()
+                    .map(dto -> ((BookCategoryDTO) dto).getCategoryId())
+                    .collect(Collectors.toList());
+
+            // Convert category IDs to names and add to TagInputField
+            List<String> categoryNames = allCategories.stream()
+                    .filter(category -> bookCategoryIds.contains(category.getId()))
+                    .map(Category::getName)
+                    .collect(Collectors.toList());
+
+            // Store original categories for reset functionality
+            originalCategories = new ArrayList<>(categoryNames);
+
+            // Clear existing tags and add loaded categories
+            categoryTagInput.clear();
+            originalCategories.forEach(name -> categoryTagInput.addPublicTag(name));
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load book categories: " + e.getMessage());
+        }
+    }
+
     @FXML
     private void handleChooseImage() {
         FileChooser fileChooser = new FileChooser();
@@ -180,7 +236,16 @@ public class AdminDetailBookController implements Initializable {
     private void handleSave() {
         try {
             updateBookFromFields();
+
+            List<String> currentCategoryNames = categoryTagInput.getTags();
+            List<Integer> categoryIds = allCategories.stream()
+                    .filter(category -> currentCategoryNames.contains(category.getName()))
+                    .map(Category::getId)
+                    .collect(Collectors.toList());
+
             bookService.updateBook(currentBook, selectedImageFile);
+            bookCategoryService.updateBookCategories(currentBook.getBookId(), categoryIds);
+
             showAlert(Alert.AlertType.INFORMATION, "Success", "Book updated successfully!");
 
             DataManager.getInstance().clearSelectedBook();
@@ -192,8 +257,20 @@ public class AdminDetailBookController implements Initializable {
 
     @FXML
     private void handleCancel() {
+        // Clear selected book
         DataManager.getInstance().clearSelectedBook();
-        navigateToBookManager();
+
+        try {
+            SceneCache.clearCache(); // Clear all cache
+
+            Stage stage = (Stage) btn_cancel.getScene().getWindow();
+            Scene scene = SceneCache.getScene("/com/example/bibliotech/AdminBookManager.fxml");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to navigate back to Book Manager");
+        }
     }
 
     @FXML
@@ -202,6 +279,8 @@ public class AdminDetailBookController implements Initializable {
         populateFields();
         loadBookCover();
         selectedImageFile = null;
+        categoryTagInput.clear();
+        originalCategories.forEach(name -> categoryTagInput.addPublicTag(name));
     }
 
     private void updateBookFromFields() {

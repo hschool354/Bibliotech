@@ -149,28 +149,28 @@
         </Pane>
         <Pane layoutX="128.0" layoutY="8.0" prefHeight="780.0" prefWidth="1200.0" styleClass="aide_ankerpane" stylesheets="@style.css">
          <children>
-            <ImageView fitHeight="420.0" fitWidth="368.0" layoutX="64.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image_Book" fitHeight="420.0" fitWidth="368.0" layoutX="64.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../backgrounds/To_Kill_a_Mockingbird.jpg" />
                </image>
             </ImageView>
             <VBox layoutX="406.0" layoutY="67.0" prefHeight="590.0" prefWidth="731.0" spacing="10.0">
                <children>
-                  <Label alignment="TOP_LEFT" prefHeight="93.0" prefWidth="731.0" text="To Kill a Mockingbird (Harperperennial Modern Classics)" wrapText="true">
+                  <Label fx:id="lbl_Title" alignment="TOP_LEFT" prefHeight="93.0" prefWidth="731.0" text="To Kill a Mockingbird (Harperperennial Modern Classics)" wrapText="true">
                      <font>
                         <Font name="SansSerif Bold" size="32.0" />
                      </font>
                   </Label>
                   <HBox prefHeight="30.0" prefWidth="732.0" spacing="200.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="147.0" text="by Harper Lee (Author) ">
+                        <Label fx:id="lbl_author" alignment="CENTER" prefHeight="39.0" prefWidth="147.0" text="by Harper Lee (Author) ">
                            <font>
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
                         </Label>
                         <Pane prefHeight="21.0" prefWidth="175.0">
                            <children>
-                              <Button layoutX="-3.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="46.0" style="-fx-background-color: FFFFFF;" />
+                              <Button fx:id="btn_addToFavorite" layoutX="-3.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="46.0" style="-fx-background-color: FFFFFF;" />
                               <ImageView disable="true" fitHeight="27.0" fitWidth="27.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../icons/icons_favorite.png" />
@@ -182,7 +182,7 @@
                      </children>
                   </HBox>
                   <Line endX="630.4928588867188" startX="-100.0" />
-                  <TextArea prefHeight="167.0" prefWidth="732.0" text="Harper Lee's Pulitzer Prize-winning masterwork of honor and injustice in the deep South—and the heroism of one man in the face of blind and violent hatred.&#10;One of the most cherished stories of all time, To Kill a Mockingbird has been translated into more than forty languages, sold more than forty million copies worldwide, served as the basis for an enormously popular motion picture, and was voted one of the best novels of the twentieth century by librarians across the country. A gripping, heart-wrenching, and wholly remarkable tale of coming-of-age in a South poisoned by virulent prejudice, it views a world of great beauty and savage inequities through the eyes of a young girl, as her father—a crusading local lawyer—risks everything to defend a black man unjustly accused of a terrible crime." wrapText="true">
+                  <TextArea fx:id="txtArea_description" prefHeight="167.0" prefWidth="732.0" text="Harper Lee's Pulitzer Prize-winning masterwork of honor and injustice in the deep South—and the heroism of one man in the face of blind and violent hatred.&#10;One of the most cherished stories of all time, To Kill a Mockingbird has been translated into more than forty languages, sold more than forty million copies worldwide, served as the basis for an enormously popular motion picture, and was voted one of the best novels of the twentieth century by librarians across the country. A gripping, heart-wrenching, and wholly remarkable tale of coming-of-age in a South poisoned by virulent prejudice, it views a world of great beauty and savage inequities through the eyes of a young girl, as her father—a crusading local lawyer—risks everything to defend a black man unjustly accused of a terrible crime." wrapText="true">
                      <font>
                         <Font name="SansSerif Regular" size="14.0" />
                      </font>
@@ -206,7 +206,7 @@
                                     </ImageView>
                                  </children>
                               </Pane>
-                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="13">
+                              <Label fx:id="lbl_readingAge" alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="13">
                                  <font>
                                     <Font name="SansSerif Regular" size="13.0" />
                                  </font>
@@ -232,7 +232,7 @@
                                     </ImageView>
                                  </children>
                               </Pane>
-                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="English">
+                              <Label fx:id="lbl_language" alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="English">
                                  <font>
                                     <Font name="SansSerif Regular" size="13.0" />
                                  </font>
@@ -309,8 +309,8 @@
                    <HBox fx:id="starsContainer" alignment="CENTER" prefHeight="20.0" prefWidth="279.0" spacing="5" />
                </children>
             </VBox>
-            <Button layoutX="64.0" layoutY="591.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="279.0" styleClass="button-readForFree" stylesheets="@style.css" text="Read for Free" />
-            <Button layoutX="64.0" layoutY="657.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="279.0" styleClass="button-buyBook" stylesheets="@style.css" text="Buy $ 4.99" />
+            <Button fx:id="btn_ReadForFree" layoutX="64.0" layoutY="591.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="279.0" styleClass="button-readForFree" stylesheets="@style.css" text="Read for Free" />
+            <Button fx:id="btn_Buy" layoutX="64.0" layoutY="657.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="279.0" styleClass="button-buyBook" stylesheets="@style.css" text="Buy $ 4.99" />
 
              <Button fx:id="btn_Back" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF;" styleClass="button-forgotPw" stylesheets="@style.css">
                <graphic>

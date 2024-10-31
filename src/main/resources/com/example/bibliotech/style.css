@@ -668,3 +668,39 @@
     -fx-background-color: transparent; /* Nền trong suốt nếu cần */
 }
 
+.selected-category {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 4px 8px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.selected-category:hover {
+    -fx-background-color: #d0d0d0;
+}
+
+.tag-container {
+    -fx-background-color: #e1ecf4;
+    -fx-background-radius: 3;
+    -fx-padding: 2 5 2 5;
+    -fx-spacing: 5;
+    -fx-alignment: center;
+}
+
+.tag-container Label {
+    -fx-text-fill: #39739d;
+}
+
+.tag-remove-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #39739d;
+    -fx-padding: 0;
+    -fx-min-width: 16;
+    -fx-min-height: 16;
+    -fx-cursor: hand;
+}
+
+.tag-remove-button:hover {
+    -fx-background-color: #d0d9e0;
+    -fx-background-radius: 2;
+}

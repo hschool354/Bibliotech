@@ -14,7 +14,7 @@ public class Books {
     private int ratingCount; // số lượng đánh giá của sách
     private String description; // mô tả của sách
     private String coverImageUrl; // ảnh bìa sách
-    private int stockQuantity; // số lượng sách tồn kho
+    private int stockQuantity; // số lượng sách tồn khoth
     private Integer dealId; // mã khuyến mãi liên kết với sách
     private String readingDifficulty; // độ khó đọc
     private int estimatedReadingTime; // thời gian đọc ước tính

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -8,7 +9,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -228,57 +228,62 @@
                         </VBox>
                      </children>
                   </HBox>
-                   <VBox prefHeight="64.0" prefWidth="163.0" spacing="7.0">
+                   <VBox prefHeight="97.0" prefWidth="568.0" spacing="7.0">
                        <children>
                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Categories" wrappingWidth="150.2238311767578">
                                <font>
                                    <Font name="SansSerif Regular" size="14.0" />
                                </font>
                            </Text>
-                           <ComboBox fx:id="categoryComboBox" prefWidth="150.0" />
-                           <FlowPane fx:id="selectedCategoriesPane" hgap="5" prefWidth="150.0" vgap="5">
-                               <!-- Selected categories will appear here as labels -->
-                           </FlowPane>
+                           <!--<ComboBox fx:id="categoryComboBox" onAction="#handleCategorySelection" prefWidth="150.0" styleClass="selected-category" stylesheets="@style.css" />
+                           &lt;!&ndash;<FlowPane fx:id="selectedCategoriesPane" hgap="5" prefHeight="0.0" prefWidth="568.0" vgap="5">
+                               &lt;!&ndash; Selected categories will appear here as labels &ndash;&gt;
+                           </FlowPane>&ndash;&gt;-->
+                           <Pane fx:id="categoryContainer" prefHeight="34.0" prefWidth="568.0" stylesheets="@style.css" VBox.vgrow="NEVER">
+                           <styleClass>
+                              <String fx:value="tag-container" />
+                              <String fx:value="tag-remove-button" />
+                           </styleClass></Pane>
                        </children>
                    </VBox>
-                  <HBox prefHeight="64.0" prefWidth="568.0" spacing="60.0">
-                     <children>
-                        <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page Cout" wrappingWidth="110.22383117675781">
-                                 <font>
-                                    <Font name="SansSerif Regular" size="14.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="txt_page_Count" styleClass="text-field-search" stylesheets="@style.css">
-                                 <font>
-                                    <Font name="SansSerif Regular" size="14.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Reading Time" wrappingWidth="190.22383880615234">
-                                 <font>
-                                    <Font name="SansSerif Regular" size="14.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="txt_Estimated_Reading_Time" styleClass="text-field-search" stylesheets="@style.css">
-                                 <font>
-                                    <Font name="SansSerif Regular" size="14.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
                </children>
             </VBox>
             <VBox layoutX="629.0" layoutY="116.0" prefHeight="247.0" prefWidth="528.0" spacing="20.0">
                <children>
-                  <VBox prefHeight="55.0" prefWidth="568.0" spacing="7.0">
+                  <VBox prefHeight="55.0" prefWidth="568.0" spacing="13.0">
                      <children>
+                        <HBox prefHeight="64.0" prefWidth="568.0" spacing="60.0">
+                           <children>
+                              <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page Cout" wrappingWidth="110.22383117675781">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="txt_page_Count" styleClass="text-field-search" stylesheets="@style.css">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="100.0" prefWidth="202.0" spacing="7.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Reading Time" wrappingWidth="190.22383880615234">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="txt_Estimated_Reading_Time" styleClass="text-field-search" stylesheets="@style.css">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cover Image URL" wrappingWidth="211.8238525390625">
                            <font>
                               <Font name="SansSerif Regular" size="14.0" />
@@ -348,7 +353,7 @@
                   </VBox>
                </children>
             </VBox>
-            <HBox layoutX="629.0" layoutY="391.0" prefHeight="100.0" prefWidth="528.0" spacing="50.0">
+            <HBox layoutX="629.0" layoutY="520.0" prefHeight="100.0" prefWidth="528.0" spacing="50.0">
                <children>
                   <Button fx:id="btn_Save" mnemonicParsing="false" prefHeight="40.0" prefWidth="116.0" styleClass="button-sendIns" stylesheets="@style.css" text="Save" />
                   <Button fx:id="btn_Clear" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" styleClass="button-sendIns" stylesheets="@style.css" text="Clear Form" />

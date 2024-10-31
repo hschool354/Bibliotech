@@ -36,4 +36,8 @@ public class DataManager {
     public int getSelectedBookId() {
         return selectedBook != null ? selectedBook.getBookId() : -1;
     }
+
+    public boolean hasValidSelectedBook() {
+        return selectedBook != null;
+    }
 }

@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class BookService {
     private static final String[] ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png"};
 
     private final BooksDao bookDAO;
+
 
     public BookService() {
         this.bookDAO = new BooksDao();
@@ -191,5 +193,6 @@ public class BookService {
             throw new BookServiceException("Error fetching book details: " + e.getMessage(), e);
         }
     }
+
 
 }
