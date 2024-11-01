@@ -1,6 +1,5 @@
 package com.example.bibliotech.presentation.components;
 
-
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.paint.Color;
@@ -12,6 +11,7 @@ public class RatingStarsHandler {
     private final List<SVGPath> stars = new ArrayList<>();
     private int selectedRating = 0;
     private static final int MAX_STARS = 5;
+    private boolean readOnly = false;
 
     public RatingStarsHandler(HBox container) {
         this.container = container;
@@ -30,9 +30,15 @@ public class RatingStarsHandler {
 
             final int starIndex = i;
 
-            star.setOnMouseEntered(e -> handleMouseEnter(starIndex));
-            star.setOnMouseExited(e -> handleMouseExit());
-            star.setOnMouseClicked(e -> handleMouseClick(starIndex));
+            star.setOnMouseEntered(e -> {
+                if (!readOnly) handleMouseEnter(starIndex);
+            });
+            star.setOnMouseExited(e -> {
+                if (!readOnly) handleMouseExit();
+            });
+            star.setOnMouseClicked(e -> {
+                if (!readOnly) handleMouseClick(starIndex);
+            });
 
             stars.add(star);
             container.getChildren().add(star);
@@ -66,5 +72,19 @@ public class RatingStarsHandler {
 
     public int getSelectedRating() {
         return selectedRating;
+    }
+
+    public void setInitialRating(int rating) {
+        if (rating < 0 || rating > MAX_STARS) {
+            return;
+        }
+        selectedRating = rating;
+        for (int i = 0; i < MAX_STARS; i++) {
+            stars.get(i).setFill(i < selectedRating ? Color.GOLD : Color.LIGHTGRAY);
+        }
+    }
+
+    public void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
     }
 }

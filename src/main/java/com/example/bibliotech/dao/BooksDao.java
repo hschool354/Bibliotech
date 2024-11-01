@@ -1,6 +1,7 @@
     package com.example.bibliotech.dao;
     
     import com.example.bibliotech.DTO.BriefBookDTO;
+    import com.example.bibliotech.DTO.DetailedBookDTO;
     import com.example.bibliotech.DTO.SaleBookDTO;
     import com.example.bibliotech.DTO.TopBookDTO;
     import com.example.bibliotech.config.DatabaseConfig;
@@ -429,6 +430,52 @@
             return saleBooks;
         }
 
+        public Optional<DetailedBookDTO> findDetailedBookById(int bookId) throws SQLException {
+            String query = """
+    SELECT 
+        book_id,
+        cover_image_url,
+        title,
+        author,
+        page_count,
+        average_rating,
+        rating_count,
+        description,
+        language,
+        publication_year,
+        reading_difficulty,
+        original_price,
+        discounted_price
+    FROM Books 
+    WHERE book_id = ?
+    """;
 
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+                pstmt.setInt(1, bookId);
+
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        return Optional.of(new DetailedBookDTO(
+                                rs.getInt("book_id"),
+                                rs.getString("cover_image_url"),
+                                rs.getString("title"),
+                                rs.getString("author"),
+                                rs.getInt("page_count"),
+                                rs.getDouble("average_rating"),
+                                rs.getInt("rating_count"),
+                                rs.getString("description"),
+                                rs.getString("language"),
+                                rs.getInt("publication_year"),
+                                rs.getString("reading_difficulty"),
+                                rs.getDouble("original_price"),
+                                rs.getObject("discounted_price") != null ? rs.getDouble("discounted_price") : null
+                        ));
+                    }
+                }
+            }
+            return Optional.empty();
+        }
 
     }

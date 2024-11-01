@@ -10,6 +10,8 @@ public class BriefBookDTO {
     private int ratingCount;
     private String description;
 
+
+
     // Constructor
     public BriefBookDTO(int bookId, String coverImageUrl, String title, String author,
                         int pageCount, double averageRating, int ratingCount, String description) {

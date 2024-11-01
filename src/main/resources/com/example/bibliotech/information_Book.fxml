@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -255,7 +256,7 @@
                                     </ImageView>
                                  </children>
                               </Pane>
-                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="331">
+                              <Label fx:id="lbl_pages" alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="331">
                                  <font>
                                     <Font name="SansSerif Regular" size="13.0" />
                                  </font>
@@ -278,7 +279,7 @@
                                     </ImageView>
                                  </children>
                               </Pane>
-                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="July 8, 2014">
+                              <Label fx:id="lbl_PublicationDate" alignment="CENTER" prefHeight="18.0" prefWidth="105.0" text="July 8, 2014">
                                  <font>
                                     <Font name="SansSerif Regular" size="13.0" />
                                  </font>
@@ -288,13 +289,23 @@
                      </children>
                   </HBox>
                   <Line endX="630.4928588867188" startX="-100.0" />
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genres">
                            <font>
                               <Font name="SansSerif Bold" size="14.0" />
                            </font>
                         </Text>
+                        <HBox spacing="10.0">
+                           <children>
+                               <Pane fx:id="categoriesContainer" prefHeight="100.0" prefWidth="667.0" stylesheets="@style.css">
+                                   <styleClass>
+                                       <String fx:value="tag-container" />
+                                       <String fx:value="tag-remove-button" />
+                                   </styleClass>
+                               </Pane>
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                </children>

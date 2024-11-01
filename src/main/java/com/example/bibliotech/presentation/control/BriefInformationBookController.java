@@ -1,9 +1,13 @@
 package com.example.bibliotech.presentation.control;
 
 import com.example.bibliotech.DTO.BriefBookDTO;
+import com.example.bibliotech.utils.SceneCache;
 import com.example.bibliotech.utils.SessionManager;
 import com.example.bibliotech.dao.BooksDao;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
@@ -11,6 +15,8 @@ import javafx.scene.control.TextArea; // Thay đổi từ TextField sang TextAre
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.fxml.Initializable;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -19,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import javafx.stage.Stage;
 
 
 public class BriefInformationBookController implements Initializable {
@@ -148,8 +155,54 @@ public class BriefInformationBookController implements Initializable {
     }
 
     private void openBookReader(int bookId) {
-        logger.info("Opening book reader for book ID: " + bookId);
-        // TODO: Implement mở reader với bookId tương ứng
+        try {
+            // Lưu book ID vào session
+            SessionManager.getInstance().setSelectedBookId(bookId);
+
+            // Lấy stage hiện tại
+            Stage stage = (Stage) btn_ReadNow.getScene().getWindow();
+
+            // Đảm bảo đường dẫn FXML chính xác và tồn tại
+            String fxmlPath = "/com/example/bibliotech/information_Book.fxml";
+            URL resourceUrl = getClass().getResource(fxmlPath);
+            if (resourceUrl == null) {
+                throw new IOException("FXML file not found: " + fxmlPath);
+            }
+
+            // Thử load scene từ cache
+            Scene scene = null;
+            try {
+                scene = SceneCache.getScene(fxmlPath);
+            } catch (IOException e) {
+                logger.log(Level.WARNING, "Could not load scene from cache, attempting fresh load", e);
+
+                // Nếu không load được từ cache, load mới
+                FXMLLoader loader = new FXMLLoader(resourceUrl);
+                Parent root = loader.load();
+                scene = new Scene(root);
+
+                // Cập nhật cache với scene mới
+                SceneCache.clearCache(fxmlPath);
+                try {
+                    scene = SceneCache.getScene(fxmlPath);
+                } catch (IOException ex) {
+                    logger.log(Level.SEVERE, "Failed to update scene cache", ex);
+                    // Tiếp tục sử dụng scene đã load mới
+                }
+            }
+
+            if (scene != null) {
+                // Set scene và hiển thị
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                throw new IOException("Scene could not be loaded");
+            }
+
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error opening book reader", e);
+            showError("Cannot open book reader: " + e.getMessage());
+        }
     }
 
     private void showError(String message) {
