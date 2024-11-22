@@ -6,6 +6,7 @@ import com.example.bibliotech.exception.DatabaseException;
 import com.example.bibliotech.model.TransactionStatus;
 import com.example.bibliotech.model.Transactions;
 import com.example.bibliotech.utils.SceneCache;
+import com.example.bibliotech.utils.SessionManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -108,16 +109,29 @@ public class BuyBookController {
             // Update the balance in the UI
             lb_Balance.setText(String.format("$%.2f", userBalance));
 
+            // Create a transaction record with book ID
+            Integer selectedBookId = SessionManager.getInstance().getSelectedBookId();
+            if (selectedBookId == null) {
+                showAlert(AlertType.ERROR, "Transaction Error", "Unable to complete purchase. Book ID is missing.");
+                return;
+            }
+
+            Transactions transaction = new Transactions(
+                    userId,
+                    selectedBookId,  // Include the book ID here
+                    "MUA",
+                    bookPrice,
+                    TransactionStatus.COMPLETED
+            );
+
             // Add transaction record to the database
-            Transactions transaction = new Transactions(userId, null, "MUA", bookPrice, TransactionStatus.COMPLETED);
             transactionDao.addTransaction(transaction);
 
             // Disable the buy button after purchase
             btn_Buy.setDisable(true);
             btn_Buy.setText("Purchased");
 
-            // Optionally, show a success message
-
+            // Show a success message or navigate to a success screen
             Stage stage = (Stage) btn_Buy.getScene().getWindow();
             Scene scene = SceneCache.getScene("/com/example/bibliotech/SuccessDeposit.fxml");
             stage.setScene(scene);
@@ -127,6 +141,7 @@ public class BuyBookController {
             showAlert(AlertType.ERROR, "Insufficient Funds", "You do not have enough balance to purchase this book.");
         }
     }
+
 
     private void showAlert(AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);

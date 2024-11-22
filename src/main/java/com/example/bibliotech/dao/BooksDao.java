@@ -5,6 +5,7 @@
     import com.example.bibliotech.DTO.SaleBookDTO;
     import com.example.bibliotech.DTO.TopBookDTO;
     import com.example.bibliotech.config.DatabaseConfig;
+    import com.example.bibliotech.exception.DatabaseException;
     import com.example.bibliotech.model.Books;
     import java.sql.*;
     import java.util.ArrayList;
@@ -477,5 +478,51 @@
             }
             return Optional.empty();
         }
+
+        public List<Books> getBooksPurchasedByUser(int userId) throws DatabaseException {
+            String sql = "SELECT b.book_id, b.title, b.author, b.language, " +
+                    "b.original_price, b.discounted_price, b.cover_image_url " +
+                    "FROM Transactions t " +
+                    "JOIN Books b ON t.book_id = b.book_id " +
+                    "WHERE t.user_id = ? AND t.transaction_type = 'MUA'";
+
+            List<Books> purchasedBooks = new ArrayList<>();
+
+            try (Connection conn = DatabaseConfig.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, userId);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        Books book = new Books(
+                                rs.getInt("book_id"),
+                                rs.getString("title"),
+                                rs.getString("author"),
+                                "", // ISBN (không cần thiết ở đây)
+                                rs.getDouble("original_price"),
+                                rs.getDouble("discounted_price"),
+                                0, // Publication year
+                                rs.getString("language"),
+                                0, // Page count
+                                0.0, // Average rating
+                                0, // Rating count
+                                "", // Description
+                                rs.getString("cover_image_url"),
+                                0, // Stock quantity
+                                null, // Deal ID
+                                "", // Reading difficulty
+                                0, // Estimated reading time
+                                ""  // Content rating
+                        );
+                        purchasedBooks.add(book);
+                    }
+                }
+            } catch (SQLException e) {
+                throw new DatabaseException("Error fetching purchased books for user: " + e.getMessage(), e);
+            }
+
+            return purchasedBooks;
+        }
+
 
     }

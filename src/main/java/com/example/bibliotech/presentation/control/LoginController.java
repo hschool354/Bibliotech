@@ -28,7 +28,7 @@ public class LoginController implements Initializable {
     @FXML private Button btn_SignIn, btn_Login, btn_forgotPassword;
     @FXML private Label sloganLabel;
     @FXML private TextField txt_Username;
-    @FXML private TextField txt_Password;
+    @FXML private PasswordField txt_Password;
 
     private final UserService userService;
 

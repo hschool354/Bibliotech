@@ -12,6 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.LoginController">
     <children>
         <Pane layoutX="31.0" layoutY="31.0" prefHeight="636.0" prefWidth="412.0" styleClass="aide_ankerpane" stylesheets="@style.css">
@@ -62,7 +63,7 @@
                                 <String fx:value="text-field-login" />
                             </styleClass>
                         </TextField>
-                        <TextField fx:id="txt_Password" prefHeight="39.0" prefWidth="289.0" promptText="Password">
+                        <PasswordField fx:id="txt_Password" prefHeight="39.0" prefWidth="289.0" promptText="Password">
                             <font>
                                 <Font name="SansSerif Regular" size="13.0" />
                             </font>
@@ -70,7 +71,7 @@
                                 <String fx:value="aide_ankerpane" />
                                 <String fx:value="text-field-login" />
                             </styleClass>
-                        </TextField>
+                        </PasswordField>
                         <Button fx:id="btn_forgotPassword" mnemonicParsing="false" onAction="#handleForgotButton" prefHeight="30.0" prefWidth="156.0" style="-fx-background-color: ffffff;" styleClass="button-forgotPw" stylesheets="@style.css" text="Forgot password?" underline="true">
                             <font>
                                 <Font size="13.0" />

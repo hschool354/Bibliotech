@@ -83,7 +83,7 @@ public class Home_1_Controller implements Initializable {
 
     @FXML private AnchorPane contentArea;
 
-    @FXML private Button btn_Category;
+    @FXML private Button btn_Category,btn_MyLibrary;
     @FXML private Button btn_Wallet;
 
     // user
@@ -440,6 +440,11 @@ public class Home_1_Controller implements Initializable {
     @FXML
     public void handleWalletButton() {
         changeScene("/com/example/bibliotech/myWallet.fxml");
+    }
+
+    @FXML
+    public void handleMyLibraryButton() {
+        changeScene("/com/example/bibliotech/MyLibrary.fxml");
     }
 
     private void showAlert(String title, String content) {

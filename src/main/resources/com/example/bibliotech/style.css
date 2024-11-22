@@ -7,6 +7,33 @@
     -fx-border-style: solid; /* Kiểu đường viền */
 }
 
+.aide_ankerpane7 {
+    -fx-background-color: #F9F6F1; /* Màu nền */
+    -fx-border-color: #F9F6F1; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 20px; /* Bo góc đường viền */
+    -fx-background-radius: 20px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.aide_ankerpane8 {
+    -fx-background-color: #E6D2B5; /* Màu nền */
+    -fx-border-color: #E6D2B5; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 20px; /* Bo góc đường viền */
+    -fx-background-radius: 20px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+
+}
+
+/* Tệp style.css */
+.shadow-effect {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.2, 8, 8);
+    -fx-padding: 10; /* Thêm khoảng trống để bóng không bị cắt */
+}
+
+
+
 .aide_ankerpane_1 {
     -fx-background-color: #ffffff80; /* Màu nền trắng với độ trong suốt */
     -fx-border-color: #ffffff80; /* Màu đường viền */
@@ -876,4 +903,21 @@
     -fx-text-fill: white;
     -fx-padding: 10 20;
     -fx-background-radius: 15;
+}
+
+.book-item {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.2, 8, 8);
+}
+
+.image-container-1 {
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.2, 8, 8);
+}
+
+.book-cover {
+    -fx-fit-width: 100%; /* Đảm bảo hình ảnh vừa với button */
+    -fx-fit-height: 100%; /* Đảm bảo hình ảnh vừa với button */
+    -fx-background-color: white; /* Tùy chỉnh màu nền nếu cần */
 }

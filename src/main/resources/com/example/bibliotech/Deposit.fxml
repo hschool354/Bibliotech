@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.DepositController">
+    <children>
+        <Pane layoutX="14.0" layoutY="9.0" prefHeight="780.0" prefWidth="208.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+            <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="4.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../backgrounds/background_logo1.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="65.0" layoutY="96.0" text="Shelfie">
+                    <font>
+                        <Font name="SansSerif Bold" size="24.0" />
+                    </font>
+                </Label>
+                <VBox layoutX="24.0" layoutY="136.0" prefHeight="330.0" prefWidth="160.0" spacing="12.0">
+                    <children>
+                        <Button fx:id="btn_Home" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="32.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Discover" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_home.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btn_Category" mnemonicParsing="false" onAction="#handleCategoryButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Category" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_category.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="My Library" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_book1.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="History" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_history.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Favorites" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_favorite.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_home" stylesheets="@style.css" text="Wallet" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_wallet.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+                <VBox layoutX="24.0" layoutY="510.0" prefHeight="161.0" prefWidth="160.0" spacing="12.0">
+                    <children>
+                        <Button fx:id="btn_Premium" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="premium-button" stylesheets="@style.css" text="Premium" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_crown.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Setting" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_setting.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Support" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_chat.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+                <Line endX="93.99998474121094" endY="-3.0517578125E-5" layoutX="104.0" layoutY="491.0" startX="-94.80000305175781" startY="-3.0517578125E-5" stroke="#cdc9c9" />
+            </children>
+        </Pane>
+
+        <Pane layoutX="236.0" layoutY="10.0" prefHeight="780.0" prefWidth="1091.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+         <children>
+            <Text layoutX="44.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Details">
+               <font>
+                  <Font name="SansSerif Bold" size="24.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="27.0" fitWidth="44.0" layoutX="371.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../icons/icons_lock.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="406.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card is seccure">
+               <font>
+                  <Font name="SansSerif Regular" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="406.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your data is protected, everything will be private" wrappingWidth="148.44683837890625">
+               <font>
+                  <Font name="SansSerif Regular" size="14.0" />
+               </font>
+            </Text>
+            <Pane layoutX="635.0" layoutY="27.0" prefHeight="726.0" prefWidth="429.0" styleClass="aide_ankerpane_4" stylesheets="@style.css">
+               <children>
+                  <Text layoutX="122.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the amount">
+                     <font>
+                        <Font name="SansSerif Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="txt_amout" layoutX="83.0" layoutY="257.0" prefHeight="34.0" prefWidth="276.0" styleClass="text-field_enterAmout" stylesheets="@style.css">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+                  <VBox layoutX="83.0" layoutY="351.0" prefHeight="114.0" prefWidth="148.0" spacing="20.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Recharge: ">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction fee: ">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="231.0" layoutY="351.0" prefHeight="114.0" prefWidth="148.0" spacing="20.0">
+                     <children>
+                        <Label fx:id="lb_Recharge" text="Recharge: ">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lb_Transactionfee" text="Transaction fee: ">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lb_Total" text="Total:">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Text layoutX="83.0" layoutY="561.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your payment information is securely encrypted">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Line endX="419.79998779296875" layoutX="167.0" layoutY="244.0" startX="-122.5999755859375" stroke="#e0e0e0" />
+            <Button layoutX="44.0" layoutY="210.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: FFFFFF;" text="Credit Card">
+               <font>
+                  <Font name="SansSerif Regular" size="14.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="310.0" fitWidth="424.0" layoutX="-29.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../icons/Card3.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="317.0" layoutY="283.0" prefHeight="361.0" prefWidth="295.0" spacing="15.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Card">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="txt_creditCard" prefHeight="34.0" prefWidth="276.0" styleClass="text-field_creditcard" stylesheets="@style.css">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="txt_Name" prefHeight="34.0" prefWidth="276.0" styleClass="text-field_creditcard" stylesheets="@style.css">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration date">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="datePicker_Expirationdate" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CVV">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="txt_CVV" prefHeight="34.0" prefWidth="276.0" styleClass="text-field_creditcard" stylesheets="@style.css">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <Button fx:id="btn_ConfirmOrder" layoutX="311.0" layoutY="653.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="148.0" styleClass="button_confirmOrder" stylesheets="@style.css" text="Confirm Order" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_Cancel" layoutX="477.0" layoutY="663.0" mnemonicParsing="false" onAction="#handleMyWalletButton" style="-fx-background-color: FFFFFF;" text="Cancel and return">
+               <font>
+                  <Font name="SansSerif Regular" size="14.0" />
+               </font>
+            </Button>
+         </children></Pane>
+
+    </children>
+</AnchorPane>

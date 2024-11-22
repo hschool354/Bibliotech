@@ -55,7 +55,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="My Library" textAlignment="CENTER">
+                        <Button fx:id="btn_MyLibrary" mnemonicParsing="false" onAction="#handleMyLibraryButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="My Library" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>

@@ -4,6 +4,8 @@ import com.example.bibliotech.DTO.BookCategoryDTO;
 import com.example.bibliotech.DTO.BriefBookDTO;
 import com.example.bibliotech.DTO.DetailedBookDTO;
 import com.example.bibliotech.dao.BooksDao;
+import com.example.bibliotech.exception.DatabaseException;
+import com.example.bibliotech.model.Books;
 import com.example.bibliotech.presentation.components.RatingStarsHandler;
 import com.example.bibliotech.service.BookCategoryService;
 import com.example.bibliotech.service.UserService;
@@ -179,17 +181,33 @@ public class InformationBookController implements Initializable {
             Optional<DetailedBookDTO> bookOpt = booksDao.findDetailedBookById(selectedBookId);
             if (bookOpt.isPresent()) {
                 System.out.println("Found book: " + bookOpt.get().getTitle());
-                displayBookDetails(bookOpt.get());
+                currentBook = bookOpt.get();
+                displayBookDetails(currentBook);
+
+                // Kiểm tra xem sách đã được mua chưa
+                int currentUserId = SessionManager.getInstance().getCurrentUserId();
+                List<Books> purchasedBooks = booksDao.getBooksPurchasedByUser(currentUserId);
+                boolean isBookPurchased = purchasedBooks.stream()
+                        .anyMatch(book -> book.getBookId() == selectedBookId);
+
+                // Cập nhật nút "Mua"
+                if (isBookPurchased) {
+                    Platform.runLater(() -> {
+                        btn_Buy.setText("Purchase");
+                        btn_Buy.setDisable(true); // Vô hiệu hóa nút nếu đã mua
+                    });
+                }
             } else {
                 System.out.println("No book found with ID: " + selectedBookId);
                 showError("Book not found with ID: " + selectedBookId);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | DatabaseException e) {
             System.err.println("Database error: " + e.getMessage());
             e.printStackTrace();
             showError("Failed to load book: " + e.getMessage());
         }
     }
+
 
     private void clearBookData() {
         System.out.println("Clearing old book data");

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<Button styleClass="book-item" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.BookItem">
+    <graphic>
+        <VBox alignment="CENTER" spacing="12.0" styleClass="book-content">
+            <StackPane styleClass="image-container">
+                <ImageView fx:id="bookCover" fitHeight="180.0" fitWidth="140.0" preserveRatio="true" />
+            </StackPane>
+            <VBox alignment="CENTER" spacing="8.0">
+                <Label fx:id="bookTitle" text="Book Title" maxWidth="140.0" wrapText="true" styleClass="book-title" />
+                <Label fx:id="bookPrice" text="sn" styleClass="book-price" />
+            </VBox>
+        </VBox>
+    </graphic>
+</Button>
+
