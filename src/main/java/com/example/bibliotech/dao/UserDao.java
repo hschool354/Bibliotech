@@ -6,10 +6,10 @@ import com.example.bibliotech.constants.UserConstants;
 import com.example.bibliotech.exception.DatabaseException;
 import com.example.bibliotech.model.Users;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -18,9 +18,6 @@ import com.example.bibliotech.utils.PasswordUtil;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
-
-import static com.example.bibliotech.config.DatabaseConfig.closeConnection;
 
 public class UserDao {
     public Users checkLogin(String username, String password) throws DatabaseException {
@@ -477,6 +474,41 @@ public class UserDao {
             if (dobLocalDate.isAfter(LocalDate.now())) {
                 throw new IllegalArgumentException("Date of birth cannot be in the future");
             }
+        }
+    }
+
+    public BigDecimal getBalanceByUserId(int userId) {
+        String query = "SELECT account_balance FROM users WHERE user_id = ?";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getBigDecimal("account_balance");
+            }
+            return BigDecimal.ZERO;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return BigDecimal.ZERO;
+        }
+    }
+
+    public boolean updateBalance(int userId, BigDecimal newBalance) {
+        String query = "UPDATE users SET account_balance = ? WHERE user_id = ?";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setBigDecimal(1, newBalance);
+            stmt.setInt(2, userId);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

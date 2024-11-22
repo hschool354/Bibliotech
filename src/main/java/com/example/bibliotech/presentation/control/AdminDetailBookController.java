@@ -199,16 +199,13 @@ public class AdminDetailBookController implements Initializable {
                     .map(dto -> ((BookCategoryDTO) dto).getCategoryId())
                     .collect(Collectors.toList());
 
-            // Convert category IDs to names and add to TagInputField
             List<String> categoryNames = allCategories.stream()
                     .filter(category -> bookCategoryIds.contains(category.getId()))
                     .map(Category::getName)
                     .collect(Collectors.toList());
 
-            // Store original categories for reset functionality
             originalCategories = new ArrayList<>(categoryNames);
 
-            // Clear existing tags and add loaded categories
             categoryTagInput.clear();
             originalCategories.forEach(name -> categoryTagInput.addPublicTag(name));
         } catch (Exception e) {
@@ -257,11 +254,10 @@ public class AdminDetailBookController implements Initializable {
 
     @FXML
     private void handleCancel() {
-        // Clear selected book
         DataManager.getInstance().clearSelectedBook();
 
         try {
-            SceneCache.clearCache(); // Clear all cache
+            SceneCache.clearCache();
 
             Stage stage = (Stage) btn_cancel.getScene().getWindow();
             Scene scene = SceneCache.getScene("/com/example/bibliotech/AdminBookManager.fxml");

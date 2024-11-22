@@ -321,7 +321,7 @@
                </children>
             </VBox>
             <Button fx:id="btn_ReadForFree" layoutX="64.0" layoutY="591.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="279.0" styleClass="button-readForFree" stylesheets="@style.css" text="Read for Free" />
-            <Button fx:id="btn_Buy" layoutX="64.0" layoutY="657.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="279.0" styleClass="button-buyBook" stylesheets="@style.css" text="Buy $ 4.99" />
+            <Button fx:id="btn_Buy" layoutX="64.0" layoutY="657.0" mnemonicParsing="false" onAction="#handleBuyButton" prefHeight="34.0" prefWidth="279.0" styleClass="button-buyBook" stylesheets="@style.css" text="Buy $ 4.99" />
 
              <Button fx:id="btn_Back" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF;" styleClass="button-forgotPw" stylesheets="@style.css">
                <graphic>

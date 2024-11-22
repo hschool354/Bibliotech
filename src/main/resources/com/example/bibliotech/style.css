@@ -704,3 +704,176 @@
     -fx-background-color: #d0d9e0;
     -fx-background-radius: 2;
 }
+
+.nav-button-scroll {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 15;
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+    -fx-cursor: hand;
+}
+
+.nav-button-scroll:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.book-scroll-pane {
+    -fx-fit-to-height: true;
+    -fx-hbar-policy: never; /* Ẩn thanh scroll ngang nếu muốn */
+    -fx-background-color: transparent;
+}
+
+.books-container {
+    -fx-min-width: 200px; /* Giá trị cụ thể thay vì -Infinity */
+    -fx-pref-width: 300px;
+    -fx-max-width: 400px;
+}
+
+
+/* Thanh tìm kiếm */
+.text-field-search {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+/* Button tìm kiếm */
+.button-search {
+    -fx-background-color: #007BFF;
+    -fx-text-fill: white;
+    -fx-border-radius: 50%;
+}
+
+/* Khu vực sách */
+.popular-books-section {
+    -fx-padding: 20;
+}
+
+.book-item {
+    -fx-padding: 10;
+    -fx-background-color: #f0f0f0;
+}
+
+.book-content {
+    -fx-alignment: center;
+}
+
+.book-cover {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.book-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.book-price {
+    -fx-font-size: 14px;
+    -fx-text-fill: #888888;
+}
+/* Nút điều hướng */
+.nav-button {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333;
+    -fx-background-color: transparent;
+}
+
+.aide_ankerpane_3 {
+    -fx-background-color: #F0F8FF; /* Màu nền */
+    -fx-border-color: #F0F8FF; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 20px; /* Bo góc đường viền */
+    -fx-background-radius: 20px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.aide_ankerpane_4 {
+    -fx-background-color: #F5F5F5; /* Màu nền */
+    -fx-border-color: #F5F5F5; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 15px; /* Bo góc đường viền */
+    -fx-background-radius: 15px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.aide_ankerpane_5 {
+    -fx-background-color: #FFFFFF; /* Màu nền */
+    -fx-border-color: #FFFFFF; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 15px; /* Bo góc đường viền */
+    -fx-background-radius: 15px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.text-field_creditcard {
+    -fx-background-color: #F0F0F0;
+    -fx-border-color: #F0F0F0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.text-field_enterAmout {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.button_confirmOrder {
+    -fx-background-color: #000000;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 15px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.card-section, .balance-section, .chart-section, .transactions-section {
+    -fx-background-color: #f8f9fe;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+}
+
+.deposit-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 15;
+}
+
+.transfer-button {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 15;
+}
+
+.balance-amount {
+    -fx-padding: 20 0;
+}
+
+.check-all-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2196F3;
+}
+
+.notification-button {
+    -fx-background-color: transparent;
+}
+
+.add-card-button {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 5;
+}
+
+.backtohome-button {
+    -fx-background-color: #4285F4;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 15;
+}

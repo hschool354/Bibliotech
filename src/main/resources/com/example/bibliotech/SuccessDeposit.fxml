@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.SuccessDepositController">
+    <children>
+        <Pane layoutX="14.0" layoutY="9.0" prefHeight="780.0" prefWidth="208.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+            <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="4.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../backgrounds/background_logo1.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="65.0" layoutY="96.0" text="Shelfie">
+                    <font>
+                        <Font name="SansSerif Bold" size="24.0" />
+                    </font>
+                </Label>
+                <VBox layoutX="24.0" layoutY="136.0" prefHeight="330.0" prefWidth="160.0" spacing="12.0">
+                    <children>
+                        <Button fx:id="btn_Home" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="32.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Discover" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_home.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btn_Category" mnemonicParsing="false" onAction="#handleCategoryButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Category" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_category.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="My Library" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_book1.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="History" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_history.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Favorites" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_favorite.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_home" stylesheets="@style.css" text="Wallet" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_wallet.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+                <VBox layoutX="24.0" layoutY="510.0" prefHeight="161.0" prefWidth="160.0" spacing="12.0">
+                    <children>
+                        <Button fx:id="btn_Premium" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="premium-button" stylesheets="@style.css" text="Premium" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_crown.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Setting" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_setting.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Support" textAlignment="CENTER">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/icons_chat.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+                <Line endX="93.99998474121094" endY="-3.0517578125E-5" layoutX="104.0" layoutY="491.0" startX="-94.80000305175781" startY="-3.0517578125E-5" stroke="#cdc9c9" />
+            </children>
+        </Pane>
+
+        <Pane layoutX="237.0" layoutY="9.0" prefHeight="780.0" prefWidth="1091.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="412.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../backgrounds/background_logo1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="555.0" layoutY="62.0" text="Shelfie">
+               <font>
+                  <Font name="SansSerif Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="371.0" layoutY="277.0" text="Payment Successful" textAlignment="CENTER">
+               <font>
+                  <Font name="SansSerif Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="415.0" layoutY="335.0" text="Thank you for your purchase!">
+               <font>
+                  <Font name="SansSerif Regular" size="20.0" />
+               </font>
+            </Label>
+            <VBox layoutX="412.0" layoutY="419.0" prefHeight="142.0" prefWidth="149.0" spacing="20.0">
+               <children>
+                  <Label text="Amount paid:">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Transaction ID:">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Date:">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="559.0" layoutY="419.0" prefHeight="142.0" prefWidth="220.0" spacing="20.0">
+               <children>
+                  <Label fx:id="lb_Amount" text="Amount paid:">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lb_TransactionId" text="Transaction ID:">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lb_TransactionDate" prefHeight="23.0" prefWidth="215.0" text="Date:">
+                     <font>
+                        <Font name="SansSerif Regular" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Button fx:id="btn_backtoHome" layoutX="436.0" layoutY="581.0" mnemonicParsing="false" onAction="#handleMyWalletButton" prefHeight="65.0" prefWidth="220.0" styleClass="backtohome-button" stylesheets="@style.css" text="Back to Home">
+               <font>
+                  <Font name="SansSerif Bold" size="24.0" />
+               </font>
+            </Button>
+            <Label layoutX="266.0" layoutY="700.0" text="If you have any questions, please contact support@example.com">
+               <font>
+                  <Font name="SansSerif Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="118.0" fitWidth="118.0" layoutX="496.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../icons/icons_confirm1.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+
+    </children>
+</AnchorPane>

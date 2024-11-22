@@ -1,5 +1,6 @@
 package com.example.bibliotech.utils;
 
+import com.example.bibliotech.DTO.DetailedBookDTO;
 import com.example.bibliotech.model.Users;
 
 public class SessionManager {
@@ -67,4 +68,5 @@ public class SessionManager {
     public String getProfilePictureUrl() {
         return currentUser != null ? currentUser.getProfilePictureUrl() : null;
     }
+
 }

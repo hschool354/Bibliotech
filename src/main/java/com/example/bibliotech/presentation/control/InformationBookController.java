@@ -6,6 +6,7 @@ import com.example.bibliotech.DTO.DetailedBookDTO;
 import com.example.bibliotech.dao.BooksDao;
 import com.example.bibliotech.presentation.components.RatingStarsHandler;
 import com.example.bibliotech.service.BookCategoryService;
+import com.example.bibliotech.service.UserService;
 import com.example.bibliotech.utils.SceneCache;
 import com.example.bibliotech.utils.SessionManager;
 import javafx.application.Platform;
@@ -27,6 +28,7 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -68,6 +70,8 @@ public class InformationBookController implements Initializable {
     @FXML private Pane categoriesContainer;
     private final BookCategoryService bookCategoryService;
 
+    private static boolean needsReload = true;
+
     public InformationBookController() {
         this.booksDao = new BooksDao();
         this.bookCategoryService = new BookCategoryService();
@@ -75,19 +79,41 @@ public class InformationBookController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Initializing InformationBookController...");
         ratingHandler = new RatingStarsHandler(starsContainer);
         ratingHandler.setReadOnly(true);
 
-        // Load book data after initialization
         Platform.runLater(() -> {
-            try {
-                clearBookData();
-                loadSelectedBook();
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, "Error loading book data", e);
-                showError("Failed to load book details: " + e.getMessage());
+            Scene scene = btn_Back.getScene();
+            if (scene != null) {
+                Stage stage = (Stage) scene.getWindow();
+                // Add listener for when scene becomes visible
+                stage.sceneProperty().addListener((observable, oldScene, newScene) -> {
+                    if (newScene != null) {
+                        newScene.windowProperty().addListener((observableWindow, oldWindow, newWindow) -> {
+                            if (newWindow != null) {
+                                stage.showingProperty().addListener((observableShowing, oldShowing, newShowing) -> {
+                                    if (newShowing) {
+                                        System.out.println("Scene is now visible - reloading data");
+                                        clearBookData();
+                                        loadSelectedBook();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
+
+            // Initial load
+            clearBookData();
+            loadSelectedBook();
         });
+    }
+
+
+    public static void setNeedsReload(boolean value) {
+        needsReload = value;
     }
 
     // Phương thức này có thể dùng sau để lấy rating
@@ -98,23 +124,27 @@ public class InformationBookController implements Initializable {
     @FXML
     public void handleBackButton() {
         try {
-            Stage stage = (Stage) btn_Back.getScene().getWindow();
-
-            // Clear cache for information_Book.fxml before going back
-            SceneCache.clearCache("/com/example/bibliotech/information_Book.fxml");
-
-            // Get fresh instance of home_1.fxml
-            Scene scene = SceneCache.getScene("/com/example/bibliotech/home_1.fxml");
-
-            // Get controller and refresh data
-            Home_1_Controller homeController = SceneCache.getController("/com/example/bibliotech/home_1.fxml");
-            if (homeController != null) {
-                homeController.refreshPopularBooks();
-                homeController.refreshSaleBooks();
+            String previousScene = SceneCache.getPreviousScene();
+            if (previousScene == null) {
+                previousScene = "/com/example/bibliotech/home_1.fxml";
             }
 
+            // Clear current book data before switching scenes
+            clearBookData();
+
+            Stage stage = (Stage) btn_Back.getScene().getWindow();
+            Scene scene = SceneCache.getScene(previousScene);
             stage.setScene(scene);
             stage.show();
+
+            // Refresh data when returning to home screen
+            if (previousScene.equals("/com/example/bibliotech/home_1.fxml")) {
+                Home_1_Controller homeController = SceneCache.getController("/com/example/bibliotech/home_1.fxml");
+                if (homeController != null) {
+                    homeController.refreshPopularBooks();
+                    homeController.refreshSaleBooks();
+                }
+            }
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Error navigating back", e);
             showError("Navigation failed: " + e.getMessage());
@@ -132,72 +162,82 @@ public class InformationBookController implements Initializable {
             stage.show();
         } catch (IOException e) {
             System.err.println("Error loading scene: " + fxmlPath);
-            e.printStackTrace(); // In ra lỗi để tiện theo dõi
+            e.printStackTrace();
         }
     }
 
     private void loadSelectedBook() {
         Integer selectedBookId = SessionManager.getInstance().getSelectedBookId();
+        System.out.println("Loading book with ID: " + selectedBookId);
+
         if (selectedBookId == null) {
             showError("No book selected");
             return;
         }
 
-        new Thread(() -> {
-            try {
-                Optional<DetailedBookDTO> bookOpt = booksDao.findDetailedBookById(selectedBookId);
-
-                Platform.runLater(() -> {
-                    if (bookOpt.isPresent()) {
-                        displayBookDetails(bookOpt.get());
-                    } else {
-                        showError("Book not found with ID: " + selectedBookId);
-                    }
-                });
-            } catch (SQLException e) {
-                logger.log(Level.SEVERE, "Error loading book data", e);
-                Platform.runLater(() -> showError("Failed to load book: " + e.getMessage()));
+        try {
+            Optional<DetailedBookDTO> bookOpt = booksDao.findDetailedBookById(selectedBookId);
+            if (bookOpt.isPresent()) {
+                System.out.println("Found book: " + bookOpt.get().getTitle());
+                displayBookDetails(bookOpt.get());
+            } else {
+                System.out.println("No book found with ID: " + selectedBookId);
+                showError("Book not found with ID: " + selectedBookId);
             }
-        }).start();
+        } catch (SQLException e) {
+            System.err.println("Database error: " + e.getMessage());
+            e.printStackTrace();
+            showError("Failed to load book: " + e.getMessage());
+        }
     }
 
     private void clearBookData() {
-        lbl_Title.setText("");
-        lbl_author.setText("");
-        lbl_readingAge.setText("");
-        lbl_language.setText("");
-        lbl_pages.setText("");
-        lbl_PublicationDate.setText("");
-        txtArea_description.setText("");
-        loadPlaceholderImage();
-        if (ratingHandler != null) {
-            ratingHandler.setInitialRating(0);
-        }
+        System.out.println("Clearing old book data");
+        Platform.runLater(() -> {
+            if (lbl_Title != null) lbl_Title.setText("");
+            if (lbl_author != null) lbl_author.setText("");
+            if (lbl_readingAge != null) lbl_readingAge.setText("");
+            if (lbl_language != null) lbl_language.setText("");
+            if (lbl_pages != null) lbl_pages.setText("");
+            if (lbl_PublicationDate != null) lbl_PublicationDate.setText("");
+            if (txtArea_description != null) txtArea_description.setText("");
+            if (ratingHandler != null) ratingHandler.setInitialRating(0);
+            if (categoriesContainer != null) categoriesContainer.getChildren().clear();
+            loadPlaceholderImage();
+        });
     }
 
     private void displayBookDetails(DetailedBookDTO book) {
+        System.out.println("Displaying book details for: " + book.getTitle());
         currentBook = book;
 
-        // Update UI elements with book details
-        lbl_Title.setText(book.getTitle());
-        lbl_author.setText("Author: " +book.getAuthor());
-        lbl_readingAge.setText(book.getReadingDifficulty());
-        lbl_language.setText(book.getLanguage());
-        lbl_pages.setText(String.format("%d pages", book.getPageCount()));
-        lbl_PublicationDate.setText(String.valueOf(book.getPublicationYear()));
-        txtArea_description.setText(book.getDescription());
+        Platform.runLater(() -> {
+            try {
+                lbl_Title.setText(book.getTitle());
+                lbl_author.setText("Author: " + book.getAuthor());
+                lbl_readingAge.setText(book.getReadingDifficulty());
+                lbl_language.setText(book.getLanguage());
+                lbl_pages.setText(String.format("%d pages", book.getPageCount()));
+                lbl_PublicationDate.setText(String.valueOf(book.getPublicationYear()));
+                txtArea_description.setText(book.getDescription());
 
-        // Load book cover
-        loadBookCover(book.getCoverImageUrl());
+                loadBookCover(book.getCoverImageUrl());
 
-        double averageRating = book.getAverageRating();
-        if (averageRating > 0) {
-            ratingHandler.setInitialRating((int) Math.round(averageRating));
-        } else {
-            ratingHandler.setInitialRating(0);
-        }
+                double averageRating = book.getAverageRating();
+                if (averageRating > 0) {
+                    ratingHandler.setInitialRating((int) Math.round(averageRating));
+                } else {
+                    ratingHandler.setInitialRating(0);
+                }
 
-        loadBookCategories(book.getBookId());
+                loadBookCategories(book.getBookId());
+
+                System.out.println("Book details displayed successfully");
+            } catch (Exception e) {
+                System.err.println("Error displaying book details: " + e.getMessage());
+                e.printStackTrace();
+            }
+        });
     }
 
     private void loadBookCover(String coverImageUrl) {
@@ -241,7 +281,6 @@ public class InformationBookController implements Initializable {
                 for (BookCategoryDTO category : categories) {
                     Label categoryLabel = new Label(category.getCategoryName());
                     categoryLabel.getStyleClass().add("category-label");
-                    // Add some basic styling
                     categoryLabel.setStyle(
                             "-fx-background-color: #f0f0f0;" +
                                     "-fx-padding: 5 10 5 10;" +
@@ -265,5 +304,36 @@ public class InformationBookController implements Initializable {
             alert.showAndWait();
         });
     }
+
+    @FXML
+    public void handleBuyButton() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/bibliotech/BuyBook.fxml"));
+            Parent root = loader.load();
+
+            // Lấy controller của BuyBookController
+            BuyBookController buyBookController = loader.getController();
+
+            // Truyền dữ liệu sách và balance
+            if (currentBook != null) {
+                int currentUserId = SessionManager.getInstance().getCurrentUserId();
+                BigDecimal balance = new UserService().getUserBalance(currentUserId);
+                // Assuming the userId is available, such as from the session manager:
+                buyBookController.setBookData(currentBook, balance, currentUserId);
+
+            }
+
+            // Hiển thị màn hình mới
+            Stage stage = (Stage) btn_Buy.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error switching to BuyBook scene: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 }

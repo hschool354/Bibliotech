@@ -264,5 +264,14 @@ public class UserService {
         }
     }
 
+    public BigDecimal getUserBalance(int userId) {
+        return userDAO.getBalanceByUserId(userId);
+    }
+
+    public boolean updateUserBalance(int userId, BigDecimal newBalance) {
+        return userDAO.updateBalance(userId, newBalance);
+    }
 }
+
+
 

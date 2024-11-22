@@ -43,7 +43,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Category" textAlignment="CENTER">
+                        <Button fx:id="btn_Category" mnemonicParsing="false" onAction="#handleCategoryButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Category" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -91,7 +91,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Wallet" textAlignment="CENTER">
+                        <Button fx:id="btn_Wallet" mnemonicParsing="false" onAction="#handleWalletButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Wallet" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -197,7 +197,7 @@
                                       <Label styleClass="custom-menu-item-label" text="Setting" />
                                   </content>
                               </CustomMenuItem>
-                              <CustomMenuItem fx:id="customMenuItem_Logout">
+                              <CustomMenuItem fx:id="customMenuItem_Logout" onAction="#handleLogOutButton">
                                   <content>
                                       <Label styleClass="custom-menu-item-label" text="LogOut" />
                                   </content>
@@ -235,7 +235,7 @@
                               <ImageView fx:id="image_1" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_Tittle1" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                    <Label fx:id="lbl_Tittle1" disable="true" layoutX="-3.0" layoutY="6.0" prefHeight="16.0" prefWidth="123.0" text="Label" textAlignment="CENTER" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>
@@ -244,7 +244,7 @@
                               </Pane>
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_Price1" layoutX="42.0" layoutY="6.0" text="Label">
+                                    <Label fx:id="lbl_Price1" layoutX="33.0" layoutY="6.0" prefHeight="16.0" prefWidth="52.0" text="Label" textAlignment="CENTER">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>
@@ -262,7 +262,7 @@
                               <ImageView fx:id="image_2" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_Tittle2" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                    <Label fx:id="lbl_Tittle2" disable="true" layoutX="-3.0" layoutY="6.0" prefHeight="16.0" prefWidth="122.0" text="Label" textAlignment="CENTER" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>
@@ -289,7 +289,7 @@
                               <ImageView fx:id="image_3" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_Tittle3" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                    <Label fx:id="lbl_Tittle3" disable="true" layoutX="-3.0" layoutY="6.0" prefHeight="16.0" prefWidth="121.0" text="Label" textAlignment="CENTER" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>
@@ -316,7 +316,7 @@
                               <ImageView fx:id="image_4" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_Tittle4" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                    <Label fx:id="lbl_Tittle4" disable="true" layoutX="-3.0" layoutY="6.0" prefHeight="16.0" prefWidth="124.0" text="Label" textAlignment="CENTER" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>
@@ -363,7 +363,7 @@
                               <ImageView fx:id="image_saleBook1" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_TittleSaleBook1" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                    <Label fx:id="lbl_TittleSaleBook1" disable="true" layoutX="-3.0" layoutY="6.0" prefHeight="16.0" prefWidth="124.0" text="Label" textAlignment="CENTER" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>
@@ -399,7 +399,7 @@
                               <ImageView fx:id="image_saleBook2" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_TittleSaleBook2" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                    <Label fx:id="lbl_TittleSaleBook2" disable="true" layoutX="-3.0" layoutY="6.0" prefHeight="16.0" prefWidth="125.0" text="Label" textAlignment="CENTER" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>
@@ -435,7 +435,7 @@
                               <ImageView fx:id="image_saleBook3" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_TittleSaleBook3" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                    <Label fx:id="lbl_TittleSaleBook3" disable="true" layoutX="-3.0" layoutY="6.0" prefHeight="16.0" prefWidth="126.0" text="Label" textAlignment="CENTER" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>
@@ -471,7 +471,7 @@
                               <ImageView fx:id="image_saleBook4" disable="true" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
                               <Pane disable="true" prefHeight="28.0" prefWidth="152.0">
                                  <children>
-                                    <Label fx:id="lbl_TittleSaleBook4" disable="true" layoutX="42.0" layoutY="6.0" text="Label" wrapText="true">
+                                    <Label fx:id="lbl_TittleSaleBook4" disable="true" layoutX="-3.0" layoutY="6.0" prefHeight="16.0" prefWidth="125.0" text="Label" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="13.0" />
                                        </font>

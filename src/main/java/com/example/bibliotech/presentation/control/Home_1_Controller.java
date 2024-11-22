@@ -83,6 +83,9 @@ public class Home_1_Controller implements Initializable {
 
     @FXML private AnchorPane contentArea;
 
+    @FXML private Button btn_Category;
+    @FXML private Button btn_Wallet;
+
     // user
     @FXML private ImageView image_ProfilePicture;
 
@@ -154,7 +157,6 @@ public class Home_1_Controller implements Initializable {
             for (int i = 0; i < popularBooks.size() && i < 4; i++) {
                 TopBookDTO book = popularBooks.get(i);
 
-                // Load book cover using the new method
                 loadBookCover(images[i], book.getCoverImageUrl());
                 images[i].setDisable(false);
 
@@ -346,7 +348,7 @@ public class Home_1_Controller implements Initializable {
 
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error loading sale books", e);
-            // Handle empty sale book slots
+
             handleEmptySaleBookSlots();
         }
     }
@@ -423,6 +425,21 @@ public class Home_1_Controller implements Initializable {
     @FXML
     public void handleAccountSettingButton() {
         changeScene("/com/example/bibliotech/AccountSetting.fxml");
+    }
+
+    @FXML
+    public void handleLogOutButton() {
+        changeScene("/com/example/bibliotech/login.fxml");
+    }
+
+    @FXML
+    public void handleCategoryButton() {
+        changeScene("/com/example/bibliotech/Category_1.fxml");
+    }
+
+    @FXML
+    public void handleWalletButton() {
+        changeScene("/com/example/bibliotech/myWallet.fxml");
     }
 
     private void showAlert(String title, String content) {
