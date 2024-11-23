@@ -107,7 +107,7 @@
                 </VBox>
                 <VBox layoutX="24.0" layoutY="510.0" prefHeight="161.0" prefWidth="160.0" spacing="12.0">
                     <children>
-                        <Button fx:id="btn_Premium" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="premium-button" stylesheets="@style.css" text="Premium" textAlignment="CENTER">
+                        <Button fx:id="btn_Premium" mnemonicParsing="false" onAction="#handlePremiumButton" prefHeight="39.0" prefWidth="169.0" styleClass="premium-button" stylesheets="@style.css" text="Premium" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>

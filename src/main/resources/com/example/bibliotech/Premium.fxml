@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,8 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.MyLibraryController">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.PremiumController">
     <children>
         <Pane layoutX="14.0" layoutY="9.0" prefHeight="780.0" prefWidth="208.0" styleClass="aide_ankerpane" stylesheets="@style.css">
             <children>
@@ -29,7 +29,7 @@
                 </Label>
                 <VBox layoutX="24.0" layoutY="136.0" prefHeight="330.0" prefWidth="160.0" spacing="12.0">
                     <children>
-                        <Button fx:id="btn_Home" mnemonicParsing="false" prefHeight="32.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Discover" textAlignment="CENTER">
+                        <Button fx:id="btn_Home" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="32.0" prefWidth="160.0" styleClass="button_more" stylesheets="@style.css" text="Discover" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -41,7 +41,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btn_Category" mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Category" textAlignment="CENTER">
+                        <Button fx:id="btn_Category" mnemonicParsing="false" onAction="#handleCategoryButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Category" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -53,7 +53,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_home" stylesheets="@style.css" text="My Library" textAlignment="CENTER">
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="My Library" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -89,7 +89,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Wallet" textAlignment="CENTER">
+                        <Button fx:id="btn_Wallet" mnemonicParsing="false" onAction="#handleWalletButton" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="Wallet" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -147,38 +147,120 @@
             </children>
         </Pane>
 
-        <Pane layoutX="236.0" layoutY="10.0" prefHeight="780.0" prefWidth="1091.0" styleClass="aide_ankerpane7" stylesheets="@style.css">
+        <Pane layoutX="237.0" layoutY="9.0" prefHeight="780.0" prefWidth="1091.0" styleClass="aide_ankerpane" stylesheets="@style.css">
          <children>
-            <Pane layoutX="169.0" layoutY="34.0" prefHeight="48.0" prefWidth="754.0" styleClass="aide_ankerpane_5" stylesheets="@style.css">
+            <Text layoutX="393.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your plan">
+               <font>
+                  <Font name="SansSerif Bold" size="36.0" />
+               </font>
+            </Text>
+            <Text layoutX="347.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enjoy unlimited access to thousands of books and exclusive content.">
+               <font>
+                  <Font name="Segoe UI Light" size="14.0" />
+               </font>
+            </Text>
+             <ToggleButton fx:id="toggleSwitch" layoutX="520.0" layoutY="170.0" mnemonicParsing="false" stylesheets="@style.css" />
+            <Text layoutX="423.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bill Monthly">
+               <font>
+                  <Font name="SansSerif Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="DARKGRAY" layoutX="587.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bill Monthly">
+               <font>
+                  <Font name="SansSerif Bold" size="14.0" />
+               </font>
+            </Text>
+            <HBox layoutX="35.0" layoutY="242.0" prefHeight="511.0" prefWidth="1022.0" spacing="20.0">
                <children>
-                  <Button layoutX="22.0" layoutY="7.0" mnemonicParsing="false" text="Shelves">
-                     <font>
-                        <Font name="SansSerif Bold" size="18.0" />
-                     </font>
-                  </Button>
+                  <Pane prefHeight="511.0" prefWidth="325.0" styleClass="aide_ankerpanepr1" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="36.0" layoutY="32.0" text="Basic">
+                           <font>
+                              <Font name="SansSerif Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="72.0" prefHeight="21.0" prefWidth="79.0" text="\$ 4.99">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="115.0" layoutY="69.0" prefHeight="21.0" prefWidth="79.0" text="/Month">
+                           <font>
+                              <Font name="Segoe UI Light" size="18.0" />
+                           </font>
+                        </Label>
+                        <VBox fx:id="basicFeaturesBox" layoutX="23.0" layoutY="112.0" prefHeight="316.0" prefWidth="279.0" />
+                        <Button fx:id="btn_choseBasic" layoutX="102.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleChoseBasic" prefHeight="40.0" prefWidth="122.0" styleClass="pr1-button" stylesheets="@style.css" text="Choose Plan">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="511.0" prefWidth="325.0" styleClass="aide_ankerpanepr2" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="36.0" layoutY="32.0" text="Basic">
+                           <font>
+                              <Font name="SansSerif Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="72.0" prefHeight="21.0" prefWidth="79.0" text="\$ 4.99">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="115.0" layoutY="69.0" prefHeight="21.0" prefWidth="79.0" text="/Month">
+                           <font>
+                              <Font name="Segoe UI Light" size="18.0" />
+                           </font>
+                        </Label>
+                        <VBox fx:id="standardFeaturesBox" layoutX="23.0" layoutY="112.0" prefHeight="316.0" prefWidth="279.0" />
+                        <Button fx:id="btn_choseStandard" layoutX="102.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleChoseStandard" prefHeight="40.0" prefWidth="122.0" styleClass="pr2-button" stylesheets="@style.css" text="Choose Plan">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="511.0" prefWidth="325.0" styleClass="aide_ankerpanepr3" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="36.0" layoutY="32.0" text="Basic">
+                           <font>
+                              <Font name="SansSerif Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="72.0" prefHeight="21.0" prefWidth="79.0" text="\$ 4.99">
+                           <font>
+                              <Font name="SansSerif Regular" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="115.0" layoutY="69.0" prefHeight="21.0" prefWidth="79.0" text="/Month">
+                           <font>
+                              <Font name="Segoe UI Light" size="18.0" />
+                           </font>
+                        </Label>
+                        <VBox fx:id="premiumFeaturesBox" layoutX="23.0" layoutY="112.0" prefHeight="316.0" prefWidth="279.0" />
+                        <Button fx:id="btn_chosePremium" layoutX="102.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleChosePremium" prefHeight="40.0" prefWidth="122.0" styleClass="pr3-button" stylesheets="@style.css" text="Choose Plan">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
                </children>
-            </Pane>
-            <VBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="127.0" prefHeight="233.0" prefWidth="1012.0">
-               <children>
-                   <HBox fx:id="MyBook" alignment="CENTER_LEFT" maxWidth="1107.0" prefHeight="154.0" prefWidth="1012.0" spacing="25.0">
-                       <children>
-                           <fx:include source="MyBookItem.fxml" />
-                           <fx:include source="MyBookItem.fxml" />
-                           <fx:include source="MyBookItem.fxml" />
-                           <fx:include source="MyBookItem.fxml" />
-                           <fx:include source="MyBookItem.fxml" />
-                       </children>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                   </HBox>
-                  <Pane prefHeight="20.0" prefWidth="1012.0" stylesheets="@style.css">
-                     <styleClass>
-                        <String fx:value="aide_ankerpane8" />
-                        <String fx:value="shadow-effect" />
-                     </styleClass></Pane>
-               </children>
-            </VBox>
+            </HBox>
+            <Button fx:id="btn_MyPremium" layoutX="35.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleMyPremium" prefHeight="39.0" prefWidth="169.0" styleClass="button-login" stylesheets="@style.css" text="My Premium" textAlignment="CENTER">
+               <font>
+                  <Font name="SansSerif Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../icons/icons_crown.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children></Pane>
 
     </children>

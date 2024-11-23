@@ -84,7 +84,7 @@ public class Home_1_Controller implements Initializable {
     @FXML private AnchorPane contentArea;
 
     @FXML private Button btn_Category,btn_MyLibrary;
-    @FXML private Button btn_Wallet;
+    @FXML private Button btn_Wallet,btn_Premium;
 
     // user
     @FXML private ImageView image_ProfilePicture;
@@ -445,6 +445,11 @@ public class Home_1_Controller implements Initializable {
     @FXML
     public void handleMyLibraryButton() {
         changeScene("/com/example/bibliotech/MyLibrary.fxml");
+    }
+
+    @FXML
+    public void handlePremiumButton() {
+        changeScene("/com/example/bibliotech/Premium.fxml");
     }
 
     private void showAlert(String title, String content) {

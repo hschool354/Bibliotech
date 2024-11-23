@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.MyLibraryController">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #F0EAD6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.presentation.control.MyPremiumController">
     <children>
         <Pane layoutX="14.0" layoutY="9.0" prefHeight="780.0" prefWidth="208.0" styleClass="aide_ankerpane" stylesheets="@style.css">
             <children>
@@ -53,7 +53,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_home" stylesheets="@style.css" text="My Library" textAlignment="CENTER">
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="169.0" styleClass="button_more" stylesheets="@style.css" text="My Library" textAlignment="CENTER">
                             <font>
                                 <Font name="SansSerif Bold" size="14.0" />
                             </font>
@@ -147,39 +147,136 @@
             </children>
         </Pane>
 
-        <Pane layoutX="236.0" layoutY="10.0" prefHeight="780.0" prefWidth="1091.0" styleClass="aide_ankerpane7" stylesheets="@style.css">
-         <children>
-            <Pane layoutX="169.0" layoutY="34.0" prefHeight="48.0" prefWidth="754.0" styleClass="aide_ankerpane_5" stylesheets="@style.css">
+        <Pane fx:id="pane_container" layoutX="241.0" layoutY="11.0" prefHeight="780.0" prefWidth="1046.0" styleClass="aide_ankerpane" stylesheets="@style.css">
+            <children>
+            <Pane fx:id="paneContrainer" layoutX="75.0" layoutY="65.0" prefHeight="650.0" prefWidth="896.0" styleClass="aide_ankerpanepr1" stylesheets="@style.css">
                <children>
-                  <Button layoutX="22.0" layoutY="7.0" mnemonicParsing="false" text="Shelves">
-                     <font>
-                        <Font name="SansSerif Bold" size="18.0" />
-                     </font>
-                  </Button>
+                      <Label fx:id="NamePremium" layoutX="416.0" layoutY="36.0" text="Basic">
+                          <font>
+                              <Font name="SansSerif Bold" size="24.0" />
+                          </font>
+                      </Label>
+      
+                            <!-- Subscription Details Grid -->
+                      <VBox layoutX="48.0" layoutY="134.0" prefHeight="341.0" prefWidth="832.0" spacing="30.0">
+                          <!-- Start Date Row -->
+                          <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <Label styleClass="label-header" text="Start Date:">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="16.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="startDateLabel" text="Not subscribed">
+                                  <font>
+                                      <Font name="SansSerif Regular" size="16.0" />
+                                  </font>
+                              </Label>
+                          </HBox>
+      
+                             <!-- End Date Row -->
+                          <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <Label styleClass="label-header" text="End Date:">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="16.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="endDateLabel" text="Not subscribed">
+                                  <font>
+                                      <Font name="SansSerif Regular" size="16.0" />
+                                  </font>
+                              </Label>
+                          </HBox>
+      
+                             <!-- Duration Row -->
+                          <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <Label styleClass="label-header" text="Duration:">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="16.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="durationLabel" text="0">
+                                  <font>
+                                      <Font name="SansSerif Regular" size="16.0" />
+                                  </font>
+                              </Label>
+                              <Label text="months">
+                                  <font>
+                                      <Font name="SansSerif Regular" size="16.0" />
+                                  </font>
+                              </Label>
+                          </HBox>
+      
+                             <!-- Auto Renew Row -->
+                          <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <Label styleClass="label-header" text="Auto Renew:">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="16.0" />
+                                  </font>
+                              </Label>
+                              <RadioButton fx:id="autoRenewOn" selected="true" text="On">
+                                  <font>
+                                      <Font name="SansSerif Regular" size="16.0" />
+                                  </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="autoRenewToggle" />
+                           </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="autoRenewOff" text="Off" toggleGroup="$autoRenewToggle">
+                                  <font>
+                                      <Font name="SansSerif Regular" size="16.0" />
+                                  </font>
+                              </RadioButton>
+                              <fx:define>
+                                  <ToggleGroup fx:id="autoRenewToggle" />
+                              </fx:define>
+                          </HBox>
+      
+                             <!-- Free Reads Remaining Row -->
+                          <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <Label styleClass="label-header" text="Free Reads Remaining:">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="16.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="freeReadsLabel" text="0">
+                                  <font>
+                                      <Font name="SansSerif Regular" size="16.0" />
+                                  </font>
+                              </Label>
+                          </HBox>
+      
+                             <!-- Subscription Status -->
+                          <HBox alignment="CENTER_LEFT" spacing="20.0">
+                              <Label styleClass="label-header" text="Status:">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="16.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="statusLabel" styleClass="status-active" text="Active">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="16.0" />
+                                  </font>
+                              </Label>
+                          </HBox>
+      
+                             <!-- Action Buttons -->
+                          <HBox alignment="CENTER" layoutY="50.0" spacing="20.0">
+                              <Button fx:id="upgradeButton" styleClass="button-primary" text="Upgrade Plan">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="14.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="cancelButton" styleClass="button-secondary" text="Cancel Subscription">
+                                  <font>
+                                      <Font name="SansSerif Bold" size="14.0" />
+                                  </font>
+                              </Button>
+                          </HBox>
+                      </VBox>
                </children>
             </Pane>
-            <VBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="127.0" prefHeight="233.0" prefWidth="1012.0">
-               <children>
-                   <HBox fx:id="MyBook" alignment="CENTER_LEFT" maxWidth="1107.0" prefHeight="154.0" prefWidth="1012.0" spacing="25.0">
-                       <children>
-                           <fx:include source="MyBookItem.fxml" />
-                           <fx:include source="MyBookItem.fxml" />
-                           <fx:include source="MyBookItem.fxml" />
-                           <fx:include source="MyBookItem.fxml" />
-                           <fx:include source="MyBookItem.fxml" />
-                       </children>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                   </HBox>
-                  <Pane prefHeight="20.0" prefWidth="1012.0" stylesheets="@style.css">
-                     <styleClass>
-                        <String fx:value="aide_ankerpane8" />
-                        <String fx:value="shadow-effect" />
-                     </styleClass></Pane>
-               </children>
-            </VBox>
-         </children></Pane>
+            </children>
+        </Pane>
 
     </children>
 </AnchorPane>

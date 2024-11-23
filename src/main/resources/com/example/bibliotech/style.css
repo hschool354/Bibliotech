@@ -921,3 +921,96 @@
     -fx-fit-height: 100%; /* Đảm bảo hình ảnh vừa với button */
     -fx-background-color: white; /* Tùy chỉnh màu nền nếu cần */
 }
+
+/* Đặt kiểu mặc định cho ToggleButton */
+.toggle-button {
+    -fx-background-color: lightgray;
+    -fx-background-radius: 20;
+    -fx-padding: 5;
+    -fx-min-width: 50px;
+    -fx-min-height: 25px;
+    -fx-alignment: center-left;
+}
+
+/* Trạng thái khi ToggleButton được bật */
+.toggle-button:selected {
+    -fx-background-color: lightblue;
+    -fx-alignment: center-right;
+}
+
+.aide_ankerpanepr1 {
+    -fx-background-color: #D1E7FF; /* Màu nền */
+    -fx-border-color: #A0C4FF; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 20px; /* Bo góc đường viền */
+    -fx-background-radius: 20px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+.pr1-button {
+    -fx-background-color: #80D8FF;
+    -fx-border-color: #B0B0B0;
+    -fx-text-fill: #333333;
+    -fx-border-width: 1px; /* Chiều rộng đường viền */
+    -fx-border-radius: 10px; /* Bo góc đường viền */
+    -fx-background-radius: 10px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.aide_ankerpanepr2 {
+    -fx-background-color: #E5D8FF; /* Màu nền */
+    -fx-border-color: #C5B3FF; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 20px; /* Bo góc đường viền */
+    -fx-background-radius: 20px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+.pr2-button {
+    -fx-background-color: #D8BFD8;
+    -fx-border-color: #B0B0B0;
+    -fx-text-fill: #333333;
+    -fx-border-width: 1px; /* Chiều rộng đường viền */
+    -fx-border-radius: 10px; /* Bo góc đường viền */
+    -fx-background-radius: 10px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+.aide_ankerpanepr3 {
+    -fx-background-color: #D5F5D5; /* Màu nền */
+    -fx-border-color: #B8E6B8; /* Màu đường viền */
+    -fx-border-width: 2px; /* Chiều rộng đường viền */
+    -fx-border-radius: 20px; /* Bo góc đường viền */
+    -fx-background-radius: 20px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+.pr3-button {
+    -fx-background-color: #90EE90;
+    -fx-border-color: #B0B0B0;
+    -fx-text-fill: #333333;
+    -fx-border-width: 1px; /* Chiều rộng đường viền */
+    -fx-border-radius: 10px; /* Bo góc đường viền */
+    -fx-background-radius: 10px; /* Bo góc nền */
+    -fx-border-style: solid; /* Kiểu đường viền */
+}
+
+.label-header {
+    -fx-text-fill: #333333;
+}
+
+.status-active {
+    -fx-text-fill: #28a745;
+}
+
+.button-primary {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button-secondary {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+

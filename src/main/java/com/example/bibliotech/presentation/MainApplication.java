@@ -45,7 +45,7 @@ public class MainApplication extends Application {
         primaryStage.show();
 
         // Sử dụng PauseTransition để chờ 1 giây rồi chuyển sang giao diện thứ 2
-        PauseTransition pause = new PauseTransition(Duration.seconds(10));
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
         pause.setOnFinished(event -> fadeToLoginScreen(primaryStage));
         pause.play();
     }
